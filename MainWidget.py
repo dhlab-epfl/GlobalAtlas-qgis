@@ -327,5 +327,25 @@ class MainWidget(QDockWidget):
         layer.removeSelection()
 
     def doRemoverelations(self):
-        pass
+        layer = self.iface.activeLayer()
+
+        if layer.id() not in self.configDialog.timelayers:
+            self.iface.messageBar().pushMessage("VTM Slider","You can't remove relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+            return
+
+        relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.relationsLayer)
+        if relationsLayer is None or not isinstance(relationsLayer,QgsVectorLayer):
+            self.iface.messageBar().pushMessage("VTM Slider","You must set the relations layer in the config dialog.", QgsMessageBar.WARNING, 2)
+            return
+        relationsProvider = relationsLayer.dataProvider()
+
+        features = layer.selectedFeatures()
+        idsToUnrelate = []
+        for f in features:
+            idsToUnrelate.append( str(f.attribute('entity_id')) )
+        ids = ','.join(idsToUnrelate)
+
+        req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
+        it = relationsLayer.getFeatures( req )
+        relationsProvider.deleteFeatures( [ g.id() for g in it ] )
 
