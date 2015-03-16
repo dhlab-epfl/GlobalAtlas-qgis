@@ -75,6 +75,8 @@ class MainWidget(QDockWidget):
 
         self.minValueSpinBox.valueChanged.connect( self.slider.setMinimum )
         self.maxValueSpinBox.valueChanged.connect( self.slider.setMaximum )
+        self.minValueSpinBox.valueChanged.connect( self.spinboxYear.setMinimum )
+        self.maxValueSpinBox.valueChanged.connect( self.spinboxYear.setMaximum )
 
 
     def doDate(self, date):
