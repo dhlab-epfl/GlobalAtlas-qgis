@@ -177,8 +177,8 @@
         </item>
         <item>
          <widget class="QLineEdit" name="date">
-          <property name="inputMask">
-           <string>9999</string>
+          <property name="maxLength">
+           <number>4</number>
           </property>
           <property name="placeholderText">
            <string>date</string>
