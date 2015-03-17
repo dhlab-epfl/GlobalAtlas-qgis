@@ -25,28 +25,28 @@ from PyQt4.QtGui import *
 from PyQt4.QtXml import * 
 from PyQt4.QtWebKit import *
 from qgis.core import *
-from DialogHelp import DialogHelp
-from DialogConfig import DialogConfig
-from MainWidget import MainWidget
+from VTMToolBar import VTMToolBar
 
-import re
+import os.path
 
-dateRange = [0,2050]
 
 class VeniceTimeMachine:
-
 
     instance = None
 
     def __init__(self, iface):
+
+        self.plugin_dir = os.path.dirname(__file__)
+        
         # Save reference to the QGIS interface
         self.iface = iface
+        #self.sqlManager = VTMSqlManager(self.iface)
         VeniceTimeMachine.instance = self
 
     def initGui(self):
         """ Put your code here and remove the pass statement"""
 
-        self.dockwidget = MainWidget(self.iface)
+        self.dockwidget = VTMToolBar(self.iface)
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
 

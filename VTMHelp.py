@@ -6,7 +6,7 @@ from qgis.core import *
 # Basic dependencies
 import os.path
 
-class DialogHelp(QDialog):
+class VTMHelp(QDialog):
 
     def __init__(self):
         QDialog.__init__(self)

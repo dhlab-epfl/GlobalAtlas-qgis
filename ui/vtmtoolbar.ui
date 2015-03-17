@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
+    <width>955</width>
     <height>94</height>
    </rect>
   </property>
@@ -59,12 +59,19 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="configButton">
+       <widget class="QToolButton" name="idButton">
         <property name="text">
-         <string>config</string>
+         <string>id</string>
         </property>
         <property name="checkable">
          <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="openButton">
+        <property name="text">
+         <string>open</string>
         </property>
        </widget>
       </item>

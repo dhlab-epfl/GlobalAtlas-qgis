@@ -29,8 +29,7 @@ from PyQt4 import uic
 from qgis.core import *
 from qgis.gui import *
 
-from DialogHelp import DialogHelp
-from DialogConfig import DialogConfig
+from VTMHelp import VTMHelp
 
 from qgis.core import *
 
@@ -39,18 +38,23 @@ import re
 
 dateRange = [0,2050]
 
-class MainWidget(QDockWidget):
+class VTMToolBar(QDockWidget):
+
+    sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
+    timeManagedLayersIDs = ['events_for_qgis20150307001918975', 'events_for_qgis20150307041406392', 'events_for_qgis20150317102814809']
+    unfilteredEventsLayerID = 'events20150212181047441'
+    unfilteredEntitiesLayerID = 'entities20150212181047504'
+    unfilteredRelationsLayerID = 'related_entities20150303160720006'
 
     def __init__(self, iface):
 
         self.iface = iface
         QDockWidget.__init__(self)
-        uic.loadUi(os.path.dirname(__file__)+'/ui/main.ui', self)
-
-        self.configDialog = DialogConfig(self.iface)
+        uic.loadUi(os.path.dirname(__file__)+'/ui/vtmtoolbar.ui', self)
 
         self.helpButton.pressed.connect(self.doHelp)  
-        self.configButton.pressed.connect(self.doConfig)   
+        self.idButton.pressed.connect(self.showId)   
+        self.openButton.pressed.connect(self.openFile)   
         #TODOself.updatejoinsButton.pressed.connect(self.doUpdatejoins)   
         self.mergeButton.pressed.connect(self.doMerge)
         self.explodeButton.pressed.connect(self.doExplode)
@@ -65,8 +69,6 @@ class MainWidget(QDockWidget):
         self.listEventsButton.pressed.connect(self.doListevents)
         self.viewRelationsButton.pressed.connect(self.doViewrelations)
 
-
-
         self.slider.valueChanged.connect( self.spinboxYear.setValue )
         self.spinboxYear.valueChanged.connect( self.slider.setValue )
 
@@ -78,26 +80,36 @@ class MainWidget(QDockWidget):
         self.minValueSpinBox.valueChanged.connect( self.spinboxYear.setMinimum )
         self.maxValueSpinBox.valueChanged.connect( self.spinboxYear.setMaximum )
 
+        self.loadLayers()
+
+    def loadLayers(self):
+
+        self.timeManagedLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.timeManagedLayersIDs]
+        self.unfilteredEventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredEventsLayerID)
+        self.unfilteredEntitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredEntitiesLayerID)
+        self.unfilteredRelationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredRelationsLayerID)
+
+        QgsMessageLog.logMessage('Loaded '+str(self.timeManagedLayers),'VTM Slider')
+
+    def openFile(self):
+        path = os.path.join( os.path.dirname(__file__),'qgis\dataentry.qgs')
+        self.iface.addProject( path )
+        self.loadLayers()
 
     def doDate(self, date):
 
-        subset = "{0}>=date_start_min AND {0}<=date_end_max".format(date)
-        for layerId in self.configDialog.timelayers:
-
-            layer = QgsMapLayerRegistry.instance().mapLayer(layerId)
-            if layer is None or not isinstance(layer,QgsVectorLayer):
-                continue
-
-            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.configDialog.filterString) )
+        for layer in self.timeManagedLayers:
+            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.sqlFilter) )
 
         self.iface.mapCanvas().refresh()
 
     def doHelp(self):
-        dlg = DialogHelp()
+        dlg = VTMHelp()
         dlg.exec_()
 
-    def doConfig(self):
-        self.configDialog.exec_()
+    def showId(self):
+        QgsMessageLog.logMessage(self.iface.activeLayer().id(),'VTM Slider')
+        #self.configDialog.exec_()
     
     """
     TODO
@@ -117,7 +129,7 @@ class MainWidget(QDockWidget):
     def doMerge(self):
         layer = self.iface.activeLayer()
 
-        if layer.id() not in self.configDialog.timelayers:
+        if layer not in self.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't merge on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -142,7 +154,7 @@ class MainWidget(QDockWidget):
     def doExplode(self):
         layer = self.iface.activeLayer()
 
-        if layer.id() not in self.configDialog.timelayers:
+        if layer not in self.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't explode on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -163,7 +175,7 @@ class MainWidget(QDockWidget):
 
         layer = self.iface.activeLayer()
 
-        if layer.id() not in self.configDialog.timelayers:
+        if layer not in self.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't set non existence on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -189,14 +201,9 @@ class MainWidget(QDockWidget):
 
         layer.removeSelection()
 
-    def doListevents(self):         
+    def doListevents(self):     
 
-        eventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.eventsLayer)
-        if eventsLayer is None or not isinstance(eventsLayer,QgsVectorLayer):
-            self.iface.messageBar().pushMessage("VTM Slider","You must set the events layer in the config dialog.", QgsMessageBar.WARNING, 2)
-            return
-
-        eventsLayer.removeSelection()
+        self.unfilteredEventsLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -209,20 +216,15 @@ class MainWidget(QDockWidget):
         features = layer.selectedFeatures()
 
         for f in features:
-            it = eventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression ( '"entity_id" = '+str( f.attribute('entity_id') ) ) )
-            eventsLayer.setSelectedFeatures( [ f.id() for f in it ] )
+            it = self.unfilteredEventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression ( '"entity_id" = '+str( f.attribute('entity_id') ) ) )
+            self.unfilteredEventsLayer.setSelectedFeatures( [ f.id() for f in it ] )
             break
 
-        self.iface.showAttributeTable(eventsLayer)
+        self.iface.showAttributeTable(self.unfilteredEventsLayer)
 
     def doViewentity(self):
 
-        entityLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.entitiesLayer)
-        if entityLayer is None or not isinstance(entityLayer,QgsVectorLayer):
-            self.iface.messageBar().pushMessage("VTM Slider","You must set the events layer in the config dialog.", QgsMessageBar.WARNING, 2)
-            return
-
-        entityLayer.removeSelection()
+        self.unfilteredEntitiesLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -234,18 +236,13 @@ class MainWidget(QDockWidget):
         idsToSelect = []
         for f in features:
             idsToSelect.append( f.attribute('entity_id') )
-        entityLayer.setSelectedFeatures(idsToSelect)
+        self.unfilteredEntitiesLayer.setSelectedFeatures(idsToSelect)
 
-        self.iface.showAttributeTable(entityLayer)
+        self.iface.showAttributeTable(self.unfilteredEntitiesLayer)
 
     def doViewrelations(self):
 
-        relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.relationsLayer)
-        if relationsLayer is None or not isinstance(relationsLayer,QgsVectorLayer):
-            self.iface.messageBar().pushMessage("VTM Slider","You must set the relations layer in the config dialog.", QgsMessageBar.WARNING, 2)
-            return
-
-        relationsLayer.removeSelection()
+        self.unfilteredRelationsLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -261,13 +258,18 @@ class MainWidget(QDockWidget):
         # The important part: get the feature iterator with an expression
         ids = ','.join(idsToSelect)
         req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = relationsLayer.getFeatures( req )
-        relationsLayer.setSelectedFeatures( [ g.id() for g in it ] )
+        it = self.unfilteredRelationsLayer.getFeatures( req )
+        self.unfilteredRelationsLayer.setSelectedFeatures( [ g.id() for g in it ] )
 
-        self.iface.showAttributeTable(relationsLayer)
+        self.iface.showAttributeTable(self.unfilteredRelationsLayer)
 
     def doCopytodate(self):
         layer = self.iface.activeLayer()
+
+        if layer not in self.timeManagedLayers:
+            self.iface.messageBar().pushMessage("VTM Slider","You can't copy to date on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+            return
+
         provider = layer.dataProvider()
         myFields = provider.fields()
 
@@ -290,19 +292,15 @@ class MainWidget(QDockWidget):
 
     def doCreaterelations(self):
 
-        # 1. Get the relation layers and it's settings
-        relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.relationsLayer)
-        if relationsLayer is None or not isinstance(relationsLayer,QgsVectorLayer):
-            self.iface.messageBar().pushMessage("VTM Slider","You must set the relations layer in the config dialog.", QgsMessageBar.WARNING, 2)
-            return
-        provider = relationsLayer.dataProvider()
+
+        provider = self.unfilteredRelationsLayer.dataProvider()
         myFields = provider.fields()
         fieldIdAIdx = provider.fieldNameIndex('a_id')
         fieldIdBIdx = provider.fieldNameIndex('b_id')
 
         # 2. Get the selected features        
         layer = self.iface.activeLayer()
-        if layer.id() not in self.configDialog.timelayers:
+        if layer not in self.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't create relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
         features = layer.selectedFeatures()
@@ -331,15 +329,11 @@ class MainWidget(QDockWidget):
     def doRemoverelations(self):
         layer = self.iface.activeLayer()
 
-        if layer.id() not in self.configDialog.timelayers:
+        if layer not in self.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't remove relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
-        relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.configDialog.relationsLayer)
-        if relationsLayer is None or not isinstance(relationsLayer,QgsVectorLayer):
-            self.iface.messageBar().pushMessage("VTM Slider","You must set the relations layer in the config dialog.", QgsMessageBar.WARNING, 2)
-            return
-        relationsProvider = relationsLayer.dataProvider()
+        relationsProvider = self.unfilteredRelationsLayer.dataProvider()
 
         features = layer.selectedFeatures()
         idsToUnrelate = []
@@ -348,6 +342,6 @@ class MainWidget(QDockWidget):
         ids = ','.join(idsToUnrelate)
 
         req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = relationsLayer.getFeatures( req )
+        it = self.unfilteredRelationsLayer.getFeatures( req )
         relationsProvider.deleteFeatures( [ g.id() for g in it ] )
 
