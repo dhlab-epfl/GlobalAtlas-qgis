@@ -3,9 +3,9 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Draft">
+    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Draft">
       <customproperties/>
-      <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Postgis">
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Postgis">
         <customproperties/>
         <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Historical">
           <customproperties/>
@@ -16,7 +16,7 @@
             <customproperties/>
           </layer-tree-layer>
         </layer-tree-group>
-        <layer-tree-group expanded="0" checked="Qt::Unchecked" name="ITB">
+        <layer-tree-group expanded="1" checked="Qt::Unchecked" name="ITB">
           <customproperties/>
           <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="un_vol20150307133107889" name="un_vol">
             <customproperties/>
@@ -50,7 +50,7 @@
           </layer-tree-layer>
         </layer-tree-group>
       </layer-tree-group>
-      <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Euratlas">
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Euratlas">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="euratlas_sovereign_states20150307180321738" name="euratlas_sovereign_states">
           <customproperties/>
@@ -93,66 +93,29 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1372985.57937804609537125</xmin>
-      <ymin>5690504.26412371825426817</ymin>
-      <xmax>1373556.76742560416460037</xmax>
-      <ymax>5690984.77598316501826048</ymax>
+      <xmin>2311493.31577463122084737</xmin>
+      <ymin>5035005.95827533025294542</ymin>
+      <xmax>2311825.2632075403816998</xmax>
+      <ymax>5035185.02329928148537874</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
     <destinationsrs>
       <spatialrefsys>
-        <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</proj4>
-        <srsid>3857</srsid>
-        <srid>3857</srid>
-        <authid>EPSG:3857</authid>
-        <description>WGS 84 / Pseudo Mercator</description>
-        <projectionacronym>merc</projectionacronym>
-        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
+        <srsid>969</srsid>
+        <srid>3004</srid>
+        <authid>EPSG:3004</authid>
+        <description>Monte Mario / Italy zone 2</description>
+        <projectionacronym>tmerc</projectionacronym>
+        <ellipsoidacronym>intl</ellipsoidacronym>
         <geographicflag>false</geographicflag>
       </spatialrefsys>
     </destinationsrs>
     <layer_coordinate_transform_info>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="Vector_Bender20150307115354405"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:102092" srcDatumTransform="-1" destDatumTransform="-1" layerid="1360_can20150226154916588"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3282dd20150307140757327"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3235cs20150307140813207"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3237cs20150307140813239"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="xiisec_un_vol_copy20150302190127196"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3239cs20150307140813270"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="nap1220150307134058541"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3240cs20150307140813286"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="ne_10m_land20150307180248700"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3280dd20150307140803968"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="nap1220150307115056120"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3242cs20150307140813317"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3283dd20150307140834910"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150307133107889"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="ne_10m_land_copy20150307181110347"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="1808_un_vol_copy20150302190127170"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="euratlas_sovereign_states20150307180321738"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="digitized_Austrian_Cadastre20150307144310781"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="digitized_Napoleonic_Cadastre20150307144344808"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3238cs20150307140813254"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="fg_1220150307112455731"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3241cs20150307140813301"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3280dd20150307140834864"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:102092" srcDatumTransform="-1" destDatumTransform="-1" layerid="xiisec_can20150226154915040"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3243cs20150307140813332"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="1360_un_vol_copy20150302190127109"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3236cs20150307140813223"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="13th_un_vol_copy20150302190127143"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3237cs20150307140731790"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="xiisec_isl20150226162051159"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="digitized_Austrian_Italian_Cadastre20150307144316053"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3282dd20150307140834895"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="1360_isl20150216164008691"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3244cs20150307140813348"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150307015054250"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="nap1220150307133311597"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <visibility-presets>
@@ -211,8 +174,8 @@
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
-    <legendgroup open="true" checked="Qt::Unchecked" name="Draft">
-      <legendgroup open="true" checked="Qt::Unchecked" name="Postgis">
+    <legendgroup open="false" checked="Qt::Unchecked" name="Draft">
+      <legendgroup open="false" checked="Qt::Unchecked" name="Postgis">
         <legendgroup open="false" checked="Qt::Unchecked" name="Historical">
           <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Nap_SM" showFeatureCount="0">
             <filegroup open="true" hidden="false">
@@ -225,7 +188,7 @@
             </filegroup>
           </legendlayer>
         </legendgroup>
-        <legendgroup open="false" checked="Qt::Unchecked" name="ITB">
+        <legendgroup open="true" checked="Qt::Unchecked" name="ITB">
           <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="un_vol" showFeatureCount="0">
             <filegroup open="true" hidden="false">
               <legendlayerfile isInOverview="0" layerid="un_vol20150307133107889" visible="0"/>
@@ -275,7 +238,7 @@
           </legendlayer>
         </legendgroup>
       </legendgroup>
-      <legendgroup open="true" checked="Qt::Unchecked" name="Euratlas">
+      <legendgroup open="false" checked="Qt::Unchecked" name="Euratlas">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="euratlas_sovereign_states" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="euratlas_sovereign_states20150307180321738" visible="0"/>
@@ -332,7 +295,7 @@
   <projectlayers layercount="22">
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>1360_can20150226154916588</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."1360_can" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."1360_can" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -586,7 +549,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>1360_isl20150216164008691</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=POLYGON table="data_draft_idl"."1360_isl" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=POLYGON table="data_draft_idl"."1360_isl" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -840,7 +803,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>1360_un_vol_copy20150302190127109</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."1360_un_vol copy" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."1360_un_vol copy" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1076,7 +1039,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>13th_un_vol_copy20150302190127143</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."13th_un_vol copy" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."13th_un_vol copy" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1312,7 +1275,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>1808_un_vol_copy20150302190021824</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."1808_un_vol copy" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."1808_un_vol copy" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1406,7 +1369,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>1808_un_vol_copy20150302190127170</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."1808_un_vol copy" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."1808_un_vol copy" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1642,7 +1605,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>Nap_SM20150307135858344</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_vectorized_historical_cadasters"."Nap_SM" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_vectorized_historical_cadasters"."Nap_SM" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1792,7 +1755,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entities20150212181047504</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1885,7 +1848,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entity_types20150306220740482</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."entity_types" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."entity_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1957,7 +1920,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>euratlas_sovereign_states20150307180321738</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3857 type=MULTIPOLYGON table="data_external"."euratlas_sovereign_states" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3857 type=MULTIPOLYGON table="data_external"."euratlas_sovereign_states" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2223,7 +2186,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>nap1220150307134058541</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_vectorized_historical_cadasters"."nap12" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_vectorized_historical_cadasters"."nap12" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2507,7 +2470,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties20150212181047441</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2621,7 +2584,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties20150317113758450</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=-2147483648 table="vtm"."properties" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=-2147483648 table="vtm"."properties" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2735,8 +2698,8 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
-AND
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)&#xd;
+AND&#xd;
 ("computed_date_end" IS NULL OR "computed_date_end">/**/1416/**/)</datasource>
       <title></title>
       <abstract></abstract>
@@ -3172,8 +3135,8 @@ AND
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
-AND
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)&#xd;
+AND&#xd;
 ("computed_date_end" IS NULL OR "computed_date_end">/**/1416/**/)</datasource>
       <title></title>
       <abstract></abstract>
@@ -3623,9 +3586,9 @@ AND
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3698,6 +3661,7 @@ AND
       <renderer-v2 attr="entity_type_name" symbollevels="0" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="" label=""/>
+          <category render="true" symbol="1" value="person" label="person"/>
         </categories>
         <symbols>
           <symbol alpha="1" type="marker" name="0">
@@ -3710,6 +3674,27 @@ AND
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="161,138,179,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.25"/>
+              <prop k="outline_width_map_unit_scale" v="0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="area"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="marker" name="1">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="211,161,161,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="179,71,71,255"/>
               <prop k="outline_style" v="solid"/>
               <prop k="outline_width" v="0.25"/>
               <prop k="outline_width_map_unit_scale" v="0,0"/>
@@ -3971,7 +3956,7 @@ AND
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>related_entities20150303160720006</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."related_entities" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."related_entities" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4054,7 +4039,7 @@ AND
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>sources20150212181047520</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4108,7 +4093,7 @@ AND
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>un_vol20150307133107889</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id_0' srid=3004 type=POLYGON table="data_external"."un_vol" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id_0' srid=3004 type=POLYGON table="data_external"."un_vol" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4128,7 +4113,7 @@ AND
         </spatialrefsys>
       </srs>
       <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE( "id", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -4440,7 +4425,7 @@ AND
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>xiisec_can20150226154915040</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."xiisec_can" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."xiisec_can" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4700,7 +4685,7 @@ AND
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>xiisec_isl20150226162051159</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."xiisec_isl" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."xiisec_isl" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -4942,7 +4927,7 @@ AND
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>xiisec_un_vol_copy20150302190127196</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."xiisec_un_vol copy" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=3004 type=MULTIPOLYGON table="data_draft_idl"."xiisec_un_vol copy" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -5191,21 +5176,21 @@ AND
     </Paths>
     <WMSServiceTitle type="QString"></WMSServiceTitle>
     <WFSLayers type="QStringList"/>
-    <WMSRestrictedLayers type="QStringList"/>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSRestrictedComposers type="QStringList"/>
+    <WMSRestrictedLayers type="QStringList"/>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
       <Automatic type="bool">true</Automatic>
       <DegreeFormat type="QString">D</DegreeFormat>
     </PositionPrecision>
     <WCSUrl type="QString"></WCSUrl>
-    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSContactPhone type="QString"></WMSContactPhone>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <Measure>
-      <Ellipsoid type="QString">WGS84</Ellipsoid>
+      <Ellipsoid type="QString">intl</Ellipsoid>
     </Measure>
     <WMSPrecision type="QString">8</WMSPrecision>
     <WFSTLayers>
@@ -5335,14 +5320,14 @@ AND
       <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
       <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
       <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
-      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)
-AND
+      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;
+AND&#xd;
 ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>
     </VTMSlider>
     <SpatialRefSys>
-      <ProjectCRSProj4String type="QString">+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs</ProjectCRSProj4String>
-      <ProjectCrs type="QString">EPSG:3857</ProjectCrs>
-      <ProjectCRSID type="int">3857</ProjectCRSID>
+      <ProjectCRSProj4String type="QString">+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</ProjectCRSProj4String>
+      <ProjectCrs type="QString">EPSG:3004</ProjectCrs>
+      <ProjectCRSID type="int">969</ProjectCRSID>
       <ProjectionsEnabled type="int">1</ProjectionsEnabled>
     </SpatialRefSys>
     <DefaultStyles>
