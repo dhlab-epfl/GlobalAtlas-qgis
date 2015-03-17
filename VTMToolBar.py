@@ -79,7 +79,7 @@ class VTMToolBar(QDockWidget):
 
 
     def doOpenFile(self):
-        path = os.path.join( os.path.dirname(__file__),'qgis\dataentry.qgs')
+        path = os.path.join( os.path.dirname(__file__),'qgis','dataentry.qgs')
         self.iface.addProject( path )
         self.main.loadLayers()
 
