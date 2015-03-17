@@ -70,7 +70,18 @@ class VTMMain:
         self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
         self.relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.relationsLayerID)
 
-        QgsMessageLog.logMessage('Loaded '+str(self.timeManagedLayers),'VTM Slider')
+        if not all(self.timeManagedLayers) or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None:
+            QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
+            return
+
+        for layer in self.timeManagedLayers:
+            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+
+        QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
+
+    def committedFeaturesAdded(self, layerId, addedFeatures):
+        if QgsMessageLog is not None: #bug ? why would QgsMessageLog be None ??!
+            QgsMessageLog.logMessage('committedFeaturesAdded','VTM Slider')
 
 
 
