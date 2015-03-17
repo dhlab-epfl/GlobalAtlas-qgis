@@ -23,5 +23,5 @@
 
 def classFactory(iface):
     # load VeniceTimeMachine class from file VeniceTimeMachine
-    from venicetimemachine import VeniceTimeMachine
-    return VeniceTimeMachine(iface)
+    from VTMMain import VTMMain
+    return VTMMain(iface)

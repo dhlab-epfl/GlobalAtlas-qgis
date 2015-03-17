@@ -40,21 +40,17 @@ dateRange = [0,2050]
 
 class VTMToolBar(QDockWidget):
 
-    sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
-    timeManagedLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
-    unfilteredEventsLayerID = 'properties20150212181047441'
-    unfilteredEntitiesLayerID = 'entities20150212181047504'
-    unfilteredRelationsLayerID = 'related_entities20150303160720006'
-
-    def __init__(self, iface):
+    def __init__(self, iface, main):
 
         self.iface = iface
+        self.main = main
+
         QDockWidget.__init__(self)
         uic.loadUi(os.path.dirname(__file__)+'/ui/vtmtoolbar.ui', self)
 
         self.helpButton.pressed.connect(self.doHelp)  
-        self.idButton.pressed.connect(self.showId)   
-        self.openButton.pressed.connect(self.openFile)   
+        self.idButton.pressed.connect(self.doShowId)   
+        self.openButton.pressed.connect(self.doOpenFile)   
         #TODOself.updatejoinsButton.pressed.connect(self.doUpdatejoins)   
         self.mergeButton.pressed.connect(self.doMerge)
         self.explodeButton.pressed.connect(self.doExplode)
@@ -80,26 +76,17 @@ class VTMToolBar(QDockWidget):
         self.minValueSpinBox.valueChanged.connect( self.spinboxYear.setMinimum )
         self.maxValueSpinBox.valueChanged.connect( self.spinboxYear.setMaximum )
 
-        self.loadLayers()
 
-    def loadLayers(self):
 
-        self.timeManagedLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.timeManagedLayersIDs]
-        self.unfilteredEventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredEventsLayerID)
-        self.unfilteredEntitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredEntitiesLayerID)
-        self.unfilteredRelationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.unfilteredRelationsLayerID)
-
-        QgsMessageLog.logMessage('Loaded '+str(self.timeManagedLayers),'VTM Slider')
-
-    def openFile(self):
+    def doOpenFile(self):
         path = os.path.join( os.path.dirname(__file__),'qgis\dataentry.qgs')
         self.iface.addProject( path )
-        self.loadLayers()
+        self.main.loadLayers()
 
     def doDate(self, date):
 
-        for layer in self.timeManagedLayers:
-            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.sqlFilter) )
+        for layer in self.main.timeManagedLayers:
+            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.main.sqlFilter) )
 
         self.iface.mapCanvas().refresh()
 
@@ -107,7 +94,7 @@ class VTMToolBar(QDockWidget):
         dlg = VTMHelp()
         dlg.exec_()
 
-    def showId(self):
+    def doShowId(self):
         QgsMessageLog.logMessage(self.iface.activeLayer().id(),'VTM Slider')
         #self.configDialog.exec_()
     
@@ -129,7 +116,7 @@ class VTMToolBar(QDockWidget):
     def doMerge(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't merge on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -154,7 +141,7 @@ class VTMToolBar(QDockWidget):
     def doExplode(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't explode on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -175,7 +162,7 @@ class VTMToolBar(QDockWidget):
 
         layer = self.iface.activeLayer()
 
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't set non existence on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -203,7 +190,7 @@ class VTMToolBar(QDockWidget):
 
     def doListproperties(self):     
 
-        self.unfilteredEventsLayer.removeSelection()
+        self.main.eventsLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -216,15 +203,15 @@ class VTMToolBar(QDockWidget):
         features = layer.selectedFeatures()
 
         for f in features:
-            it = self.unfilteredEventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression ( '"entity_id" = '+str( f.attribute('entity_id') ) ) )
-            self.unfilteredEventsLayer.setSelectedFeatures( [ f.id() for f in it ] )
+            it = self.main.eventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression ( '"entity_id" = '+str( f.attribute('entity_id') ) ) )
+            self.main.eventsLayer.setSelectedFeatures( [ f.id() for f in it ] )
             break
 
-        self.iface.showAttributeTable(self.unfilteredEventsLayer)
+        self.iface.showAttributeTable(self.main.eventsLayer)
 
     def doViewentity(self):
 
-        self.unfilteredEntitiesLayer.removeSelection()
+        self.main.entitiesLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -236,13 +223,13 @@ class VTMToolBar(QDockWidget):
         idsToSelect = []
         for f in features:
             idsToSelect.append( f.attribute('entity_id') )
-        self.unfilteredEntitiesLayer.setSelectedFeatures(idsToSelect)
+        self.main.entitiesLayer.setSelectedFeatures(idsToSelect)
 
-        self.iface.showAttributeTable(self.unfilteredEntitiesLayer)
+        self.iface.showAttributeTable(self.main.entitiesLayer)
 
     def doViewrelations(self):
 
-        self.unfilteredRelationsLayer.removeSelection()
+        self.main.relationsLayer.removeSelection()
 
 
         layer = self.iface.activeLayer()
@@ -258,15 +245,15 @@ class VTMToolBar(QDockWidget):
         # The important part: get the feature iterator with an expression
         ids = ','.join(idsToSelect)
         req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = self.unfilteredRelationsLayer.getFeatures( req )
-        self.unfilteredRelationsLayer.setSelectedFeatures( [ g.id() for g in it ] )
+        it = self.main.relationsLayer.getFeatures( req )
+        self.main.relationsLayer.setSelectedFeatures( [ g.id() for g in it ] )
 
-        self.iface.showAttributeTable(self.unfilteredRelationsLayer)
+        self.iface.showAttributeTable(self.main.relationsLayer)
 
     def doCopytodate(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't copy to date on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -293,14 +280,14 @@ class VTMToolBar(QDockWidget):
     def doCreaterelations(self):
 
 
-        provider = self.unfilteredRelationsLayer.dataProvider()
+        provider = self.main.relationsLayer.dataProvider()
         myFields = provider.fields()
         fieldIdAIdx = provider.fieldNameIndex('a_id')
         fieldIdBIdx = provider.fieldNameIndex('b_id')
 
         # 2. Get the selected features        
         layer = self.iface.activeLayer()
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't create relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
         features = layer.selectedFeatures()
@@ -329,11 +316,11 @@ class VTMToolBar(QDockWidget):
     def doRemoverelations(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.timeManagedLayers:
+        if layer not in self.main.timeManagedLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't remove relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
-        relationsProvider = self.unfilteredRelationsLayer.dataProvider()
+        relationsProvider = self.main.relationsLayer.dataProvider()
 
         features = layer.selectedFeatures()
         idsToUnrelate = []
@@ -342,6 +329,6 @@ class VTMToolBar(QDockWidget):
         ids = ','.join(idsToUnrelate)
 
         req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = self.unfilteredRelationsLayer.getFeatures( req )
+        it = self.main.relationsLayer.getFeatures( req )
         relationsProvider.deleteFeatures( [ g.id() for g in it ] )
 

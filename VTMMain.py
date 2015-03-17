@@ -30,9 +30,15 @@ from VTMToolBar import VTMToolBar
 import os.path
 
 
-class VeniceTimeMachine:
+class VTMMain:
 
     instance = None
+
+    sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
+    timeManagedLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
+    eventsLayerID = 'properties20150212181047441'
+    entitiesLayerID = 'entities20150212181047504'
+    relationsLayerID = 'related_entities20150303160720006'
 
     def __init__(self, iface):
 
@@ -41,17 +47,30 @@ class VeniceTimeMachine:
         # Save reference to the QGIS interface
         self.iface = iface
         #self.sqlManager = VTMSqlManager(self.iface)
-        VeniceTimeMachine.instance = self
+        VTMMain.instance = self
+
+        self.loadLayers()
+
 
     def initGui(self):
         """ Put your code here and remove the pass statement"""
 
-        self.dockwidget = VTMToolBar(self.iface)
+        self.dockwidget = VTMToolBar(self.iface, self)
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
+
+
+    def loadLayers(self):
+
+        self.timeManagedLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.timeManagedLayersIDs]
+        self.eventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsLayerID)
+        self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
+        self.relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.relationsLayerID)
+
+        QgsMessageLog.logMessage('Loaded '+str(self.timeManagedLayers),'VTM Slider')
 
 
 
