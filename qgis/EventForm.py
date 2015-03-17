@@ -6,24 +6,22 @@ from qgis.gui import *
 
 myDialog = None
 
-keyField = None
+propertyField = None
 valueField = None
 
-def formOpen(dialog,layerid,featureid):
+def formOpen(dialog,layer,featureid):
 	global myDialog
 	global nameField
 	global autoKeyValueMessage
 	myDialog = dialog
 
-	keyField = dialog.findChild(QComboBox,"key")
+	propertyField = dialog.findChild(QComboBox,"property_type_id")
 	valueField = dialog.findChild(QLineEdit,"value")
 	buttonBox = dialog.findChild(QDialogButtonBox,"buttonBox")
 
 	
-
-	layer = QgsMapLayerRegistry.instance().mapLayer(layerid)
 	if layer.hasGeometryType():
-		keyField.setEnabled(False)
+		propertyField.setEnabled(False)
 		valueField.setEnabled(False)
 
 
