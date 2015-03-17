@@ -35,7 +35,7 @@ class VTMMain:
     instance = None
 
     sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
-    timeManagedLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
+    filteredEventsLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
     eventsLayerID = 'properties20150212181047441'
     entitiesLayerID = 'entities20150212181047504'
     relationsLayerID = 'related_entities20150303160720006'
@@ -65,12 +65,12 @@ class VTMMain:
 
     def loadLayers(self):
 
-        self.timeManagedLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.timeManagedLayersIDs]
+        self.filteredEventsLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.filteredEventsLayersIDs]
         self.eventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsLayerID)
         self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
         self.relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.relationsLayerID)
 
-        if not all(self.timeManagedLayers) or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None:
+        if not all(self.filteredEventsLayers) or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None:
             QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
             return
 
@@ -82,6 +82,5 @@ class VTMMain:
     def committedFeaturesAdded(self, layerId, addedFeatures):
         if QgsMessageLog is not None: #bug ? why would QgsMessageLog be None ??!
             QgsMessageLog.logMessage('committedFeaturesAdded','VTM Slider')
-
 
 

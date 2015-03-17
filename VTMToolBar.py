@@ -85,7 +85,7 @@ class VTMToolBar(QDockWidget):
 
     def doDate(self, date):
 
-        for layer in self.main.timeManagedLayers:
+        for layer in self.main.filteredEventsLayers:
             layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.main.sqlFilter) )
 
         self.iface.mapCanvas().refresh()
@@ -116,7 +116,7 @@ class VTMToolBar(QDockWidget):
     def doMerge(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't merge on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -141,7 +141,7 @@ class VTMToolBar(QDockWidget):
     def doExplode(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't explode on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -162,7 +162,7 @@ class VTMToolBar(QDockWidget):
 
         layer = self.iface.activeLayer()
 
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't set non existence on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -253,7 +253,7 @@ class VTMToolBar(QDockWidget):
     def doCopytodate(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't copy to date on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
@@ -287,7 +287,7 @@ class VTMToolBar(QDockWidget):
 
         # 2. Get the selected features        
         layer = self.iface.activeLayer()
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't create relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
         features = layer.selectedFeatures()
@@ -316,7 +316,7 @@ class VTMToolBar(QDockWidget):
     def doRemoverelations(self):
         layer = self.iface.activeLayer()
 
-        if layer not in self.main.timeManagedLayers:
+        if layer not in self.main.filteredEventsLayers:
             self.iface.messageBar().pushMessage("VTM Slider","You can't remove relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
             return
 
