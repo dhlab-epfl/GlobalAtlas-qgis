@@ -57,16 +57,16 @@
         </layer-tree-layer>
       </layer-tree-group>
     </layer-tree-group>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="events_for_qgis20150317102814809" name="events_for_qgis">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties_for_qgis20150317102814809" name="properties_for_qgis">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="events_for_qgis20150307041406392" name="events_for_qgis">
+    <layer-tree-layer expanded="0" checked="Qt::Checked" id="properties_for_qgis20150307041406392" name="properties_for_qgis">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="events_for_qgis20150307001918975" name="events_for_qgis">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties_for_qgis20150307001918975" name="properties_for_qgis">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="events20150212181047441" name="events (unfiltered)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties20150212181047441" name="properties (unfiltered)">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="entities20150212181047504" name="entities">
@@ -86,17 +86,17 @@
     </layer-tree-layer>
   </layer-tree-group>
   <relations>
-    <relation referencingLayer="events20150212181047441" referencedLayer="entities20150212181047504" id="events20150212181047441_id_entities20150212181047504_id" name="entity and events">
+    <relation referencingLayer="properties20150212181047441" referencedLayer="entities20150212181047504" id="properties20150212181047441_id_entities20150212181047504_id" name="entity and properties">
       <fieldRef referencedField="id" referencingField="id"/>
     </relation>
   </relations>
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1373219.58983005792833865</xmin>
-      <ymin>5690603.39098587539047003</ymin>
-      <xmax>1373505.18385383696295321</xmax>
-      <ymax>5690843.64691559877246618</ymax>
+      <xmin>1372825.40742014441639185</xmin>
+      <ymin>5690052.34040975477546453</ymin>
+      <xmax>1373967.7835152605548501</xmax>
+      <ymax>5691013.36412864830344915</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -121,8 +121,8 @@
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="xiisec_un_vol_copy20150302190127196"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3239cs20150307140813270"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="nap1220150307134058541"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="events_for_qgis20150307001918975"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="events_for_qgis20150307041406392"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3240cs20150307140813286"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="ne_10m_land20150307180248700"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3280dd20150307140803968"/>
@@ -148,7 +148,7 @@
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="xiisec_isl20150226162051159"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="digitized_Austrian_Italian_Cadastre20150307144316053"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3282dd20150307140834895"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="events_for_qgis20150317102814809"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="1360_isl20150216164008691"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="aus3244cs20150307140813348"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150307015054250"/>
@@ -160,25 +160,25 @@
       <layer style="" id="1360_un_vol_copy20150302190127109"/>
       <layer style="" id="1360_can20150226154916588"/>
       <layer style="" id="1360_isl20150216164008691"/>
-      <layer style="" id="events20150212181047441"/>
+      <layer style="" id="properties20150212181047441"/>
       <layer style="" id="sources20150212181047520"/>
       <layer style="" id="entities20150212181047504"/>
     </visibility-preset>
     <visibility-preset name="13th">
       <layer style="" id="13th_un_vol_copy20150302190127143"/>
-      <layer style="" id="events20150212181047441"/>
+      <layer style="" id="properties20150212181047441"/>
       <layer style="" id="sources20150212181047520"/>
       <layer style="" id="entities20150212181047504"/>
     </visibility-preset>
     <visibility-preset name="1808">
-      <layer style="" id="events20150212181047441"/>
+      <layer style="" id="properties20150212181047441"/>
       <layer style="" id="sources20150212181047520"/>
       <layer style="" id="1808_un_vol_copy20150302190127170"/>
       <layer style="" id="entities20150212181047504"/>
     </visibility-preset>
     <visibility-preset name="xiisec">
       <layer style="" id="xiisec_isl20150226162051159"/>
-      <layer style="" id="events20150212181047441"/>
+      <layer style="" id="properties20150212181047441"/>
       <layer style="" id="sources20150212181047520"/>
       <layer style="" id="xiisec_un_vol_copy20150302190127196"/>
       <layer style="" id="xiisec_can20150226154915040"/>
@@ -199,14 +199,14 @@
       <item>xiisec_isl20150226162051159</item>
       <item>xiisec_can20150226154915040</item>
       <item>euratlas_sovereign_states20150307180321738</item>
-      <item>events_for_qgis20150307041406392</item>
-      <item>events_for_qgis20150307001918975</item>
-      <item>events20150212181047441</item>
+      <item>properties_for_qgis20150307041406392</item>
+      <item>properties_for_qgis20150307001918975</item>
+      <item>properties20150212181047441</item>
       <item>entities20150212181047504</item>
       <item>entity_types20150306220740482</item>
       <item>sources20150212181047520</item>
       <item>related_entities20150303160720006</item>
-      <item>events_for_qgis20150317102814809</item>
+      <item>properties_for_qgis20150317102814809</item>
       <item>properties20150317113758450</item>
     </custom-order>
   </layer-tree-canvas>
@@ -283,24 +283,24 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="events_for_qgis" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties_for_qgis" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="events_for_qgis20150317102814809" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150317102814809" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="events_for_qgis" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="properties_for_qgis" showFeatureCount="0">
       <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="events_for_qgis20150307041406392" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150307041406392" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="events_for_qgis" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties_for_qgis" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="events_for_qgis20150307001918975" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150307001918975" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="events (unfiltered)" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties (unfiltered)" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="events20150212181047441" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="properties20150212181047441" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="entities" showFeatureCount="0">
@@ -2221,15 +2221,15 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
-      <id>events20150212181047441</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."events" sql=</datasource>
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
+      <id>properties20150212181047441</id>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>events (unfiltered)</layername>
+      <layername>properties (unfiltered)</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2260,8 +2260,8 @@
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -2306,8 +2306,8 @@
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -2335,9 +2335,9 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
-      <id>events_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."events_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+      <id>properties_for_qgis20150307001918975</id>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
 AND
 ("computed_date_end" IS NULL OR "computed_date_end">/**/1416/**/)</datasource>
       <title></title>
@@ -2345,7 +2345,7 @@ AND
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>events_for_qgis</layername>
+      <layername>properties_for_qgis</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2372,8 +2372,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="0" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="0" UseHtml="0" labelOnTop="0"/>
@@ -2403,6 +2403,9 @@ AND
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="entity_type_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -2714,7 +2717,7 @@ AND
           <attributeEditorField index="8" name="source_description"/>
           <attributeEditorContainer name="Not editable">
             <attributeEditorField index="0" name="id"/>
-            <attributeEditorField index="2" name="key"/>
+            <attributeEditorField index="-1" name="key"/>
             <attributeEditorField index="3" name="value"/>
             <attributeEditorField index="9" name="computed_date_start"/>
             <attributeEditorField index="10" name="computed_date_end"/>
@@ -2731,8 +2734,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="0" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="0" UseHtml="0" labelOnTop="0"/>
@@ -2764,11 +2767,14 @@ AND
         <edittype widgetv2type="TextEdit" name="entity_type_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
-      <id>events_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."events_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+      <id>properties_for_qgis20150307041406392</id>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1416/**/)
 AND
 ("computed_date_end" IS NULL OR "computed_date_end">/**/1416/**/)</datasource>
       <title></title>
@@ -2776,7 +2782,7 @@ AND
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>events_for_qgis</layername>
+      <layername>properties_for_qgis</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -2803,8 +2809,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -2834,6 +2840,9 @@ AND
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="entity_type_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -3161,7 +3170,7 @@ AND
           <attributeEditorField index="8" name="source_description"/>
           <attributeEditorContainer name="Uneditable">
             <attributeEditorField index="0" name="id"/>
-            <attributeEditorField index="2" name="key"/>
+            <attributeEditorField index="-1" name="key"/>
             <attributeEditorField index="3" name="value"/>
             <attributeEditorField index="9" name="computed_date_start"/>
             <attributeEditorField index="10" name="computed_date_end"/>
@@ -3178,8 +3187,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -3211,17 +3220,20 @@ AND
         <edittype widgetv2type="TextEdit" name="entity_type_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>events_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."events_for_qgis" (geovalue) sql=</datasource>
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>properties_for_qgis20150317102814809</id>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>events_for_qgis</layername>
+      <layername>properties_for_qgis</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -3248,8 +3260,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -3279,6 +3291,9 @@ AND
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="entity_type_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -3584,8 +3599,8 @@ AND
         <edittype widgetv2type="TextEdit" name="description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="key">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        <edittype widgetv2type="ValueRelation" name="property_id">
+          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="properties20150317113758450" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="value">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
@@ -3615,6 +3630,9 @@ AND
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="entity_type_name">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="property_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -3940,10 +3958,10 @@ AND
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -5220,9 +5238,9 @@ AND
         <value>1808_un_vol_copy20150302190021824</value>
         <value>1808_un_vol_copy20150302190127170</value>
         <value>euratlas_sovereign_states20150307180321738</value>
-        <value>events_for_qgis20150307001918975</value>
-        <value>events_for_qgis20150307041406392</value>
-        <value>events_for_qgis20150317102814809</value>
+        <value>properties_for_qgis20150307001918975</value>
+        <value>properties_for_qgis20150307041406392</value>
+        <value>properties_for_qgis20150317102814809</value>
         <value>nap1220150307134058541</value>
         <value>un_vol20150307133107889</value>
         <value>xiisec_can20150226154915040</value>
@@ -5315,14 +5333,14 @@ AND
     </Legend>
     <VTMSlider>
       <entitiesLayerComboBox type="QString">1360_isl20150216164008691</entitiesLayerComboBox>
-      <eventsLayerComboBox type="QString">sources20150212181047520</eventsLayerComboBox>
+      <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
       <entitiesLayer type="QString">entities20150212181047504</entitiesLayer>
       <timelayers type="QStringList">
-        <value>events_for_qgis20150307041406392</value>
-        <value>events_for_qgis20150307001918975</value>
+        <value>properties_for_qgis20150307041406392</value>
+        <value>properties_for_qgis20150307001918975</value>
       </timelayers>
       <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
-      <eventsLayer type="QString">events20150212181047441</eventsLayer>
+      <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
       <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)
 AND
 ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>

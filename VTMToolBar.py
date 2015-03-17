@@ -41,8 +41,8 @@ dateRange = [0,2050]
 class VTMToolBar(QDockWidget):
 
     sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
-    timeManagedLayersIDs = ['events_for_qgis20150307001918975', 'events_for_qgis20150307041406392', 'events_for_qgis20150317102814809']
-    unfilteredEventsLayerID = 'events20150212181047441'
+    timeManagedLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
+    unfilteredEventsLayerID = 'properties20150212181047441'
     unfilteredEntitiesLayerID = 'entities20150212181047504'
     unfilteredRelationsLayerID = 'related_entities20150303160720006'
 
@@ -66,7 +66,7 @@ class VTMToolBar(QDockWidget):
         self.removerelationsButton.pressed.connect(self.doRemoverelations)
 
         self.viewEntityButton.pressed.connect(self.doViewentity)
-        self.listEventsButton.pressed.connect(self.doListevents)
+        self.listEventsButton.pressed.connect(self.doListproperties)
         self.viewRelationsButton.pressed.connect(self.doViewrelations)
 
         self.slider.valueChanged.connect( self.spinboxYear.setValue )
@@ -184,7 +184,7 @@ class VTMToolBar(QDockWidget):
 
         fieldEttyIdx = provider.fieldNameIndex('entity_id')
         fieldDateIdx = provider.fieldNameIndex('date')
-        fieldKeyIdx = provider.fieldNameIndex('key')
+        fieldKeyIdx = provider.fieldNameIndex('property_type_id')
 
         features = layer.selectedFeatures()
         newEvents = []
@@ -201,7 +201,7 @@ class VTMToolBar(QDockWidget):
 
         layer.removeSelection()
 
-    def doListevents(self):     
+    def doListproperties(self):     
 
         self.unfilteredEventsLayer.removeSelection()
 
@@ -211,7 +211,7 @@ class VTMToolBar(QDockWidget):
 
         fieldEttyIdx = provider.fieldNameIndex('entity_id')
         fieldDateIdx = provider.fieldNameIndex('date')
-        fieldKeyIdx = provider.fieldNameIndex('key')
+        fieldKeyIdx = provider.fieldNameIndex('property_type_id')
 
         features = layer.selectedFeatures()
 
