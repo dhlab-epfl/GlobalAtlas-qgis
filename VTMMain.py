@@ -41,6 +41,7 @@ class VTMMain:
     eventsLayerID = 'properties20150212181047441'
     entitiesLayerID = 'entities20150212181047504'
     relationsLayerID = 'related_entities20150303160720006'
+    postprocessingIDs = []
 
     def __init__(self, iface):
 
@@ -63,23 +64,13 @@ class VTMMain:
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
- 
+
         # Disconnect the signals as well
         for layer in self.filteredEventsLayers:
-            try:
-                layer.committedFeaturesAdded.disconnect()
-                layer.committedFeaturesRemoved.disconnect()
-                layer.committedAttributeValuesChanges.disconnect()
-                layer.editingStopped.disconnect()
-            except Exception, e:
-                pass
-        try:
-            self.eventsLayer.committedFeaturesAdded.disconnect()
-            self.eventsLayer.committedFeaturesRemoved.disconnect()
-            self.eventsLayer.committedAttributeValuesChanges.disconnect()
-            self.eventsLayer.editingStopped.disconnect()
-        except Exception, e:
-            pass
+            layer.beforeCommitChanges.disconnect()
+            layer.editingStopped.disconnect()
+        self.eventsLayer.beforeCommitChanges.disconnect()
+        self.eventsLayer.editingStopped.disconnect()
 
 
     def loadLayers(self):
@@ -141,64 +132,43 @@ class VTMMain:
         # If everything worked, connect the signals to make the post processing queries
         ############################################################
 
-        self.propertiesTriggeringPostProcessing = []
-
         # Signals for insert of events
         for layer in self.filteredEventsLayers:
-            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
-            layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
-            layer.committedFeaturesRemoved.connect( self.committedFeaturesRemoved )
-            layer.editingStopped.connect( self.editingStopped )
+            layer.beforeCommitChanges.connect( lambda: self.preparePostProcessing(layer) )
+            layer.editingStopped.connect( lambda: self.doPostProcessing(layer) )
 
-        self.eventsLayer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
-        self.eventsLayer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
-        self.eventsLayer.committedFeaturesRemoved.connect( self.committedFeaturesRemoved )
-        self.eventsLayer.editingStopped.connect( self.editingStopped )
+        self.eventsLayer.beforeCommitChanges.connect( lambda: self.preparePostProcessing(layer) )
+        self.eventsLayer.editingStopped.connect( lambda: self.doPostProcessing(self.eventsLayer) )
+
 
 
         QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
 
+    def preparePostProcessing(self, layer):
+        QgsMessageLog.logMessage( 'prepare post processing for layer'+layer.id() , 'VTM Slider'  )
 
+    def doPostProcessing(self, layer):
+        QgsMessageLog.logMessage( 'do post processing for layer'+layer.id() , 'VTM Slider'  )
 
     def committedFeaturesAdded(self, layerId, addedFeatures):
         QgsMessageLog.logMessage( 'committedFeaturesAdded' , 'VTM Slider'  )
+
+        #cur = self.connection.cursor()
+        #sql = 'INSERT INTO vtm.properties_types(name) VALUES(\''+str(feat.id())+'\')'
+        #cur.execute(sql)
+        #cur.close()
+
         for feat in addedFeatures:
             QgsMessageLog.logMessage( 'ID %s' % str(feat.id()), 'VTM Slider'  )
             QgsMessageLog.logMessage( 'ATTR %s' % str(feat.attributes()), 'VTM Slider'  )
-            self.propertiesTriggeringPostProcessing.append( [feat.attribute('entity_id'),feat.attribute('property_type_id')] )
-        
+
+    def committedFeaturesRemoved(self, layerId, deletedFeaturesIds):
+        QgsMessageLog.logMessage( 'committedFeaturesRemoved' , 'VTM Slider'  )
+        for featId in deletedFeaturesIds:
+            QgsMessageLog.logMessage( 'ID %s' % str(featId), 'VTM Slider'  )
 
     def committedAttributeValuesChanges(self, layerId, changedAttributesValues):
         QgsMessageLog.logMessage( 'committedAttributeValuesChanges' , 'VTM Slider'  )
         for fid, attrMap in changedAttributesValues:
             QgsMessageLog.logMessage( 'ID %s' % str(fid), 'VTM Slider'  )
-            QgsMessageLog.logMessage( 'ATTR %s' % str(attrMap), 'VTM Slider'  )            
-            #self.propertiesTriggeringPostProcessing.append( fid )
-
-
-    def committedFeaturesRemoved(self, layerId, deletedFeaturesIds):            
-        QgsMessageLog.logMessage( 'committedFeaturesRemoved' , 'VTM Slider'  )
-        for featId in deletedFeaturesIds:
-            QgsMessageLog.logMessage( 'ID %s' % str(featId), 'VTM Slider'  )
-            #self.propertiesTriggeringPostProcessing.append( featId )
-        
-
-
-    def editingStopped(self):
-        QgsMessageLog.logMessage( 'editingStopped triggered', 'VTM Slider'  )
-        
-        #global os
-
-        #cur = self.connection.cursor()
-
-        #sql = open( os.path.join( os.path.dirname(__file__),'sql','compute_dates.sql') ).read()
-
-        #QgsMessageLog.logMessage( 'sql query loaded'  , 'VTM Slider'  )
-        #QgsMessageLog.logMessage( sql  , 'VTM Slider'  )
-
-        #for i in self.propertiesTriggeringPostProcessing:
-        #    cur.execute(sql, {'entity_id': i[0], 'property_type_id': i[1]})
-        #    QgsMessageLog.logMessage( 'executing query with param :'+str(i[0])+';'+str(i[1]) , 'VTM Slider'  )
-        #cur.close()
-
-        #self.propertiesTriggeringPostProcessing = []
+            QgsMessageLog.logMessage( 'ATTR %s' % str(attrMap), 'VTM Slider'  )

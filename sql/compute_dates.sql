@@ -1,16 +1,3 @@
-/************************************************************************************************/
-/* COMPUTE DATES
- *
- * This query computes the computed_date_start and computed_date_end for
- * all properties of a given type for a given entity and for it's relation.
- *
- *
- * params:
- *    entity_id  :      the id of the entity to postprocess
- *    property_type_id  : the type of property to postprocess
- */
-/************************************************************************************************/
-
 UPDATE vtm.properties as d
       SET   computed_date_start = CASE
                                     WHEN sub.prev_date IS NULL THEN
@@ -125,17 +112,11 @@ UPDATE vtm.properties as d
 		      lag(MIN(interpolation), 1, NULL) OVER (ORDER BY date) as prev_interpolation,
 		      lead(MIN(interpolation), 1, NULL) OVER (ORDER BY date) as next_interpolation
 		FROM vtm.properties
-		WHERE (
-            entity_id = %(entity_id)s                                                        -- the entity's properties have been edited
-            OR
-            entity_id IN (SELECT b_id FROM vtm.related_entities WHERE a_id=%(entity_id)s)    -- a related entity's properties have been edited
-          )
-          AND
-          (%(property_type_id)s IS NULL OR property_type_id=%(property_type_id)s)
+		WHERE (entity_id=current_entity_id OR entity_id IN (SELECT b_id FROM vtm.related_entities WHERE a_id=current_entity_id)) AND (current_property_type_id IS NULL OR property_type_id=current_property_type_id)
 		GROUP BY date, property_type_id
 		ORDER BY date ASC
 	) as sub
-	WHERE 	entity_id=%(entity_id)s
-    			AND
-    			(%(property_type_id)s IS NULL OR property_type_id=%(property_type_id)s)
-    			AND d.id = ANY(sub.ids);
+	WHERE 	entity_id=current_entity_id
+			AND
+			(current_property_type_id IS NULL OR property_type_id=current_property_type_id)
+			AND d.id = ANY(sub.ids);
