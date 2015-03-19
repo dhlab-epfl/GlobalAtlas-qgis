@@ -1409,7 +1409,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1455/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1455/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1455/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1455/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1777,7 +1777,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=-2147483648 table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."properties_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
