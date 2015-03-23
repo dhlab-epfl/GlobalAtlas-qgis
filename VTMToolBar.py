@@ -30,6 +30,7 @@ from qgis.core import *
 from qgis.gui import *
 
 from VTMHelp import VTMHelp
+from VTMLoadData import VTMLoadData
 
 from qgis.core import *
 
@@ -51,6 +52,7 @@ class VTMToolBar(QDockWidget):
         self.helpButton.pressed.connect(self.doHelp)  
         self.idButton.pressed.connect(self.doShowId)   
         self.openButton.pressed.connect(self.doOpenFile)   
+        self.loadDataButton.pressed.connect(self.doLoadData)  
         #TODOself.updatejoinsButton.pressed.connect(self.doUpdatejoins)   
         self.mergeButton.pressed.connect(self.doMerge)
         self.explodeButton.pressed.connect(self.doExplode)
@@ -97,6 +99,10 @@ class VTMToolBar(QDockWidget):
     def doShowId(self):
         QgsMessageLog.logMessage(self.iface.activeLayer().id(),'VTM Slider')
         #self.configDialog.exec_()
+
+    def doLoadData(self):
+        loadDataDialog = VTMLoadData(self.iface, self.main)
+        loadDataDialog.exec_()
     
     """
     TODO
