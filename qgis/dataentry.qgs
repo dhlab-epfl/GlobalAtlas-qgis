@@ -31,18 +31,14 @@
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
-  <relations>
-    <relation referencingLayer="properties20150212181047441" referencedLayer="entities20150212181047504" id="properties20150212181047441_id_entities20150212181047504_id" name="entity and properties">
-      <fieldRef referencedField="id" referencingField="id"/>
-    </relation>
-  </relations>
+  <relations/>
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1373116.31860161223448813</xmin>
-      <ymin>5690679.32517575286328793</ymin>
-      <xmax>1373384.44005874381400645</xmax>
-      <ymax>5690880.99791062064468861</ymax>
+      <xmin>1373119.06124326097778976</xmin>
+      <ymin>5690661.71171983238309622</ymin>
+      <xmax>1373387.18270039069466293</xmax>
+      <ymax>5690863.384454688988626</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -62,7 +58,9 @@
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150317203231266"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="edific20150323183500012"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150323184727418"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <visibility-presets>
@@ -147,101 +145,7 @@
       </filegroup>
     </legendlayer>
   </legend>
-  <projectlayers layercount="10">
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>1808_un_vol_copy20150302190021824</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="data_draft_idl"."1808_un_vol copy" (geom) sql=</datasource>
-      <title></title>
-      <abstract></abstract>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>1808_un_vol copy</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
-          <srsid>969</srsid>
-          <srid>3004</srid>
-          <authid>EPSG:3004</authid>
-          <description>Monte Mario / Italy zone 2</description>
-          <projectionacronym>tmerc</projectionacronym>
-          <ellipsoidacronym>intl</ellipsoidacronym>
-          <geographicflag>false</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
-      <vectorjoins/>
-      <expressionfields/>
-      <map-layer-style-manager current="">
-        <map-layer-style name=""/>
-      </map-layer-style-manager>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
-        <symbols>
-          <symbol alpha="1" type="fill" name="0">
-            <layer pass="0" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="170,183,247,255"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-            </layer>
-          </symbol>
-        </symbols>
-        <rotation/>
-        <sizescale scalemethod="area"/>
-      </renderer-v2>
-      <customproperties/>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>id</displayfield>
-      <label>0</label>
-      <labelattributes>
-        <label fieldname="" text="Label"/>
-        <family fieldname="" name="MS Shell Dlg 2"/>
-        <size fieldname="" units="pt" value="12"/>
-        <bold fieldname="" on="0"/>
-        <italic fieldname="" on="0"/>
-        <underline fieldname="" on="0"/>
-        <strikeout fieldname="" on="0"/>
-        <color fieldname="" red="0" blue="0" green="0"/>
-        <x fieldname=""/>
-        <y fieldname=""/>
-        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-        <angle fieldname="" value="0" auto="0"/>
-        <alignment fieldname="" value="center"/>
-        <buffercolor fieldname="" red="255" blue="255" green="255"/>
-        <buffersize fieldname="" units="pt" value="1"/>
-        <bufferenabled fieldname="" on=""/>
-        <multilineenabled fieldname="" on=""/>
-        <selectedonly on=""/>
-      </labelattributes>
-      <editform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions/>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-    </maplayer>
+  <projectlayers layercount="9">
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entities20150212181047504</id>
       <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
@@ -521,9 +425,9 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1455/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1455/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1989/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1989/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -958,7 +862,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1455/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1455/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1989/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1989/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -978,7 +882,7 @@
         </spatialrefsys>
       </srs>
       <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE( "description", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -1004,7 +908,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="entity_id">
-          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="entities20150212181047504" Value="name" labelOnTop="0" AllowMulti="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" fieldEditable="1" Key="id" Layer="entities20150212181047504" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
@@ -1033,6 +937,7 @@
           <category render="true" symbol="0" value="" label=""/>
           <category render="true" symbol="1" value="canal" label="canal"/>
           <category render="true" symbol="2" value="street" label="street"/>
+          <category render="true" symbol="3" value="border" label="border"/>
         </categories>
         <symbols>
           <symbol alpha="1" type="line" name="0">
@@ -1141,6 +1046,42 @@
               <prop k="offset_unit" v="MM"/>
               <prop k="use_custom_dash" v="0"/>
               <prop k="width_map_unit_scale" v="0,0"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" type="line" name="3">
+            <layer pass="0" class="MarkerLine" locked="0">
+              <prop k="interval" v="2"/>
+              <prop k="interval_map_unit_scale" v="0,0"/>
+              <prop k="interval_unit" v="MM"/>
+              <prop k="offset" v="0"/>
+              <prop k="offset_along_line" v="0"/>
+              <prop k="offset_along_line_map_unit_scale" v="0,0"/>
+              <prop k="offset_along_line_unit" v="MM"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="placement" v="interval"/>
+              <prop k="rotate" v="1"/>
+              <symbol alpha="1" type="marker" name="@3@0">
+                <layer pass="0" class="SimpleMarker" locked="0">
+                  <prop k="angle" v="0"/>
+                  <prop k="color" v="255,0,0,255"/>
+                  <prop k="horizontal_anchor_point" v="1"/>
+                  <prop k="name" v="cross"/>
+                  <prop k="offset" v="0,0"/>
+                  <prop k="offset_map_unit_scale" v="0,0"/>
+                  <prop k="offset_unit" v="MM"/>
+                  <prop k="outline_color" v="0,0,0,255"/>
+                  <prop k="outline_style" v="solid"/>
+                  <prop k="outline_width" v="0"/>
+                  <prop k="outline_width_map_unit_scale" v="0,0"/>
+                  <prop k="outline_width_unit" v="MM"/>
+                  <prop k="scale_method" v="area"/>
+                  <prop k="size" v="1"/>
+                  <prop k="size_map_unit_scale" v="0,0"/>
+                  <prop k="size_unit" v="MM"/>
+                  <prop k="vertical_anchor_point" v="1"/>
+                </layer>
+              </symbol>
             </layer>
           </symbol>
         </symbols>
@@ -1382,7 +1323,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="entity_id">
-          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="entities20150212181047504" Value="name" labelOnTop="0" AllowMulti="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" fieldEditable="1" Key="id" Layer="entities20150212181047504" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
@@ -1407,9 +1348,9 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1455/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1455/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1989/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1989/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1455,7 +1396,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="entity_id">
-          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="entity_types20150306220740482" Value="name" labelOnTop="0" AllowMulti="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" fieldEditable="1" Key="id" Layer="entity_types20150306220740482" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
@@ -1750,7 +1691,7 @@
           <widgetv2config fieldEditable="1" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="entity_id">
-          <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="entity_types20150306220740482" Value="name" labelOnTop="0" AllowMulti="0"/>
+          <widgetv2config OrderByValue="0" AllowNull="1" FilterExpression="" fieldEditable="1" Key="id" Layer="entity_types20150306220740482" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
@@ -1777,7 +1718,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id' srid=-2147483648 table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."properties_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1953,22 +1894,25 @@
       <value></value>
     </WMSKeywordList>
     <WFSUrl type="QString"></WFSUrl>
+    <LiveStats>
+      <SavedStats type="QStringList"/>
+    </LiveStats>
     <Paths>
       <Absolute type="bool">false</Absolute>
     </Paths>
     <WMSServiceTitle type="QString"></WMSServiceTitle>
     <WFSLayers type="QStringList"/>
+    <WMSRestrictedLayers type="QStringList"/>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSRestrictedComposers type="QStringList"/>
-    <WMSRestrictedLayers type="QStringList"/>
     <PositionPrecision>
       <DecimalPlaces type="int">2</DecimalPlaces>
       <Automatic type="bool">true</Automatic>
       <DegreeFormat type="QString">D</DegreeFormat>
     </PositionPrecision>
     <WCSUrl type="QString"></WCSUrl>
-    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSContactPhone type="QString"></WMSContactPhone>
+    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <Measure>
@@ -1992,13 +1936,11 @@
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">1</DefaultSnapToleranceUnit>
       <LayerSnappingList type="QStringList">
-        <value>1808_un_vol_copy20150302190021824</value>
         <value>properties_for_qgis20150307001918975</value>
         <value>properties_for_qgis20150307041406392</value>
         <value>properties_for_qgis20150317102814809</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
-        <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -2009,18 +1951,15 @@
         <value>2</value>
         <value>2</value>
         <value>2</value>
-        <value>2</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
-        <value>to_vertex_and_segment</value>
       </LayerSnapToList>
-      <DefaultSnapType type="QString">off</DefaultSnapType>
+      <DefaultSnapType type="QString">to vertex</DefaultSnapType>
       <DefaultSnapTolerance type="double">10</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
-        <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
@@ -2047,8 +1986,8 @@
       <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
       <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
       <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
-      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;
-AND&#xd;&#xd;
+      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;&#xd;&#xd;&#xd;
+AND&#xd;&#xd;&#xd;&#xd;&#xd;
 ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>
     </VTMSlider>
     <SpatialRefSys>
