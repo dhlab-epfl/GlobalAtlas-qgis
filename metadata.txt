@@ -12,7 +12,7 @@
 name=VTMSlider-master
 qgisMinimumVersion=2.8
 description=VeniceTimeMachine
-version=0.0.7
+version=0.0.8
 author=Olivier Dalang
 email=olivier.dalang@gmail.com
 
