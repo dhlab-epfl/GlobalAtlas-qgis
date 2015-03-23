@@ -24,12 +24,12 @@ email=olivier.dalang@gmail.com
 # changelog=
 
 # tags are comma separated with spaces allowed
-tags=
+tags=time,machine,dhlab,epfl,venice
 
-homepage=
-tracker=
-repository=
-icon=icon.png
+homepage=https://github.com/olivierdalang/VTMSlider
+tracker=https://github.com/olivierdalang/VTMSlider/issues
+repository=https://github.com/olivierdalang/VTMSlider
+icon=images/icon.png
 # experimental flag
 experimental=True
 
