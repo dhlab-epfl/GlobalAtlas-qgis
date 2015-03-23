@@ -263,7 +263,7 @@
          <item>
           <widget class="QToolButton" name="listEventsButton">
            <property name="text">
-            <string>see events</string>
+            <string>see properties</string>
            </property>
            <property name="checkable">
             <bool>false</bool>
