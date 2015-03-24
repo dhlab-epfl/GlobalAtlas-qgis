@@ -19,7 +19,21 @@
      <property name="title">
       <string>Dev</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="viewSettingsButton">
+        <property name="text">
+         <string>View settings</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="deleteSettingsButton">
+        <property name="text">
+         <string>Removes Settings</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QPushButton" name="showIdButton">
         <property name="text">
@@ -52,19 +66,9 @@
          </spacer>
         </item>
         <item>
-         <widget class="QRadioButton" name="noData">
+         <widget class="QCheckBox" name="dummyDataCheckBox">
           <property name="text">
-           <string>none (&lt;5s)</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="dummyData">
-          <property name="text">
-           <string>dummy (&lt;5s)</string>
+           <string>dummy</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -72,9 +76,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="bestData">
+         <widget class="QCheckBox" name="euratlasDataCheckBox">
           <property name="text">
-           <string>best (&gt;2min)</string>
+           <string>euratlas</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="idlDraftDataCheckBox">
+          <property name="text">
+           <string>idl draft</string>
           </property>
          </widget>
         </item>

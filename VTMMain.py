@@ -46,8 +46,12 @@ class VTMMain:
 
         self.connection = None
 
-        self.iface.projectRead.connect( self.loadLayers )
-        self.iface.newProjectCreated.connect( self.loadLayers )
+        username = QSettings().value("VTM Slider/username", "")
+        password = QSettings().value("VTM Slider/password", "")
+        QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
+        QgsCredentials.instance().put('dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable', username, password)
+        
+
 
 
 
@@ -57,12 +61,14 @@ class VTMMain:
         self.dockwidget = VTMToolBar(self.iface, self)
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
+
+        self.iface.newProjectCreated.connect( self.loadLayers )
+
         self.loadLayers()
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
 
-        self.iface.projectRead.disconnect( self.loadLayers )
         self.iface.newProjectCreated.disconnect( self.loadLayers )
 
 
@@ -113,29 +119,27 @@ class VTMMain:
         uri = QgsDataSourceURI( self.eventsLayer.dataProvider().dataSourceUri() )
         connectionInfo = uri.connectionInfo()
         
-        host = uri.host()# or os.environ.get('PGHOST')
-        port = uri.port()# or os.environ.get('PGPORT')
-        database = uri.database()# or os.environ.get('PGDATABASE')
-        username = uri.username()# or os.environ.get('PGUSER') or os.environ.get('USER')
-        password = uri.password()# or os.environ.get('PGPASSWORD')
-        
+        host = uri.host()
+        port = int(uri.port())
+        database = uri.database()
+        username = None
+        password = None
+
+
+        # We try to get the credentials
+        (ok, username, password) = QgsCredentials.instance().get(connectionInfo.encode('utf-8'), username, password)
+        if not ok:
+            QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings.','VTM Slider')
+            return None
         try:
-            # We try to connect using simply the uri's information (likely to fail if the layer does not store username and password)
+            # We try now to connect using those credentials (host, port, database, username, password )
             connection = psycopg2.connect( host=host, port=port, database=database, user=username, password=password )
-            
+            QgsCredentials.instance().put(connectionInfo, username, password)
+            QSettings().setValue("VTM Slider/username", username)
+            QSettings().setValue("VTM Slider/password", password) # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
         except Exception as e:
-            
-            # We try to get the credentials
-            (ok, username, password) = QgsCredentials.instance().get(connectionInfo.encode('utf-8'), None, None)
-            if not ok:
-                QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings.','VTM Slider')
-                return None
-            try:
-                # We try now to connect using those credentials (host, port, database, username, password )
-                connection = psycopg2.connect( host=host, port=port, database=database, user=username, password=password )
-                QgsCredentials.instance().put(connectionInfo, username, password)
-            except Exception as e:
-                QgsMessageLog.logMessage('Could not connect with provided credentials (%s %s %s %s %s). Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was %s' % (host, port, database, username, password, str(e) ),'VTM Slider')
-                return None
+            QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
+            return None            
+        
 
         return connection

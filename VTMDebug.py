@@ -35,6 +35,8 @@ class VTMDebug(QDialog):
 
         self.showIdButton.pressed.connect(self.doShowIds)
         self.resetButton.pressed.connect(self.doReset)
+        self.viewSettingsButton.pressed.connect(self.doViewSettings)
+        self.deleteSettingsButton.pressed.connect(self.doDeleteSettings)
 
     def doShowIds(self):
         self.outputTextEdit.clear()
@@ -79,7 +81,7 @@ class VTMDebug(QDialog):
 
                 self.outputTextEdit.appendPlainText( 'QGIS view installed' )
 
-                if self.dummyData.isChecked():
+                if self.dummyDataCheckBox.isChecked():
 
                     sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_C_dummy_data.sql') ).read()
                     cursor.execute( sql )
@@ -87,13 +89,15 @@ class VTMDebug(QDialog):
 
                     self.outputTextEdit.appendPlainText( 'Dummy data inserted' )
 
-                elif self.bestData.isChecked():
+                if self.euratlasDataCheckBox.isChecked():
 
                     sql = open( os.path.join(self.main.plugin_dir,'sql','import','euratlas.sql') ).read()
                     cursor.execute( sql )
                     self.main.connection.commit()
 
                     self.outputTextEdit.appendPlainText( 'Euratlas data inserted' )
+
+                if self.idlDraftDataCheckBox.isChecked():
 
                     sql = open( os.path.join(self.main.plugin_dir,'sql','import','idl_draft.sql') ).read()
                     cursor.execute( sql )
@@ -114,3 +118,17 @@ class VTMDebug(QDialog):
 
 
 
+    def doViewSettings(self):
+        self.outputTextEdit.clear()
+        self.outputTextEdit.setStyleSheet('')
+
+        for s in ['VTM Slider/username','VTM Slider/password']:
+            self.outputTextEdit.appendPlainText( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
+
+    def doDeleteSettings(self):
+        self.outputTextEdit.clear()
+        self.outputTextEdit.setStyleSheet('')
+
+        QSettings().remove("VTM Slider")
+
+        self.outputTextEdit.appendPlainText( 'Settings removed' )
