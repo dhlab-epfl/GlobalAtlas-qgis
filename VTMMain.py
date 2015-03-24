@@ -44,8 +44,9 @@ class VTMMain:
         #self.sqlManager = VTMSqlManager(self.iface)
         VTMMain.instance = self
 
-        self.loaded = False
-        self.loadLayers()
+        self.iface.projectRead.connect( self.loadLayers )
+        self.iface.newProjectCreated.connect( self.loadLayers )
+
 
 
     def initGui(self):
@@ -54,9 +55,12 @@ class VTMMain:
         self.dockwidget = VTMToolBar(self.iface, self)
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
+        self.loadLayers()
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
+        self.iface.projectRead.disconnect( self.loadLayers )
+        self.iface.newProjectCreated.disconnect( self.loadLayers )
 
 
     def loadLayers(self):
@@ -70,9 +74,10 @@ class VTMMain:
 
         if not all(self.filteredEventsLayers) or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None or self.propertiesTypeLayer is None or self.entitiesTypeLayer is None:
             QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
+            self.dockwidget.disablePlugin()
             return
 
-        self.loaded = True
+        self.dockwidget.enablePlugin()
         QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
 
 

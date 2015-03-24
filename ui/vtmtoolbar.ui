@@ -6,331 +6,596 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1063</width>
-    <height>94</height>
+    <width>744</width>
+    <height>50</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>VTM Slider</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <property name="spacing">
-     <number>2</number>
+     <number>1</number>
     </property>
     <property name="leftMargin">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="topMargin">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="rightMargin">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="bottomMargin">
-     <number>2</number>
+     <number>3</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QSpinBox" name="spinboxYear">
-        <property name="prefix">
-         <string>Venice in </string>
-        </property>
-        <property name="minimum">
-         <number>1200</number>
-        </property>
-        <property name="maximum">
-         <number>2015</number>
-        </property>
-        <property name="value">
-         <number>1800</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="helpButton">
-        <property name="text">
-         <string>help</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="idButton">
-        <property name="text">
-         <string>id</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="openButton">
-        <property name="text">
-         <string>open</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="title">
-         <string>data</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="loadDataButton">
-           <property name="text">
-            <string>load</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="title">
-         <string>shape</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="copytodateButton">
-           <property name="text">
-            <string>copy at date</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="notexistButton">
-           <property name="text">
-            <string>does not exist at date</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox">
-        <property name="title">
-         <string>entity</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="mergeButton">
-           <property name="text">
-            <string>merge</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="explodeButton">
-           <property name="text">
-            <string>explode</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="title">
-         <string>succession relation between entities</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="createrelationsButton">
-           <property name="text">
-            <string>create relation</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="removerelationsButton">
-           <property name="text">
-            <string>remove relation</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_4">
-        <property name="title">
-         <string>view</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <item>
-          <widget class="QToolButton" name="listEventsButton">
-           <property name="text">
-            <string>see properties</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="viewEntityButton">
-           <property name="text">
-            <string>see entity</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="viewRelationsButton">
-           <property name="text">
-            <string>see relations</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QToolButton" name="helpButton">
+      <property name="toolTip">
+       <string>Help</string>
+      </property>
+      <property name="text">
+       <string>Help</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../images/icon_help.png</normaloff>../images/icon_help.png</iconset>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QSpinBox" name="minValueSpinBox">
-        <property name="maximum">
-         <number>2050</number>
-        </property>
-        <property name="value">
-         <number>1200</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSlider" name="slider">
-        <property name="minimum">
-         <number>1200</number>
-        </property>
-        <property name="maximum">
-         <number>2015</number>
-        </property>
-        <property name="value">
-         <number>1800</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="maxValueSpinBox">
-        <property name="maximum">
-         <number>2050</number>
-        </property>
-        <property name="value">
-         <number>2015</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QToolButton" name="openButton">
+      <property name="toolTip">
+       <string>Load the QGIS project</string>
+      </property>
+      <property name="text">
+       <string>Load the QGIS project</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../images/icon_start.png</normaloff>../images/icon_start.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolButton" name="idButton">
+      <property name="toolTip">
+       <string>Show layer's ID (debug)</string>
+      </property>
+      <property name="text">
+       <string>Show layer's ID (debug)</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../images/icon_debug.png</normaloff>../images/icon_debug.png</iconset>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="activeWidget" native="true">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="minValueSpinBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Minimum slider value</string>
+         </property>
+         <property name="maximum">
+          <number>2050</number>
+         </property>
+         <property name="value">
+          <number>1200</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="slider">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Chosse current date</string>
+         </property>
+         <property name="minimum">
+          <number>1200</number>
+         </property>
+         <property name="maximum">
+          <number>2015</number>
+         </property>
+         <property name="value">
+          <number>1800</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="maxValueSpinBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Maximum slider value</string>
+         </property>
+         <property name="maximum">
+          <number>2050</number>
+         </property>
+         <property name="value">
+          <number>2015</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinboxYear">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>22</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Choose current date</string>
+         </property>
+         <property name="prefix">
+          <string>Venice in </string>
+         </property>
+         <property name="minimum">
+          <number>1200</number>
+         </property>
+         <property name="maximum">
+          <number>2015</number>
+         </property>
+         <property name="value">
+          <number>1800</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="loadDataButton">
+         <property name="toolTip">
+          <string>Import data into database</string>
+         </property>
+         <property name="text">
+          <string>Import data into database</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_import.png</normaloff>../images/icon_import.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="copytodateButton">
+         <property name="toolTip">
+          <string>Copy at current date</string>
+         </property>
+         <property name="text">
+          <string>Copy at current date</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_copy_at_date.png</normaloff>../images/icon_copy_at_date.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="notexistButton">
+         <property name="toolTip">
+          <string>Does not exist at current date</string>
+         </property>
+         <property name="text">
+          <string>Does not exist at current date</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_delete_shape.png</normaloff>../images/icon_delete_shape.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="mergeButton">
+         <property name="toolTip">
+          <string>Those two shapes are the same entity</string>
+         </property>
+         <property name="text">
+          <string>Those two shapes are the same entity</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_merge.png</normaloff>../images/icon_merge.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="explodeButton">
+         <property name="toolTip">
+          <string>Make this shape's entity unique</string>
+         </property>
+         <property name="text">
+          <string>Make this shape's entity unique</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_unmerge.png</normaloff>../images/icon_unmerge.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_4">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="createrelationsButton">
+         <property name="toolTip">
+          <string>Create a succession relation</string>
+         </property>
+         <property name="text">
+          <string>Create a succession relation</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_link.png</normaloff>../images/icon_link.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="removerelationsButton">
+         <property name="toolTip">
+          <string>Remove all sucession relations</string>
+         </property>
+         <property name="text">
+          <string>Remove all sucession relations</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_unlink.png</normaloff>../images/icon_unlink.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_3">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>3</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="listEventsButton">
+         <property name="toolTip">
+          <string>View the properties</string>
+         </property>
+         <property name="text">
+          <string>View the properties</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_view_property.png</normaloff>../images/icon_view_property.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="viewEntityButton">
+         <property name="toolTip">
+          <string>View the entity</string>
+         </property>
+         <property name="text">
+          <string>View the entity</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_view_entity.png</normaloff>../images/icon_view_entity.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="viewRelationsButton">
+         <property name="toolTip">
+          <string>View the relation</string>
+         </property>
+         <property name="text">
+          <string>View the relation</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_view_link.png</normaloff>../images/icon_view_link.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>

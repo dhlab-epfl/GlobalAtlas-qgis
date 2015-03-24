@@ -69,6 +69,11 @@ class VTMToolBar(QDockWidget):
         self.minValueSpinBox.valueChanged.connect( self.spinboxYear.setMinimum )
         self.maxValueSpinBox.valueChanged.connect( self.spinboxYear.setMaximum )
 
+    def enablePlugin(self):
+        self.activeWidget.setEnabled(True)
+    def disablePlugin(self):
+        self.activeWidget.setEnabled(False)
+
 
 
     def doOpenFile(self):
