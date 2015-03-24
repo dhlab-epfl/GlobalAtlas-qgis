@@ -54,7 +54,6 @@ class VTMMain:
 
 
 
-
     def initGui(self):
         """ Put your code here and remove the pass statement"""
 
@@ -128,6 +127,7 @@ class VTMMain:
 
         # We try to get the credentials
         (ok, username, password) = QgsCredentials.instance().get(connectionInfo.encode('utf-8'), username, password)
+
         if not ok:
             QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings.','VTM Slider')
             return None
@@ -141,5 +141,6 @@ class VTMMain:
             QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
             return None            
         
+
 
         return connection
