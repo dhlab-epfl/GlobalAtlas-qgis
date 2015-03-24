@@ -95,6 +95,7 @@ CREATE TRIGGER related_entities_stamps BEFORE INSERT OR UPDATE ON vtm.related_en
 -- TRIGGER TO RECOMPUTE DATES
 
 DROP FUNCTION IF EXISTS vtm.relations_reset_computed_dates();
+/*
 CREATE FUNCTION vtm.relations_reset_computed_dates() RETURNS trigger AS    
 $$
     BEGIN
@@ -118,6 +119,7 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER reset_date_for_relations AFTER INSERT OR UPDATE OF "a_id","b_id" OR DELETE ON vtm.related_entities FOR EACH ROW
     EXECUTE PROCEDURE vtm.relations_reset_computed_dates();
+*/
 
 
 
@@ -231,6 +233,7 @@ CREATE TRIGGER properties_i BEFORE INSERT OR UPDATE OF "property_type_id","geova
 -- TRIGGER TO CREATE AN ENTITY IF NONE IS PROVIDED
 
 DROP FUNCTION IF EXISTS vtm.autogenerate_entity() CASCADE;
+
 CREATE FUNCTION vtm.autogenerate_entity() RETURNS trigger AS    
 $$
     DECLARE
@@ -249,9 +252,11 @@ CREATE TRIGGER properties_bi BEFORE INSERT OR UPDATE OF entity_id ON vtm.propert
     EXECUTE PROCEDURE vtm.autogenerate_entity();
 
 
+
 -- TRIGGER TO RECOMPUTE DATES WHEN PROPERTIES ARE ADDED
 
+/*
 CREATE TRIGGER reset_date_for_properties AFTER INSERT OR UPDATE OF "date","property_type_id","entity_id" OR DELETE ON vtm.properties FOR EACH ROW
     EXECUTE PROCEDURE vtm.properties_reset_computed_dates();
-
+*/
 
