@@ -15,6 +15,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from PyQt4.QtXml import * 
 from PyQt4.QtWebKit import *
+
 from qgis.core import *
 from VTMToolBar import VTMToolBar
 
@@ -41,8 +42,9 @@ class VTMMain:
         
         # Save reference to the QGIS interface
         self.iface = iface
-        #self.sqlManager = VTMSqlManager(self.iface)
         VTMMain.instance = self
+
+        self.connection = None
 
         self.iface.projectRead.connect( self.loadLayers )
         self.iface.newProjectCreated.connect( self.loadLayers )
@@ -59,11 +61,17 @@ class VTMMain:
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
+
         self.iface.projectRead.disconnect( self.loadLayers )
         self.iface.newProjectCreated.disconnect( self.loadLayers )
 
 
     def loadLayers(self):
+
+
+        ############################################################
+        # Get the references to the layers using their IDs
+        ############################################################
 
         self.filteredEventsLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.filteredEventsLayersIDs]
         self.eventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsLayerID)
@@ -77,8 +85,21 @@ class VTMMain:
             self.dockwidget.disablePlugin()
             return
 
+        QgsMessageLog.logMessage('Loaded all needed layers.','VTM Slider')
+
+
+        ############################################################
+        # Get and check the SQL connection
+        ############################################################
+
+        self.connection = self.getConnection()
+        if self.connection is None:           
+            QgsMessageLog.logMessage('Unable to establish connection. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
+            self.dockwidget.disablePlugin()
+            return
+
         self.dockwidget.enablePlugin()
-        QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
+        QgsMessageLog.logMessage('Connection successful. Plugin will work.','VTM Slider')
 
 
     def getConnection(self):
@@ -118,5 +139,3 @@ class VTMMain:
                 return None
 
         return connection
-
-
