@@ -67,10 +67,8 @@ class VTMMain:
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
-
         self.iface.newProjectCreated.disconnect( self.loadLayers )
-
-        self.disconnectSignalsForPostProcessing()
+        #self.disconnectSignalsForPostProcessing() #disconnecting crashes on quit ?!
 
  
 
@@ -181,7 +179,6 @@ class VTMMain:
         self.eventsLayer.editingStopped.connect( self.editingStopped )
 
     def disconnectSignalsForPostProcessing(self):
-
         for layer in self.filteredEventsLayers:
             try:
                 layer.committedFeaturesAdded.disconnect()
