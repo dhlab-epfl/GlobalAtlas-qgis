@@ -70,6 +70,10 @@ class VTMMain:
 
         self.iface.newProjectCreated.disconnect( self.loadLayers )
 
+        self.disconnectSignalsForPostProcessing()
+
+ 
+
 
     def loadLayers(self):
 
@@ -97,6 +101,7 @@ class VTMMain:
         # Get and check the SQL connection
         ############################################################
 
+
         self.connection = self.getConnection()
         if self.connection is None:           
             QgsMessageLog.logMessage('Unable to establish connection. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
@@ -108,6 +113,8 @@ class VTMMain:
 
 
     def getConnection(self):
+
+        self.disconnectSignalsForPostProcessing()
 
         ############################################################
         # Get the postgres connection using the eventsLayer uri and credentials
@@ -143,4 +150,125 @@ class VTMMain:
         
 
 
+        QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
+
+
+        ############################################################
+        # If everything worked, connect the signals to make the post processing queries
+        ############################################################
+        self.connectSignalsForPostProcessing()
+
         return connection
+
+
+
+
+    def connectSignalsForPostProcessing(self):
+
+        self.entityIdsToPostprocess = [] # this will store ids to postprocess after commit, we need it because we can only get the deleted entity ids before commit
+
+
+        # Signals for insert of events
+        for layer in self.filteredEventsLayers:
+            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+            layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+            layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
+            layer.editingStopped.connect( self.editingStopped )
+
+        self.eventsLayer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+        self.eventsLayer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+        self.eventsLayer.featureDeleted.connect( lambda pid: self.featureDeleted(self.eventsLayer, pid) )
+        self.eventsLayer.editingStopped.connect( self.editingStopped )
+
+    def disconnectSignalsForPostProcessing(self):
+
+        for layer in self.filteredEventsLayers:
+            try:
+                layer.committedFeaturesAdded.disconnect()
+                layer.committedAttributeValuesChanges.disconnect()
+                layer.featureDeleted.disconnect()
+                layer.editingStopped.disconnect()
+            except Exception, e:
+                pass
+        try:
+            self.eventsLayer.committedFeaturesAdded.disconnect()
+            self.eventsLayer.committedAttributeValuesChanges.disconnect()
+            self.eventsLayer.featureDeleted.disconnect()
+            self.eventsLayer.editingStopped.disconnect()
+        except Exception, e:
+            pass
+
+
+
+
+
+    def committedFeaturesAdded(self, layerID, addedFeatures):
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for feat in addedFeatures:
+            #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+            #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+            eid = feat.attributes()[eidx] # workaround
+            ptid = feat.attributes()[ptidx] # workaround
+            self.entityIdsToPostprocess.append( [eid, ptid] )
+            QgsMessageLog.logMessage( 'we have to posprocess eid {0} type {1}'.format(eid, ptid) , 'VTM Slider' )
+        
+
+    def committedAttributeValuesChanges(self, layerID, changedAttributesValues):
+        QgsMessageLog.logMessage( 'committedAttributeValuesChanges '+str(changedAttributesValues) , 'VTM Slider'  )
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for fid in changedAttributesValues:
+
+            features = layer.getFeatures( QgsFeatureRequest( fid ) )
+            for f in features: # We're supposed to have only one feature here
+                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+                eid = f.attributes()[eidx] # workaround
+                ptid = f.attributes()[ptidx] # workaround
+                self.entityIdsToPostprocess.append( [eid,ptid] )
+                QgsMessageLog.logMessage( 'we have to posprocess eid {0} type {1}'.format(eid,ptid) , 'VTM Slider' )
+
+
+    def featureDeleted(self, layer, pid): 
+
+        # Features with negative ids have not yet been commited to the database, so there's nothing to do
+        if pid<0:
+            return
+
+        cursor = self.connection.cursor()
+        sql = 'SELECT entity_id, property_type_id FROM vtm.properties WHERE id=%(pid)s'
+        cursor.execute( sql, {'pid': pid} )
+        entity_id = cursor.fetchone()
+        self.entityIdsToPostprocess.append( entity_id )
+        cursor.close()
+        QgsMessageLog.logMessage( 'we have to posprocess id {0}'.format(entity_id) , 'VTM Slider' )
+        
+
+
+    def editingStopped(self):        
+
+        sql = open( os.path.join( self.plugin_dir,'sql','queries','compute_dates.sql') ).read()
+
+        cursor = self.connection.cursor()
+
+        for i in self.entityIdsToPostprocess:
+
+            entity_id = i[0]
+            property_type_id = i[1]
+
+            if not entity_id:
+                continue
+            if not property_type_id:
+                property_type_id = 0
+
+            cursor.execute(sql, {'entity_id': entity_id, 'property_type_id': property_type_id})
+
+            QgsMessageLog.logMessage( 'executing query with param eid {0} type {1}'.format(entity_id, property_type_id) , 'VTM Slider'  )
+
+        self.connection.commit()
+        cursor.close()
+
+        self.entityIdsToPostprocess = []
