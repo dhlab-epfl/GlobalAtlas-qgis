@@ -22,6 +22,7 @@ from qgis.gui import *
 
 from VTMHelp import VTMHelp
 from VTMLoadData import VTMLoadData
+from VTMDebug import VTMDebug
 
 from qgis.core import *
 
@@ -41,7 +42,7 @@ class VTMToolBar(QDockWidget):
         uic.loadUi(os.path.dirname(__file__)+'/ui/vtmtoolbar.ui', self)
 
         self.helpButton.pressed.connect(self.doHelp)  
-        self.idButton.pressed.connect(self.doShowId)   
+        self.debugButton.pressed.connect(self.doDebug)   
         self.openButton.pressed.connect(self.doOpenFile)   
         self.loadDataButton.pressed.connect(self.doLoadData)  
         #TODOself.updatejoinsButton.pressed.connect(self.doUpdatejoins)   
@@ -92,9 +93,9 @@ class VTMToolBar(QDockWidget):
         dlg = VTMHelp()
         dlg.exec_()
 
-    def doShowId(self):
-        QgsMessageLog.logMessage(self.iface.activeLayer().id(),'VTM Slider')
-        #self.configDialog.exec_()
+    def doDebug(self):
+        dlg = VTMDebug(self.iface, self.main)
+        dlg.exec_()
 
     def doLoadData(self):
         loadDataDialog = VTMLoadData(self.iface, self.main)

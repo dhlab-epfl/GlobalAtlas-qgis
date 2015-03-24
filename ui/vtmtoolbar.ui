@@ -62,7 +62,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QToolButton" name="idButton">
+     <widget class="QToolButton" name="debugButton">
       <property name="toolTip">
        <string>Show layer's ID (debug)</string>
       </property>
