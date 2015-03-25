@@ -47,6 +47,7 @@ WHERE year>=1500;
 /*******************************/
 
 /* ALGORITHM 3 : set succession relation for entities that overlap */
+/*
 INSERT INTO vtm.related_entities(a_id, b_id)
 SELECT 	evA.entity_id as a_id,
 		evB.entity_id as b_id
@@ -59,3 +60,4 @@ WHERE   (evA.date = evB.date+100 OR evA.date = evB.date-100)
 	 	evA.source_id = ( SELECT id FROM vtm.sources WHERE name = 'Euratlas' )
 	 	AND
 	 	evB.source_id = ( SELECT id FROM vtm.sources WHERE name = 'Euratlas' );
+*/
