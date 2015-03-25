@@ -46,9 +46,10 @@ class VTMMain:
 
         self.connection = None
 
+        # Get the login info from the settings if they were stored, and populate QgsCredential for our connection
         username = QSettings().value("VTM Slider/username", "")
-        password = QSettings().value("VTM Slider/password", "")
-        QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
+        password = QSettings().value("VTM Slider/password", "") # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
+        QgsMessageLog.logMessage('WARNING : password was stored in plain text in the registry for debugging purposes !', 'VTM Slider')  # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
         QgsCredentials.instance().put('dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable', username, password)
         
 
@@ -129,7 +130,7 @@ class VTMMain:
         # We try to get the credentials
         (ok, username, password) = QgsCredentials.instance().get(connectionInfo.encode('utf-8'), username, password)
         if not ok:
-            QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings.','VTM Slider')
+            QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correct postgis connection settings.','VTM Slider')
             return None
         try:
             # We try now to connect using those credentials (host, port, database, username, password )
@@ -137,8 +138,9 @@ class VTMMain:
             QgsCredentials.instance().put(connectionInfo, username, password)
             QSettings().setValue("VTM Slider/username", username)
             QSettings().setValue("VTM Slider/password", password) # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
+            QgsMessageLog.logMessage('WARNING : password was stored in plain text in the registry for debugging purposes !', 'VTM Slider') # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
         except Exception as e:
-            QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
+            QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correct postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
             return None            
         
 
