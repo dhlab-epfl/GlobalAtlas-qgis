@@ -45,11 +45,11 @@ class VTMMain:
         VTMMain.instance = self
 
         self.connection = None
+        self.sqlQueries = {}
 
-        # Get the login info from the settings if they were stored, and populate QgsCredential for our connection
         username = QSettings().value("VTM Slider/username", "")
-        password = QSettings().value("VTM Slider/password", "") # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
-        QgsMessageLog.logMessage('WARNING : password was stored in plain text in the registry for debugging purposes !', 'VTM Slider')  # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
+        password = QSettings().value("VTM Slider/password", "")
+        QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
         QgsCredentials.instance().put('dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable', username, password)
         
 
@@ -69,8 +69,10 @@ class VTMMain:
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
-
         self.iface.newProjectCreated.disconnect( self.loadLayers )
+        #self.disconnectSignalsForPostProcessing() #disconnecting crashes on quit ?!
+
+ 
 
 
     def loadLayers(self):
@@ -111,6 +113,8 @@ class VTMMain:
 
     def getConnection(self):
 
+        self.disconnectSignalsForPostProcessing()
+
         ############################################################
         # Get the postgres connection using the eventsLayer uri and credentials
         ############################################################
@@ -129,8 +133,9 @@ class VTMMain:
 
         # We try to get the credentials
         (ok, username, password) = QgsCredentials.instance().get(connectionInfo.encode('utf-8'), username, password)
+
         if not ok:
-            QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correct postgis connection settings.','VTM Slider')
+            QgsMessageLog.logMessage('Could not get the credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings.','VTM Slider')
             return None
         try:
             # We try now to connect using those credentials (host, port, database, username, password )
@@ -138,10 +143,135 @@ class VTMMain:
             QgsCredentials.instance().put(connectionInfo, username, password)
             QSettings().setValue("VTM Slider/username", username)
             QSettings().setValue("VTM Slider/password", password) # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
-            QgsMessageLog.logMessage('WARNING : password was stored in plain text in the registry for debugging purposes !', 'VTM Slider') # TODO : REMOVE THIS !!!!! IT STORES THE PASSWORD IN PLAIN TEXT IN THE REGISTRY !!!
         except Exception as e:
-            QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correct postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
+            QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
             return None            
         
 
+
+        QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
+
+
+        ############################################################
+        # If everything worked, connect the signals to make the post processing queries
+        ############################################################
+        self.connectSignalsForPostProcessing()
+
         return connection
+
+
+
+
+    def connectSignalsForPostProcessing(self):
+
+        self.entityIdsToPostprocess = [] # this will store ids to postprocess after commit, we need it because we can only get the deleted entity ids before commit
+
+
+        # Signals for insert of events
+        for layer in self.filteredEventsLayers:
+            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+            layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+            layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
+            layer.editingStopped.connect( self.editingStopped )
+
+        self.eventsLayer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+        self.eventsLayer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+        self.eventsLayer.featureDeleted.connect( lambda pid: self.featureDeleted(self.eventsLayer, pid) )
+        self.eventsLayer.editingStopped.connect( self.editingStopped )
+
+    def disconnectSignalsForPostProcessing(self):
+        for layer in self.filteredEventsLayers:
+            try:
+                layer.committedFeaturesAdded.disconnect()
+                layer.committedAttributeValuesChanges.disconnect()
+                layer.featureDeleted.disconnect()
+                layer.editingStopped.disconnect()
+            except Exception, e:
+                pass
+        try:
+            self.eventsLayer.committedFeaturesAdded.disconnect()
+            self.eventsLayer.committedAttributeValuesChanges.disconnect()
+            self.eventsLayer.featureDeleted.disconnect()
+            self.eventsLayer.editingStopped.disconnect()
+        except Exception, e:
+            pass
+
+
+
+
+
+    def committedFeaturesAdded(self, layerID, addedFeatures):
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for feat in addedFeatures:
+            #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+            #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+            eid = feat.attributes()[eidx] # workaround
+            ptid = feat.attributes()[ptidx] # workaround
+            self.entityIdsToPostprocess.append( [eid, ptid] )
+        
+
+    def committedAttributeValuesChanges(self, layerID, changedAttributesValues):
+        QgsMessageLog.logMessage( 'committedAttributeValuesChanges '+str(changedAttributesValues) , 'VTM Slider'  )
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for fid in changedAttributesValues:
+
+            features = layer.getFeatures( QgsFeatureRequest( fid ) )
+            for f in features: # We're supposed to have only one feature here
+                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+                eid = f.attributes()[eidx] # workaround
+                ptid = f.attributes()[ptidx] # workaround
+                self.entityIdsToPostprocess.append( [eid,ptid] )
+
+
+    def featureDeleted(self, layer, pid): 
+        """This is triggered when a feature is deleted in QGIS, in the vector layer buffer
+
+        We need to get this at this moment (before the deletion is commited), because we need to get
+        the entity_id and property_type_id to run the postprocessing after the commit is made."""
+
+        # Features with negative ids have not yet been commited to the database, so there's nothing to do
+        if pid<0:
+            return
+
+        self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
+        entity_id_and_property_type_id = cursor.fetchone()
+        self.entityIdsToPostprocess.append( entity_id_and_property_type_id )
+        
+
+
+    def editingStopped(self):
+
+        # compute_dates.sql
+        for entityId,propTypeId in self.entityIdsToPostprocess:
+            if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
+                propTypeId = 0
+            self.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': [propTypeId]})
+        self.commit()
+
+        self.entityIdsToPostprocess = []
+
+
+
+
+
+
+    def runQuery(self, filename, parameters={}):
+
+        QgsMessageLog.logMessage('Running query {0} with parameters {1}'.format(filename, str(parameters)), 'VTM Slider')
+
+        if not hasattr(self.sqlQueries,filename):
+            self.sqlQueries[filename] = open( os.path.join( self.plugin_dir,'sql',filename+'.sql') ).read()
+
+        cursor = self.connection.cursor()
+        result = cursor.execute( self.sqlQueries[filename], parameters )
+        cursor.close()
+        return result
+        
+    def commit(self):        
+        self.connection.commit()
+

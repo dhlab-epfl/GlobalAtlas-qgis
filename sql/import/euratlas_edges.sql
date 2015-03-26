@@ -55,5 +55,5 @@ FROM 	(
 
 
 -- Clean up
-SELECT 	topology.DropTopology('temp_topology');
+--SELECT 	topology.DropTopology('temp_topology');
 

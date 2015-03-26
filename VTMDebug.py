@@ -52,64 +52,41 @@ class VTMDebug(QDialog):
 
         try:
 
-            with self.main.connection.cursor() as cursor:
+            self.main.runQuery('install/database_install_0_schema')
+            self.main.commit()
+            self.outputTextEdit.appendPlainText( 'Schema installed' )
 
-                sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_0_schema.sql') ).read()
-                cursor.execute( sql )
-                self.main.connection.commit()
+            self.main.runQuery('install/database_install_1_functions')
+            self.main.commit()
+            self.outputTextEdit.appendPlainText( 'Functions installed' )
 
-                self.outputTextEdit.appendPlainText( 'Schema installed' )
+            self.main.runQuery('install/database_install_A_main')
+            self.main.commit()
+            self.outputTextEdit.appendPlainText( 'Main structure installed' )
 
+            self.main.runQuery('install/database_install_B_view-for-qgis')
+            self.main.commit()
+            self.outputTextEdit.appendPlainText( 'QGIS view installed' )
 
-                sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_1_functions.sql') ).read()
-                cursor.execute( sql )
-                self.main.connection.commit()
+            if self.dummyDataCheckBox.isChecked():
+                self.main.runQuery('import/dummy_data')
+                self.main.commit()
+                self.outputTextEdit.appendPlainText( 'Dummy data inserted' )
 
-                self.outputTextEdit.appendPlainText( 'Functions installed' )
+            if self.euratlasDataCheckBox.isChecked():
+                self.main.runQuery('import/euratlas')
+                self.main.commit()
+                self.outputTextEdit.appendPlainText( 'Euratlas data inserted' )
 
+            if self.euratlasEdgesDataCheckBox.isChecked():
+                self.main.runQuery('import/euratlas_edges')
+                self.main.commit()
+                self.outputTextEdit.appendPlainText( 'Euratlas edges data inserted' )
 
-                sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_A_main.sql') ).read()
-                cursor.execute( sql )
-                self.main.connection.commit()
-
-                self.outputTextEdit.appendPlainText( 'Main structure installed' )
-
-
-                sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_B_view-for-qgis.sql') ).read()
-                cursor.execute( sql )
-                self.main.connection.commit()
-
-                self.outputTextEdit.appendPlainText( 'QGIS view installed' )
-
-                if self.dummyDataCheckBox.isChecked():
-
-                    sql = open( os.path.join(self.main.plugin_dir,'sql','database_install_C_dummy_data.sql') ).read()
-                    cursor.execute( sql )
-                    self.main.connection.commit()
-
-                    self.outputTextEdit.appendPlainText( 'Dummy data inserted' )
-
-                if self.euratlasDataCheckBox.isChecked():
-
-                    sql = open( os.path.join(self.main.plugin_dir,'sql','import','euratlas.sql') ).read()
-                    cursor.execute( sql )
-                    self.main.connection.commit()
-
-                    self.outputTextEdit.appendPlainText( 'Euratlas data inserted' )
-
-                if self.idlDraftDataCheckBox.isChecked():
-
-                    sql = open( os.path.join(self.main.plugin_dir,'sql','import','idl_draft.sql') ).read()
-                    cursor.execute( sql )
-                    self.main.connection.commit()
-
-                    self.outputTextEdit.appendPlainText( 'IdL draft data inserted' )
-
-                else:
-                    pass
-
-
-                self.main.connection.commit()
+            if self.idlDraftDataCheckBox.isChecked():
+                self.main.runQuery('import/idl_draft')
+                self.main.commit()
+                self.outputTextEdit.appendPlainText( 'IdL draft data inserted' )
 
 
         except Exception, e:

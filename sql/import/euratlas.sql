@@ -24,7 +24,7 @@ INSERT INTO vtm.entities (name, type_id)
 SELECT 	long_name as name,
 		(SELECT id FROM vtm.entity_types WHERE name='sovereign_state') as type_id
 FROM 	"data_external"."euratlas_sovereign_states"
-WHERE year>=1500;
+/*WHERE year>=1500*/;
 
 
 /*******************************/
@@ -38,7 +38,7 @@ SELECT 	(SELECT id FROM vtm.entities WHERE name=source.long_name LIMIT 1) as ent
 		year::int as date,
 		(SELECT id FROM vtm.sources WHERE name='Euratlas') as source_id
 FROM 	"data_external"."euratlas_sovereign_states" as source
-WHERE year>=1500;
+/*WHERE year>=1500*/;
 
 
 

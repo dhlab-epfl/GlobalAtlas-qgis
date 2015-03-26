@@ -44,8 +44,11 @@ class VTMToolBar(QDockWidget):
         self.helpButton.pressed.connect(self.doHelp)  
         self.debugButton.pressed.connect(self.doDebug)   
         self.openButton.pressed.connect(self.doOpenFile)   
+
         self.loadDataButton.pressed.connect(self.doLoadData)  
-        #TODOself.updatejoinsButton.pressed.connect(self.doUpdatejoins)   
+
+        self.refreshButton.pressed.connect(self.doRefresh)  
+
         self.mergeButton.pressed.connect(self.doMerge)
         self.explodeButton.pressed.connect(self.doExplode)
 
@@ -101,222 +104,240 @@ class VTMToolBar(QDockWidget):
         loadDataDialog = VTMLoadData(self.iface, self.main)
         loadDataDialog.exec_()
     
-    """
-    TODO
-    def doUpdatejoins(self):
-        for layerId in self.configDialog.timelayers:
+    def doRefresh(self):
+        """Performs the postprocessing of all selected properties' entities"""
 
-            layer = QgsMapLayerRegistry.instance().mapLayer(layerId)
-            if layer is None or not isinstance(layer,QgsVectorLayer):
-                continue
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
+            return
 
-            joins = layer.vectorJoins()
+        # compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
 
-            for join in joins:"""
-
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
 
 
     def doMerge(self):
-        layer = self.iface.activeLayer()
+        """Performs the merge of several properties into one entity
 
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't merge on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+        It will assign the same entity_id to all properties, using the smallest entity_id of them all, and then postprocesses the entities."""
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
             return
 
-        provider = layer.dataProvider()
-        fieldIdx = provider.fieldNameIndex('entity_id')
+        # compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
 
-        features = layer.selectedFeatures()
-        smallestEntityId = None
+        # merge_feature.sql        
+        propertiesIds = layer.selectedFeaturesIds()
+        entitiesIds = ( f.attribute('entity_id') for f in layer.selectedFeatures() )
+        smallestEntityId = min(i for i in entitiesIds if i is not None) 
 
-        for f in features:
-            entityId = f.attribute('entity_id')
-            if smallestEntityId is None or entityId<smallestEntityId:
-                smallestEntityId = entityId
+        self.main.runQuery('queries/merge_features', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
+        self.main.commit()
 
-        updateMap = {}
-        for f in features:
-            updateMap[f.id()] = { fieldIdx: smallestEntityId }
-        provider.changeAttributeValues( updateMap )
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
+
 
         layer.removeSelection()
 
     def doExplode(self):
-        layer = self.iface.activeLayer()
+        """Performs the differentiation of several properties into different entities
 
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't explode on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+        It will keep the entity_id of the property with the lower id, and assign entity_id to NULL to all properties, which will result on automatic creation of entities for those"""
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
             return
 
-        provider = layer.dataProvider()
-        fieldIdx = provider.fieldNameIndex('entity_id')
+        # for compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
 
-        features = layer.selectedFeatures()
+        # unmerge_feature.sql
+        propertiesIds = layer.selectedFeaturesIds()
 
-        updateMap = {}
-        for f in features:
-            updateMap[f.id()] = { fieldIdx: None }
-        provider.changeAttributeValues( updateMap )
+        self.main.runQuery('queries/unmerge_features', {'property_ids': propertiesIds})
+        self.main.commit()
+
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
 
         layer.removeSelection()
 
 
     def doNotexist(self):
+        """Sets the value to NULL at the current date for the current entites / properties"""       
 
-        layer = self.iface.activeLayer()
-
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't set non existence on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
             return
 
-        provider = layer.dataProvider()
-        myFields = provider.fields()
+        # for compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
 
-        fieldEttyIdx = provider.fieldNameIndex('entity_id')
-        fieldDateIdx = provider.fieldNameIndex('date')
-        fieldKeyIdx = provider.fieldNameIndex('property_type_id')
 
-        features = layer.selectedFeatures()
-        newEvents = []
-        for f in features:
-            entityId = f.attribute('entity_id')
-            feat = QgsFeature()
-            feat.setFields( myFields )
-            feat.setAttribute(fieldEttyIdx, entityId)
-            feat.setAttribute(fieldDateIdx, self.spinboxYear.value())
-            feat.setAttribute(fieldKeyIdx, 'geom')
-            newEvents.append( feat )
+        # does_not_exist.sql
+        propertiesIds = layer.selectedFeaturesIds()
 
-        provider.addFeatures(newEvents)
+        self.main.runQuery('queries/does_not_exist', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.commit()
+
+
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
 
         layer.removeSelection()
 
-    def doListproperties(self):     
+    def doListproperties(self):
+        """Selects properties corresponding to current entitiy_ids from the unfiltered properties table and show it"""
 
         self.main.eventsLayer.removeSelection()
 
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
+            return
 
-        layer = self.iface.activeLayer()
-        provider = layer.dataProvider()
-
-        fieldEttyIdx = provider.fieldNameIndex('entity_id')
-        fieldDateIdx = provider.fieldNameIndex('date')
-        fieldKeyIdx = provider.fieldNameIndex('property_type_id')
-
-        features = layer.selectedFeatures()
-
-        for f in features:
-            it = self.main.eventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression ( '"entity_id" = '+str( f.attribute('entity_id') ) ) )
-            self.main.eventsLayer.setSelectedFeatures( [ f.id() for f in it ] )
-            break
+        entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        
+        filterExpr = '"entity_id" IN ({0})'.format( ','.join( (str(i) for i in entitiesIds) ) )
+        properties = self.main.eventsLayer.getFeatures( QgsFeatureRequest().setFilterExpression( filterExpr ) )
+        
+        self.main.eventsLayer.setSelectedFeatures( [f.id() for f in properties] )
 
         self.iface.showAttributeTable(self.main.eventsLayer)
 
     def doViewentity(self):
+        """Selects the entities corresponding to the current selected properties"""
 
         self.main.entitiesLayer.removeSelection()
 
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
+            return
 
-        layer = self.iface.activeLayer()
-        provider = layer.dataProvider()
-        fieldIdx = provider.fieldNameIndex('entity_id')
+        entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
 
-        features = layer.selectedFeatures()
-
-        idsToSelect = []
-        for f in features:
-            idsToSelect.append( f.attribute('entity_id') )
-        self.main.entitiesLayer.setSelectedFeatures(idsToSelect)
-
+        self.main.entitiesLayer.setSelectedFeatures( entitiesIds )
         self.iface.showAttributeTable(self.main.entitiesLayer)
 
+        return
+
     def doViewrelations(self):
+        """Selects the relations corresponding to the current selected properties"""
 
         self.main.relationsLayer.removeSelection()
 
-
-        layer = self.iface.activeLayer()
-        provider = layer.dataProvider()
-        fieldIdx = provider.fieldNameIndex('entity_id')
-
-        features = layer.selectedFeatures()
-
-        idsToSelect = []
-        for f in features:
-            idsToSelect.append( str(f.attribute('entity_id')) )
-
-        # The important part: get the feature iterator with an expression
-        ids = ','.join(idsToSelect)
-        req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = self.main.relationsLayer.getFeatures( req )
-        self.main.relationsLayer.setSelectedFeatures( [ g.id() for g in it ] )
-
-        self.iface.showAttributeTable(self.main.relationsLayer)
-
-    def doCopytodate(self):
-        layer = self.iface.activeLayer()
-
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't copy to date on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
             return
 
-        provider = layer.dataProvider()
-        myFields = provider.fields()
+        entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        
+        filterExpr = '"a_id" IN ({0}) OR "b_id" IN ({0})'.format( ','.join( (str(i) for i in entitiesIds) ) )
+        relationsIds = [f.id() for f in self.main.relationsLayer.getFeatures( QgsFeatureRequest().setFilterExpression( filterExpr ) )]
 
-        fieldDateIdx = provider.fieldNameIndex('date')
-        fieldEntityIdx = provider.fieldNameIndex('entity_id')
+        if len(relationsIds)==0:
+            self.iface.messageBar().pushMessage("VTM Slider","There is no relation for these entities", QgsMessageBar.INFO, 2)
+            return
+        
+        self.main.relationsLayer.setSelectedFeatures( relationsIds )
+        self.iface.showAttributeTable(self.main.relationsLayer)
+        
 
-        features = layer.selectedFeatures()
+    def doCopytodate(self):
+        """Creates a copy of the property at the current date"""       
 
-        newFeatures = []
-        for f in features:
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
+            return
 
-            feat = QgsFeature()
-            feat.setFields( myFields )
-            feat.setAttribute( fieldDateIdx, self.spinboxYear.value() )
-            feat.setAttribute( fieldEntityIdx, f.attribute('entity_id') )
-            feat.setGeometry( f.geometry() )
-            newFeatures.append( feat )
-        layer.dataProvider().addFeatures(newFeatures)
+        # for compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
+
+
+        # copy_to_date.sql
+        propertiesIds = layer.selectedFeaturesIds()
+
+        self.main.runQuery('queries/copy_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.commit()
+
+
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
+
+        layer.removeSelection()
 
 
     def doCreaterelations(self):
+        """Creates relations between all selected entities."""
 
-
-        provider = self.main.relationsLayer.dataProvider()
-        myFields = provider.fields()
-        fieldIdAIdx = provider.fieldNameIndex('a_id')
-        fieldIdBIdx = provider.fieldNameIndex('b_id')
-
-        # 2. Get the selected features        
-        layer = self.iface.activeLayer()
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't create relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
             return
-        features = layer.selectedFeatures()
-        entities_ids = []
-        for f in features:
-            entities_ids.append( f.attribute('entity_id') )
 
-        # 3. For each pair of selected features, create a relation
-        newRelations = []
-        for ent_id_a in entities_ids:
-            for ent_id_b in entities_ids:
-                if ent_id_a == ent_id_b:
-                    continue
-                feat = QgsFeature()
-                feat.setFields( myFields )
-                feat.setAttribute(fieldIdAIdx, ent_id_a)
-                feat.setAttribute(fieldIdBIdx, ent_id_b)
-                newRelations.append( feat )
-                QgsMessageLog.logMessage('trying to add relation '+str(feat.attributes()),'VTM Slider')
-                
-        success = provider.addFeatures(newRelations)
-        QgsMessageLog.logMessage('success ? '+str(success),'VTM Slider')
+        # compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
+
+        # create_relations.sql        
+        propertiesIds = list(set(layer.selectedFeaturesIds()))
+        entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
+
+        self.main.runQuery('queries/create_relations', {'entities_ids': entitiesIds})
+        self.main.commit()
+
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
+
 
         layer.removeSelection()
 
     def doRemoverelations(self):
+        """Remove relations between all selected entities."""
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None:
+            return
+
+        # compute_dates.sql
+        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
+        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
+
+        # create_relations.sql        
+        propertiesIds = list(set(layer.selectedFeaturesIds()))
+        entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
+
+        self.main.runQuery('queries/remove_relations', {'entities_ids': entitiesIds})
+        self.main.commit()
+
+        # compute_dates.sql
+        for entityId in postProcEntitiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        self.main.commit()
+
+
+        layer.removeSelection()
+
+        return
         layer = self.iface.activeLayer()
 
         if layer not in self.main.filteredEventsLayers:
@@ -334,4 +355,17 @@ class VTMToolBar(QDockWidget):
         req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
         it = self.main.relationsLayer.getFeatures( req )
         relationsProvider.deleteFeatures( [ g.id() for g in it ] )
+
+
+    def _getLayerIfEventsLayersAndSelection(self):
+        """Return the active layer if it's one of the events layers, or returns None with a message if it's not"""
+        layer = self.iface.activeLayer()
+        if layer not in self.main.filteredEventsLayers:
+            self.iface.messageBar().pushMessage("VTM Slider","You must use this function on one of the properties layer.", QgsMessageBar.WARNING, 2)
+            return None
+        if len(layer.selectedFeaturesIds())==0:
+            self.iface.messageBar().pushMessage("VTM Slider","You need a selection to run this function.", QgsMessageBar.WARNING, 2)
+            return None
+        return layer
+
 

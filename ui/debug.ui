@@ -83,6 +83,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="euratlasEdgesDataCheckBox">
+          <property name="text">
+           <string>euratlas edges (&gt;2min)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="idlDraftDataCheckBox">
           <property name="text">
            <string>idl draft</string>
