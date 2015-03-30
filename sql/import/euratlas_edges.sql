@@ -1,59 +1,85 @@
+/************************************************************************************************/
+/* IMPROT EURATLAS
+ *
+ * This query imports data from the euratlas table
+ *
+ *
+ * params:
+ *    date (integer)  :      the year to do
+ */
+/************************************************************************************************/
+
 /*******************************/
-/* SOURCES                     */
+/* TOPOLOGY (geom)  
+ * We will use postigs_topology to transform the polygons into borders
+ */
 /*******************************/
-
-INSERT INTO vtm.sources(name)
-SELECT 'Euratlas'
-WHERE NOT EXISTS ( SELECT id FROM vtm.sources WHERE name = 'Euratlas' );
-
-
-
-/*******************************/
-/* EVENTS (geom)               */
-/*******************************/
-
--- We will use postigs_topology to get the borders from the polygons
 
 -- Create new empty topology structure
+
 SELECT 	topology.DropTopology('temp_topology');
+
 SELECT 	topology.CreateTopology('temp_topology',4326,0);
 
--- Add the borders to the topology structure - /!\/!\/!\ 98000 ms /!\/!\/!\
-SELECT 	topology.ST_CreateTopoGeo('temp_topology',ST_Collect(ST_Transform(geom,4326)))
-FROM 	"data_external"."euratlas_sovereign_states"
-WHERE 	"year"=2000;
+-- Create a copy of the euratlas data
 
--- select the polygons
-/*SELECT 	face_id, topology.ST_GetFaceGeometry('temp_topology', face_id) as geom
-FROM 	temp_topology.face
-WHERE 	face_id > 0;*/
+DROP TABLE IF EXISTS temp_topology.temp_euratlas_sovereign_states CASCADE;
+CREATE TABLE temp_topology.temp_euratlas_sovereign_states AS
+SELECT *
+FROM "data_external"."euratlas_sovereign_states"
+WHERE "year"=2000
+ORDER BY RANDOM()
+/*LIMIT 25*/;
+
+-- Add and update it's topology column
+
+SELECT AddTopoGeometryColumn('temp_topology', 'temp_topology', 'temp_euratlas_sovereign_states', 'topogeom', 'MULTIPOLYGON');
+
+UPDATE temp_topology.temp_euratlas_sovereign_states SET topogeom = toTopoGeom(ST_Transform(geom,4326), 'temp_topology', 1);
+
+
+/*******************************/
+/* INSERTION
+ *
+ * Insertion is a bit tricky since I didn't find the documentation of postgis's topology schemas
+ */
+/*******************************/
+
 
 -- Insert the edges
-INSERT INTO vtm.properties(entity_id, property_type_id, geovalue, date, source_id)
-SELECT 	NULL as entity_id,
-		0 as property_type_id,
-		ST_Transform(topology.geom,4326) as geovalue,
-		2000 as date,
-		(SELECT id FROM vtm.sources WHERE name='Euratlas') as source_id
-FROM 	(
-			SELECT 	edge_id, geom
-			FROM 	temp_topology.edge_data
-		) as topology;
+
+SELECT 		vtm.insert_properties_helper(
+				COALESCE(r_face.short_name,'')||' - '||COALESCE(l_face.short_name,'') || ' border',
+				'border'::text,
+				'Euratlas',
+				'geom'::text,
+				2000,
+				ST_AsText(ST_Transform(t.geom,4326))
+			)
+
+FROM		temp_topology.edge_data as t
+
+LEFT JOIN 	temp_topology.relation as l_rel ON l_rel.element_id = t.left_face
+LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as l_face ON (l_face.topogeom).id = l_rel.topogeo_id
+
+LEFT JOIN 	temp_topology.relation as r_rel ON r_rel.element_id = t.right_face
+LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as r_face ON (r_face.topogeom).id = r_rel.topogeo_id;
 
 -- Insert the faces
-INSERT INTO vtm.properties(entity_id, property_type_id, geovalue, date, source_id)
-SELECT 	NULL as entity_id,
-		0 as property_type_id,
-		ST_Transform(topology.geom,4326) as geovalue,
-		2000 as date,
-		(SELECT id FROM vtm.sources WHERE name='Euratlas') as source_id
-FROM 	(
-			SELECT 	face_id, topology.ST_GetFaceGeometry('temp_topology', face_id) as geom
-			FROM 	temp_topology.face
-			WHERE 	face_id > 0
-		) as topology;
+
+SELECT 	vtm.insert_properties_helper(
+			face.short_name,
+			'sovereign_state'::text,
+			'Euratlas',
+			'geom'::text,
+			2000,
+			ST_AsText(ST_Transform(topology.ST_GetFaceGeometry('temp_topology', t.face_id),4326))
+		)
+FROM 	temp_topology.face as t
+
+LEFT JOIN  	temp_topology.relation as rel ON rel.element_id = t.face_id
+LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as face ON (face.topogeom).id = rel.topogeo_id
+WHERE 	face_id > 0;
 
 
--- Clean up
---SELECT 	topology.DropTopology('temp_topology');
 
