@@ -238,8 +238,8 @@ class VTMMain:
         if pid<0:
             return
 
-        self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
-        entity_id_and_property_type_id = cursor.fetchone()
+        result = self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
+        entity_id_and_property_type_id = result.fetchone()
         self.entityIdsToPostprocess.append( entity_id_and_property_type_id )
         
 
@@ -248,6 +248,8 @@ class VTMMain:
 
         # compute_dates.sql
         for entityId,propTypeId in self.entityIdsToPostprocess:
+            if not entityId: #this could be QPyNullVariant if no entity was specified, in which case we don't need to postprocess the geometry
+                continue
             if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
                 propTypeId = 0
             self.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': [propTypeId]})
