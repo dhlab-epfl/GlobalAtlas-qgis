@@ -176,3 +176,58 @@ $$
       END IF;
     END;
 $$ LANGUAGE plpgsql;
+
+
+/*************************************************/
+/* Functions to facilitate inserts               */
+/*************************************************/
+
+
+DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, val text) CASCADE;
+CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, val text) RETURNS VOID AS    
+$$
+    DECLARE
+      ent_type_id integer;
+      ent_id integer;
+      prp_type_id integer;
+      src_id integer;
+    BEGIN
+    
+      -- CREATE THE ENTITY TYPE IF IT DOESNT EXIST
+      ent_type_id := (SELECT id FROM vtm.entity_types WHERE name=entity_type_name);
+
+      IF ent_type_id IS NULL THEN
+        INSERT INTO vtm.entity_types(name) VALUES(entity_type_name) RETURNING id INTO ent_type_id;
+      END IF;
+
+    
+      -- CREATE THE ENTITY IF IT DOESNT EXIST
+      ent_id := (SELECT id FROM vtm.entities WHERE name=entity_name);
+
+      IF ent_id IS NULL THEN
+        INSERT INTO vtm.entities(name, type_id) VALUES(entity_name, ent_type_id) RETURNING id INTO ent_id;
+      END IF;
+
+    
+      -- CREATE THE PROPERTY TYPE IF IT DOESNT EXIST
+      prp_type_id := (SELECT id FROM vtm.properties_types WHERE name=property_name);
+
+      IF prp_type_id IS NULL THEN
+        INSERT INTO vtm.properties_types(name) VALUES(property_name) RETURNING id INTO prp_type_id;
+      END IF;
+
+    
+      -- CREATE THE SOURCE IF IT DOESNT EXIST
+      src_id := (SELECT id FROM vtm.sources WHERE name=source_name);
+
+      IF src_id IS NULL THEN
+        INSERT INTO vtm.sources(name) VALUES(source_name) RETURNING id INTO src_id;
+      END IF;
+
+
+      -- FINALLY INSERT THE PROPERTY
+      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, val );
+
+
+    END;
+$$ LANGUAGE plpgsql;
