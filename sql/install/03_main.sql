@@ -1,11 +1,4 @@
 
-/*************************************************/
-/* Table interpolation_type                      */
-/*************************************************/
-
-DROP TYPE IF EXISTS vtm.interpolation_type CASCADE;
-CREATE TYPE vtm.interpolation_type AS ENUM ('start','default','end');
-
 
 /*************************************************/
 /* Table properties_types                        */

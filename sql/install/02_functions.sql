@@ -1,5 +1,13 @@
 
 /*************************************************/
+/* TYPE interpolation_type                      */
+/*************************************************/
+
+DROP TYPE IF EXISTS vtm.interpolation_type CASCADE;
+CREATE TYPE vtm.interpolation_type AS ENUM ('start','default','end');
+
+
+/*************************************************/
 /* Functions to recompute dates                  */
 /*************************************************/
 
@@ -183,8 +191,8 @@ $$ LANGUAGE plpgsql;
 /*************************************************/
 
 
-DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, val text) CASCADE;
-CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, val text) RETURNS VOID AS    
+DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) CASCADE;
+CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) RETURNS VOID AS    
 $$
     DECLARE
       ent_type_id integer;
@@ -226,7 +234,7 @@ $$
 
 
       -- FINALLY INSERT THE PROPERTY
-      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, val );
+      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, interpolation, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, interp, val );
 
 
     END;

@@ -28,9 +28,7 @@ DROP TABLE IF EXISTS temp_topology.temp_euratlas_sovereign_states CASCADE;
 CREATE TABLE temp_topology.temp_euratlas_sovereign_states AS
 SELECT *
 FROM "data_external"."euratlas_sovereign_states"
-WHERE "year"=%(year)s
-ORDER BY RANDOM()
-/*LIMIT 25*/;
+WHERE "year"=%(year)s;
 
 
 -- Add and update it's topology column
@@ -51,12 +49,22 @@ UPDATE temp_topology.temp_euratlas_sovereign_states SET topogeom = toTopoGeom(ST
 -- Insert the edges
 
 SELECT 		vtm.insert_properties_helper(
-				COALESCE(r_face.short_name,'')||' - '||COALESCE(l_face.short_name,'') || ' border',
+				LEAST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,''))||' - '||GREATEST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,'')) || ' border',
 				'border'::text,
 				'Euratlas',
 				'geom'::text,
 				%(year)s,
+				'start',
 				ST_AsText(ST_Transform(t.geom,4326))
+			),
+			vtm.insert_properties_helper(
+				LEAST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,''))||' - '||GREATEST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,'')) || ' border',
+				'border'::text,
+				'Euratlas',
+				'geom'::text,
+				%(year)s+100,
+				'start',
+				NULL
 			)
 
 FROM		temp_topology.edge_data as t
@@ -72,11 +80,21 @@ LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as r_face ON (r_face.top
 
 SELECT 	vtm.insert_properties_helper(
 			face.short_name,
-			'sovereign_state'::text,
+			'state'::text,
 			'Euratlas',
 			'geom'::text,
 			%(year)s,
+			'start',
 			ST_AsText(ST_Transform(topology.ST_GetFaceGeometry('temp_topology', t.face_id),4326))
+		),
+		vtm.insert_properties_helper(
+			face.short_name,
+			'state'::text,
+			'Euratlas',
+			'geom'::text,
+			%(year)s+100,
+			'start',
+			NULL
 		)
 FROM 	temp_topology.face as t
 

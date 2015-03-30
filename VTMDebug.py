@@ -50,36 +50,52 @@ class VTMDebug(QDialog):
 
         try:
 
-            self.main.runQuery('install/database_install_0_schema')
-            self.printOutput( 'Schema installed' )
+            if self.reinstallCheckBox.isChecked():
 
-            self.main.runQuery('install/database_install_1_functions')
-            self.printOutput( 'Functions installed' )
+                self.main.runQuery('install/01_schema')
+                self.printOutput( 'Schema installed' )
 
-            self.main.runQuery('install/database_install_A_main')
-            self.printOutput( 'Main structure installed' )
+                self.main.runQuery('install/02_functions')
+                self.printOutput( 'Functions installed' )
 
-            self.main.runQuery('install/database_install_B_view-for-qgis')
-            self.printOutput( 'QGIS view installed' )
+                self.main.runQuery('install/03_main')
+                self.printOutput( 'Main structure installed' )
+
+                self.main.runQuery('install/04_view_for_qgis')
+                self.printOutput( 'QGIS view installed' )
+
+                self.main.runQuery('install/05_types')
+                self.main.commit()
+                self.printOutput( 'Basic types created' )
 
             if self.dummyDataCheckBox.isChecked():
-                self.main.runQuery('import/dummy_data')
+                self.main.runQuery('import/dummy_data')               
+                self.main.commit()
                 self.printOutput( 'Dummy data inserted' )
+
+            if self.dummyBordersDataCheckBox.isChecked():
+                self.main.runQuery('import/dummy_data_borders')               
+                self.main.commit()
+                self.printOutput( 'Dummy borders data inserted' )
+
+
 
             if self.euratlasDataCheckBox.isChecked():
                 self.main.runQuery('import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value(), 'to_date':self.euratlasToDateSpinBox.value()})
-                self.printOutput( 'Euratlas data inserted' )
+                self.printOutput( 'Euratlas data inserted' )              
+                self.main.commit()
 
             if self.euratlasEdgesDataCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
                     self.printOutput( 'Start insertion of euratlas edges for year {0} (this can take >2 min)'.format(year) )
                     self.main.runQuery('import/euratlas_edges', {'year':year})
-                    self.printOutput( 'Euratlas edges data inserted for year {0}'.format(year) )
                     self.main.commit()
+                    self.printOutput( 'Euratlas edges data inserted for year {0}'.format(year) )
 
             if self.idlDraftDataCheckBox.isChecked():
                 self.main.runQuery('import/idl_draft')
                 self.printOutput( 'IdL draft data inserted' )
+                self.main.commit()
 
             self.main.commit()
 
