@@ -39,73 +39,72 @@ class VTMDebug(QDialog):
         self.deleteSettingsButton.pressed.connect(self.doDeleteSettings)
 
     def doShowIds(self):
-        self.outputTextEdit.clear()
-        self.outputTextEdit.setStyleSheet('')
+        self.resetOutput()
 
         for layer in self.iface.legendInterface().layers():
-            self.outputTextEdit.appendPlainText( '{0}:\t\t{1}'.format(layer.name(),layer.id()) )
+            self.printOutput( '{0}:\t\t{1}'.format(layer.name(),layer.id()) )
 
 
     def doReset(self):
-        self.outputTextEdit.clear()
-        self.outputTextEdit.setStyleSheet('')
+        self.resetOutput()
 
         try:
 
             self.main.runQuery('install/database_install_0_schema')
-            self.main.commit()
-            self.outputTextEdit.appendPlainText( 'Schema installed' )
+            self.printOutput( 'Schema installed' )
 
             self.main.runQuery('install/database_install_1_functions')
-            self.main.commit()
-            self.outputTextEdit.appendPlainText( 'Functions installed' )
+            self.printOutput( 'Functions installed' )
 
             self.main.runQuery('install/database_install_A_main')
-            self.main.commit()
-            self.outputTextEdit.appendPlainText( 'Main structure installed' )
+            self.printOutput( 'Main structure installed' )
 
             self.main.runQuery('install/database_install_B_view-for-qgis')
-            self.main.commit()
-            self.outputTextEdit.appendPlainText( 'QGIS view installed' )
+            self.printOutput( 'QGIS view installed' )
 
             if self.dummyDataCheckBox.isChecked():
                 self.main.runQuery('import/dummy_data')
-                self.main.commit()
-                self.outputTextEdit.appendPlainText( 'Dummy data inserted' )
+                self.printOutput( 'Dummy data inserted' )
 
             if self.euratlasDataCheckBox.isChecked():
-                self.main.runQuery('import/euratlas')
-                self.main.commit()
-                self.outputTextEdit.appendPlainText( 'Euratlas data inserted' )
+                self.main.runQuery('import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value()})
+                self.printOutput( 'Euratlas data inserted' )
 
             if self.euratlasEdgesDataCheckBox.isChecked():
                 self.main.runQuery('import/euratlas_edges')
-                self.main.commit()
-                self.outputTextEdit.appendPlainText( 'Euratlas edges data inserted' )
+                self.printOutput( 'Euratlas edges data inserted' )
 
             if self.idlDraftDataCheckBox.isChecked():
                 self.main.runQuery('import/idl_draft')
-                self.main.commit()
-                self.outputTextEdit.appendPlainText( 'IdL draft data inserted' )
+                self.printOutput( 'IdL draft data inserted' )
+
+            self.main.commit()
 
 
         except Exception, e:
-            self.outputTextEdit.setStyleSheet('color: red')
-            self.outputTextEdit.appendPlainText( '{0}'.format(str(e)) )
+            self.setOutputError()
+            self.printOutput( '{0}'.format(str(e)) )
 
+    def resetOutput(self):
+        self.outputTextEdit.clear()
+        self.outputTextEdit.setStyleSheet('')
 
+    def setOutputError(self):
+        self.outputTextEdit.setStyleSheet('color: red')
+
+    def printOutput(self, text):
+        self.outputTextEdit.appendPlainText( text )
+        QApplication.processEvents(QEventLoop.ExcludeUserInputEvents)
 
     def doViewSettings(self):
-        self.outputTextEdit.clear()
-        self.outputTextEdit.setStyleSheet('')
+        self.resetOutput()
 
         for s in ['VTM Slider/username','VTM Slider/password']:
-            self.outputTextEdit.appendPlainText( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
+            self.outputTextEdit.printOutput( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
 
     def doDeleteSettings(self):
-        self.outputTextEdit.clear()
-        self.outputTextEdit.setStyleSheet('')
+        self.resetOutput()
 
         QSettings().remove("VTM Slider")
 
-        self.outputTextEdit.appendPlainText( 'Settings removed' )
+        self.outputTextEdit.printOutput( 'Settings removed' )
