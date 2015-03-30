@@ -5,7 +5,7 @@
  *
  *
  * params:
- *    date (integer)  :      the year to do
+ *    year (integer)  :      the year to do
  */
 /************************************************************************************************/
 
@@ -21,15 +21,17 @@ SELECT 	topology.DropTopology('temp_topology');
 
 SELECT 	topology.CreateTopology('temp_topology',4326,0);
 
+
 -- Create a copy of the euratlas data
 
 DROP TABLE IF EXISTS temp_topology.temp_euratlas_sovereign_states CASCADE;
 CREATE TABLE temp_topology.temp_euratlas_sovereign_states AS
 SELECT *
 FROM "data_external"."euratlas_sovereign_states"
-WHERE "year"=2000
+WHERE "year"=%(year)s
 ORDER BY RANDOM()
 /*LIMIT 25*/;
+
 
 -- Add and update it's topology column
 
@@ -53,7 +55,7 @@ SELECT 		vtm.insert_properties_helper(
 				'border'::text,
 				'Euratlas',
 				'geom'::text,
-				2000,
+				%(year)s,
 				ST_AsText(ST_Transform(t.geom,4326))
 			)
 
@@ -65,6 +67,7 @@ LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as l_face ON (l_face.top
 LEFT JOIN 	temp_topology.relation as r_rel ON r_rel.element_id = t.right_face
 LEFT JOIN 	temp_topology.temp_euratlas_sovereign_states as r_face ON (r_face.topogeom).id = r_rel.topogeo_id;
 
+
 -- Insert the faces
 
 SELECT 	vtm.insert_properties_helper(
@@ -72,7 +75,7 @@ SELECT 	vtm.insert_properties_helper(
 			'sovereign_state'::text,
 			'Euratlas',
 			'geom'::text,
-			2000,
+			%(year)s,
 			ST_AsText(ST_Transform(topology.ST_GetFaceGeometry('temp_topology', t.face_id),4326))
 		)
 FROM 	temp_topology.face as t

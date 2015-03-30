@@ -5,13 +5,14 @@
  *
  *
  * params:
- *    from_date  :      the date from which to start (to_date is 2000)
+ *    from_date  :      the date from which to start
+ *    to_date  :      the date to which to go
  */
 /************************************************************************************************/
 
 SELECT 	vtm.insert_properties_helper(t.long_name, 'sovereign_state'::text, 'Euratlas', 'geom'::text, t.year::int, ST_AsText(ST_Transform(geom,4326)))
 FROM	"data_external"."euratlas_sovereign_states" as t
-WHERE year>=%(from_date)s;
+WHERE year>=%(from_date)s && year<=%(to_date)s;
 
 
 

@@ -67,12 +67,15 @@ class VTMDebug(QDialog):
                 self.printOutput( 'Dummy data inserted' )
 
             if self.euratlasDataCheckBox.isChecked():
-                self.main.runQuery('import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value()})
+                self.main.runQuery('import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value(), 'to_date':self.euratlasToDateSpinBox.value()})
                 self.printOutput( 'Euratlas data inserted' )
 
             if self.euratlasEdgesDataCheckBox.isChecked():
-                self.main.runQuery('import/euratlas_edges')
-                self.printOutput( 'Euratlas edges data inserted' )
+                for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
+                    self.printOutput( 'Start insertion of euratlas edges for year {0} (this can take >2 min)'.format(year) )
+                    self.main.runQuery('import/euratlas_edges', {'year':year})
+                    self.printOutput( 'Euratlas edges data inserted for year {0}'.format(year) )
+                    self.main.commit()
 
             if self.idlDraftDataCheckBox.isChecked():
                 self.main.runQuery('import/idl_draft')
