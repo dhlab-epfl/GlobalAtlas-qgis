@@ -100,11 +100,11 @@ class VTMDebug(QDialog):
         self.resetOutput()
 
         for s in ['VTM Slider/username','VTM Slider/password']:
-            self.outputTextEdit.printOutput( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
+            self.printOutput( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
 
     def doDeleteSettings(self):
         self.resetOutput()
 
         QSettings().remove("VTM Slider")
 
-        self.outputTextEdit.printOutput( 'Settings removed' )
+        self.printOutput( 'Settings removed' )
