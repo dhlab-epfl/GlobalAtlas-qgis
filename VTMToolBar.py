@@ -338,23 +338,8 @@ class VTMToolBar(QDockWidget):
         layer.removeSelection()
 
         return
-        layer = self.iface.activeLayer()
 
-        if layer not in self.main.filteredEventsLayers:
-            self.iface.messageBar().pushMessage("VTM Slider","You can't remove relations on a layer that is not set as a time feature layer.", QgsMessageBar.WARNING, 2)
-            return
 
-        relationsProvider = self.main.relationsLayer.dataProvider()
-
-        features = layer.selectedFeatures()
-        idsToUnrelate = []
-        for f in features:
-            idsToUnrelate.append( str(f.attribute('entity_id')) )
-        ids = ','.join(idsToUnrelate)
-
-        req = QgsFeatureRequest().setFilterExpression ( u'"a_id" IN ('+ids+') OR "b_id" IN ('+ids+')' )
-        it = self.main.relationsLayer.getFeatures( req )
-        relationsProvider.deleteFeatures( [ g.id() for g in it ] )
 
 
     def _getLayerIfEventsLayersAndSelection(self):
