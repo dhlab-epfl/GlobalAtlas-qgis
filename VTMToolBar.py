@@ -126,10 +126,9 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
+        # for compute_dates.sql
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        
         # merge_feature.sql        
         propertiesIds = layer.selectedFeaturesIds()
         entitiesIds = ( f.attribute('entity_id') for f in layer.selectedFeatures() )
@@ -139,8 +138,8 @@ class VTMToolBar(QDockWidget):
         self.main.commit()
 
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
 
@@ -156,9 +155,8 @@ class VTMToolBar(QDockWidget):
             return
 
         # for compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        
         # unmerge_feature.sql
         propertiesIds = layer.selectedFeaturesIds()
 
@@ -166,8 +164,8 @@ class VTMToolBar(QDockWidget):
         self.main.commit()
 
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -181,9 +179,7 @@ class VTMToolBar(QDockWidget):
             return
 
         # for compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
 
         # does_not_exist.sql
         propertiesIds = layer.selectedFeaturesIds()
@@ -191,10 +187,9 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/does_not_exist', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
         self.main.commit()
 
-
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -263,20 +258,17 @@ class VTMToolBar(QDockWidget):
             return
 
         # for compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
-
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        
         # copy_to_date.sql
         propertiesIds = layer.selectedFeaturesIds()
 
         self.main.runQuery('queries/copy_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
         self.main.commit()
 
-
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -289,10 +281,9 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
+        # for compute_dates.sql
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
@@ -301,10 +292,9 @@ class VTMToolBar(QDockWidget):
         self.main.commit()
 
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
-
 
         layer.removeSelection()
 
@@ -315,10 +305,9 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
+        # for compute_dates.sql
+        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
@@ -327,8 +316,8 @@ class VTMToolBar(QDockWidget):
         self.main.commit()
 
         # compute_dates.sql
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
 
