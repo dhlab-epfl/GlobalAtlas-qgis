@@ -87,7 +87,7 @@ class VTMToolBar(QDockWidget):
 
     def doDate(self, date):
 
-        for layer in self.main.filteredEventsLayers:
+        for layer in [self.main.eventsPointLayer, self.main.eventsLineLayer, self.main.eventsPolygonLayer]:
             layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.main.sqlFilter) )
 
         self.iface.mapCanvas().refresh()

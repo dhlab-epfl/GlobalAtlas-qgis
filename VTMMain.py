@@ -30,7 +30,9 @@ class VTMMain:
     instance = None
 
     sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
-    filteredEventsLayersIDs = ['properties_for_qgis20150307001918975', 'properties_for_qgis20150307041406392', 'properties_for_qgis20150317102814809']
+    eventsPointLayerID = 'properties_for_qgis20150317102814809'
+    eventsLineLayerID = 'properties_for_qgis20150307041406392'
+    eventsPolygonLayerID = 'properties_for_qgis20150307001918975'
     eventsLayerID = 'properties20150212181047441'
     entitiesLayerID = 'entities20150212181047504'
     relationsLayerID = 'related_entities20150303160720006'
@@ -83,14 +85,16 @@ class VTMMain:
         # Get the references to the layers using their IDs
         ############################################################
 
-        self.filteredEventsLayers = [QgsMapLayerRegistry.instance().mapLayer(layerID) for layerID in self.filteredEventsLayersIDs]
+        self.eventsPointLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsPointLayerID)
+        self.eventsLineLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsLineLayerID)
+        self.eventsPolygonLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsPolygonLayerID)
         self.eventsLayer = QgsMapLayerRegistry.instance().mapLayer(self.eventsLayerID)
         self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
         self.relationsLayer = QgsMapLayerRegistry.instance().mapLayer(self.relationsLayerID)
         self.propertiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.propertiesTypeLayerID)
         self.entitiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesTypeLayerID)
 
-        if not all(self.filteredEventsLayers) or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None or self.propertiesTypeLayer is None or self.entitiesTypeLayer is None:
+        if self.eventsPointLayer is None or self.eventsLineLayer is None or self.eventsPolygonLayer is None or self.eventsLayer is None or self.entitiesLayer is None or self.relationsLayer is None or self.propertiesTypeLayer is None or self.entitiesTypeLayer is None:
             QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
             self.dockwidget.disablePlugin()
             return
@@ -169,19 +173,14 @@ class VTMMain:
 
 
         # Signals for insert of events
-        for layer in self.filteredEventsLayers:
+        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
             layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
             layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
             layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
             layer.editingStopped.connect( self.editingStopped )
 
-        self.eventsLayer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
-        self.eventsLayer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
-        self.eventsLayer.featureDeleted.connect( lambda pid: self.featureDeleted(self.eventsLayer, pid) )
-        self.eventsLayer.editingStopped.connect( self.editingStopped )
-
     def disconnectSignalsForPostProcessing(self):
-        for layer in self.filteredEventsLayers:
+        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
             try:
                 layer.committedFeaturesAdded.disconnect()
                 layer.committedAttributeValuesChanges.disconnect()
@@ -189,13 +188,6 @@ class VTMMain:
                 layer.editingStopped.disconnect()
             except Exception, e:
                 pass
-        try:
-            self.eventsLayer.committedFeaturesAdded.disconnect()
-            self.eventsLayer.committedAttributeValuesChanges.disconnect()
-            self.eventsLayer.featureDeleted.disconnect()
-            self.eventsLayer.editingStopped.disconnect()
-        except Exception, e:
-            pass
 
 
 
