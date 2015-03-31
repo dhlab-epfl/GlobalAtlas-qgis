@@ -176,6 +176,7 @@ class VTMMain:
         for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
             layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
             layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+            layer.committedGeometriesChanges.connect( self.committedGeometriesChanges )
             layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
             layer.editingStopped.connect( self.editingStopped )
 
@@ -184,6 +185,7 @@ class VTMMain:
             try:
                 layer.committedFeaturesAdded.disconnect()
                 layer.committedAttributeValuesChanges.disconnect()
+                layer.committedGeometriesChanges.disconnect()
                 layer.featureDeleted.disconnect()
                 layer.editingStopped.disconnect()
             except Exception, e:
@@ -220,6 +222,21 @@ class VTMMain:
                 ptid = f.attributes()[ptidx] # workaround
                 self.entityIdsToPostprocess.append( [eid,ptid] )
 
+    def committedGeometriesChanges(self, layerID, changedGeometriesValues):
+        QgsMessageLog.logMessage( 'committedGeometriesChanges '+str(changedGeometriesValues) , 'VTM Slider'  )
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for fid in changedGeometriesValues:
+
+            features = layer.getFeatures( QgsFeatureRequest( fid ) )
+            for f in features: # We're supposed to have only one feature here
+                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+                eid = f.attributes()[eidx] # workaround
+                ptid = 1 # workaround
+                self.entityIdsToPostprocess.append( [eid,ptid] )
+
 
     def featureDeleted(self, layer, pid): 
         """This is triggered when a feature is deleted in QGIS, in the vector layer buffer
@@ -246,6 +263,15 @@ class VTMMain:
             if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
                 propTypeId = 0
             self.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propTypeId})
+        self.commit()
+
+
+        # compute_geometries_from_borders.sql
+        result = self.runQuery('queries/gbb_get_entities_to_postprocess', {'modified_entities_ids': [entityId for entityId, propTypeId in self.entityIdsToPostprocess]})
+        for rec in result:
+            eid = rec['entity_id']
+            self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
+            self.runQuery('queries/compute_dates', {'entity_id': eid, 'property_type_id': 1})
         self.commit()
 
         self.entityIdsToPostprocess = []

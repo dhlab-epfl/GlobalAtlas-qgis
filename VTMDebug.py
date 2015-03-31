@@ -64,6 +64,9 @@ class VTMDebug(QDialog):
                 self.main.runQuery('install/03b_geom_extension')
                 self.printOutput( 'Geom extension installed' )
 
+                self.main.runQuery('install/03c_geom_by_borders_extension')
+                self.printOutput( 'Geom by borders extension installed' )
+
                 self.main.runQuery('install/04_view_for_qgis')
                 self.printOutput( 'QGIS view installed' )
 
