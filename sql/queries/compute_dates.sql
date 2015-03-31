@@ -7,7 +7,7 @@
  *
  * params:
  *    entity_id  :      the id of the entity to postprocess
- *    property_type_ids  : the type of property to postprocess
+ *    property_type_id  : the type of property to postprocess
  */
 /************************************************************************************************/
 
@@ -131,11 +131,8 @@ UPDATE vtm.properties as d
             entity_id IN (SELECT b_id FROM vtm.related_entities WHERE a_id=%(entity_id)s)    -- a related entity's properties have been edited
           )
           AND
-          (%(property_type_ids)s IS NULL OR property_type_id= ANY(%(property_type_ids)s))
+          (property_type_id = %(property_type_id)s)
 		GROUP BY date, property_type_id
 		ORDER BY date ASC
 	) as sub
-	WHERE 	entity_id=%(entity_id)s
-    			AND
-    			(%(property_type_ids)s IS NULL OR property_type_id= ANY(%(property_type_ids)s))
-    			AND d.id = ANY(sub.ids);
+	WHERE 	d.id = ANY(sub.ids);

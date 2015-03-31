@@ -248,12 +248,12 @@ class VTMMain:
     def editingStopped(self):
 
         # compute_dates.sql
-        for entityId,propTypeId in self.entityIdsToPostprocess:
+        for entityId, propTypeId in self.entityIdsToPostprocess:
             if not entityId: #this could be QPyNullVariant if no entity was specified, in which case we don't need to postprocess the geometry
                 continue
             if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
                 propTypeId = 0
-            self.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': [propTypeId]})
+            self.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propTypeId})
         self.commit()
 
         self.entityIdsToPostprocess = []
