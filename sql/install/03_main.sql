@@ -186,7 +186,7 @@ $$
         new_entity_id integer;
     BEGIN
         IF NEW.entity_id IS NULL THEN
-          INSERT INTO "vtm"."entities"("name","type_id") VALUES ('entity_'||lpad(currval('vtm.entities_id_seq')::text,6,'0'), 0);
+          INSERT INTO "vtm"."entities"("name","type_id") VALUES ('entity_'||lpad(currval('vtm.entities_id_seq')::text,6,'0'), 1);
           NEW.entity_id = ( SELECT currval('vtm.entities_id_seq') );
         END IF;
         RETURN NEW;
