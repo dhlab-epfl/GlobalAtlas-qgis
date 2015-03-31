@@ -61,6 +61,9 @@ class VTMDebug(QDialog):
                 self.main.runQuery('install/03_main')
                 self.printOutput( 'Main structure installed' )
 
+                self.main.runQuery('install/03b_geom_extension')
+                self.printOutput( 'Geom extension installed' )
+
                 self.main.runQuery('install/04_view_for_qgis')
                 self.printOutput( 'QGIS view installed' )
 

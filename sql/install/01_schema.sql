@@ -1,3 +1,10 @@
+/************************************************************************************************/
+/* INSTALL schema
+ *
+ * This drops and creates the whole schema for a clean reset
+ */
+/************************************************************************************************/
+
 DROP SCHEMA IF EXISTS vtm CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS vtm;

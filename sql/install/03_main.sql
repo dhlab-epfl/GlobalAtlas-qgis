@@ -1,4 +1,9 @@
-
+/************************************************************************************************/
+/* INSTALL main
+ *
+ * This installs the main tables
+ */
+/************************************************************************************************/
 
 /*************************************************/
 /* Table properties_types                        */
@@ -14,7 +19,6 @@ CREATE TABLE vtm.properties_types
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
-INSERT INTO vtm.properties_types(id,name) VALUES (0,'geom');
 
 CREATE TRIGGER properties_types_stamps BEFORE INSERT OR UPDATE ON vtm.properties_types FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
@@ -153,7 +157,6 @@ CREATE TABLE vtm.properties
   description text,
   property_type_id integer NOT NULL REFERENCES vtm.properties_types ON DELETE CASCADE,
   value text,
-  geovalue geometry(Geometry,4326),
   date integer,
   interpolation vtm.interpolation_type DEFAULT 'default', --TODO : NOT NULL
   computed_date_start integer,
@@ -170,57 +173,8 @@ DROP FUNCTION IF EXISTS vtm.properties_stamps() CASCADE;
 
 -- TRIGGER FOR STAMPS
 
-CREATE TRIGGER properties_stamps BEFORE INSERT OR UPDATE ON vtm.properties FOR EACH ROW
+CREATE TRIGGER properties_trigger_A_stamps BEFORE INSERT OR UPDATE ON vtm.properties FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
-
-
--- TRIGGER FOR GEOVALUE FIELD
-
-DROP FUNCTION IF EXISTS vtm.manage_geovalue_field() CASCADE;
-CREATE FUNCTION vtm.manage_geovalue_field() RETURNS trigger AS    
-$$
-    BEGIN
-      IF TG_OP='INSERT' THEN
-
-        IF NEW.geovalue IS NOT NULL THEN
-          IF NEW.property_type_id IS NOT NULL AND NEW.property_type_id != 0 THEN
-            RAISE EXCEPTION 'Key must be ''geom'' or NULL if a geovalue is provided !';
-          END IF;
-          NEW.property_type_id = 0;
-          NEW.value = ST_AsText(NEW.geovalue);
-          --NEW.computed_size = GREATEST(ST_XMax(NEW.geovalue)-ST_XMin(NEW.geovalue),ST_YMax(NEW.geovalue)-ST_YMin(NEW.geovalue));
-        ELSIF NEW.property_type_id = 0 AND NEW.value IS NOT NULL THEN
-          NEW.geovalue = ST_GeomFromText(NEW.value, 4326);
-        END IF;
-        RETURN NEW;
-
-      ELSIF TG_OP='UPDATE' THEN
-
-        IF NEW.property_type_id = 0 AND NEW.value != OLD.value AND (NEW.geovalue=OLD.geovalue OR (NEW.geovalue IS NULL AND OLD.geovalue IS NULL)) THEN
-          NEW.geovalue = ST_GeometryFromText(NEW.value, 4326);
-        END IF;
-
-        IF NEW.geovalue IS NOT NULL THEN
-          IF NEW.property_type_id IS NOT NULL AND NEW.property_type_id != 0 THEN
-            RAISE EXCEPTION 'Key must be ''geom'' or NULL if a geovalue is provided !';
-          END IF;
-          NEW.property_type_id = 0;
-          NEW.value = ST_AsText(NEW.geovalue);
-          --NEW.computed_size = GREATEST(ST_XMax(NEW.geovalue)-ST_XMin(NEW.geovalue),ST_YMax(NEW.geovalue)-ST_YMin(NEW.geovalue));
-        ELSIF NEW.property_type_id = 0 AND NEW.value IS NOT NULL THEN
-          NEW.geovalue = ST_GeomFromText(NEW.value, 4326);
-        END IF;
-        RETURN NEW;
-
-      ELSE
-        RETURN NULL;      
-      END IF;
-
-    END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER properties_i BEFORE INSERT OR UPDATE OF "property_type_id","geovalue","value" ON vtm.properties FOR EACH ROW
-    EXECUTE PROCEDURE vtm.manage_geovalue_field();
 
 
 -- TRIGGER TO CREATE AN ENTITY IF NONE IS PROVIDED
@@ -241,7 +195,7 @@ $$
 $$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER properties_bi BEFORE INSERT OR UPDATE OF entity_id ON vtm.properties FOR EACH ROW
+CREATE TRIGGER properties_trigger_B_autogenerate BEFORE INSERT OR UPDATE OF entity_id ON vtm.properties FOR EACH ROW
     EXECUTE PROCEDURE vtm.autogenerate_entity();
 
 
