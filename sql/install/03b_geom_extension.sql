@@ -33,7 +33,7 @@ $$
 
 		ELSIF TG_OP='UPDATE' THEN
 		  	IF NEW.property_type_id=1 THEN -- if we update a "geom" property
-			  	IF NEW.geovalue <> OLD.geovalue THEN -- we set the value acording to geovalue, if the geovalue was changed
+			  	IF NOT ST_Equals(NEW.geovalue, OLD.geovalue) THEN -- we set the value acording to geovalue, if the geovalue was changed
 			      	NEW.value = ST_AsText(NEW.geovalue);
 			    ELSE
 			    	NEW.geovalue = ST_GeomFromText(NEW.value, 4326); -- we set the geovalue acording to value, if the geovalue was not changed
