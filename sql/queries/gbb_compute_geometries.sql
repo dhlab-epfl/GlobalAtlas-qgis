@@ -27,7 +27,7 @@ SELECT 	%(entity_id)s as entity_id,
 		1 as property_type_id,
 		d.date as date,
 		--array_agg(p.id) as test,
-		ST_BuildArea(ST_Collect(p.geovalue))
+		COALESCE( ST_BuildArea(ST_Collect(ST_SnapToGrid(p.geovalue,0.00001))), ST_Centroid(ST_Collect(p.geovalue)) ) as geom
 FROM 	( 
 			SELECT 	date
 			FROM 	vtm.properties as p
