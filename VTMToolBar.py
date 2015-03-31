@@ -345,7 +345,7 @@ class VTMToolBar(QDockWidget):
     def _getLayerIfEventsLayersAndSelection(self):
         """Return the active layer if it's one of the events layers, or returns None with a message if it's not"""
         layer = self.iface.activeLayer()
-        if layer not in self.main.filteredEventsLayers:
+        if layer not in [self.main.eventsPointLayer, self.main.eventsLineLayer, self.main.eventsPolygonLayer, self.main.eventsLayer]:
             self.iface.messageBar().pushMessage("VTM Slider","You must use this function on one of the properties layer.", QgsMessageBar.WARNING, 2)
             return None
         if len(layer.selectedFeaturesIds())==0:
