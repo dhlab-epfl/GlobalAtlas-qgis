@@ -112,11 +112,8 @@ class VTMToolBar(QDockWidget):
             return
 
         # compute_dates.sql
-        postProcEntitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        postProcPropertyTypeIds = list(set( f.attribute('property_type_id') for f in layer.selectedFeatures() )) # these are the ids of all properties types (needed for postprocessing)
-
-        for entityId in postProcEntitiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_ids': postProcPropertyTypeIds})
+        for f in layer.selectedFeatures():
+            self.main.runQuery('queries/compute_dates', {'entity_id': f.attribute('entity_id'), 'property_type_id': f.attribute('property_type_id')})
         self.main.commit()
 
 
