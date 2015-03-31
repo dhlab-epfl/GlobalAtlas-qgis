@@ -20,6 +20,7 @@ from qgis.core import *
 from VTMToolBar import VTMToolBar
 
 import psycopg2
+import psycopg2.extras
 
 import os.path
 
@@ -239,8 +240,8 @@ class VTMMain:
             return
 
         result = self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
-        entity_id_and_property_type_id = result.fetchone()
-        self.entityIdsToPostprocess.append( entity_id_and_property_type_id )
+        rec = result.fetchone()
+        self.entityIdsToPostprocess.append( [rec['entity_id'], rec['property_type_id'] ] )
         
 
 
@@ -269,10 +270,9 @@ class VTMMain:
         if not hasattr(self.sqlQueries,filename):
             self.sqlQueries[filename] = open( os.path.join( self.plugin_dir,'sql',filename+'.sql') ).read()
 
-        cursor = self.connection.cursor()
-        result = cursor.execute( self.sqlQueries[filename], parameters )
-        cursor.close()
-        return result
+        cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor.execute( self.sqlQueries[filename], parameters )
+        return cursor
         
     def commit(self):        
         self.connection.commit()
