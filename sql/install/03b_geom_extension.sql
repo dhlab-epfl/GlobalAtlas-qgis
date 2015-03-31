@@ -2,6 +2,8 @@
 /* INSTALL geom_extension
  *
  * This extends the properties set to manage geovalues.
+ *
+ * REQUIRES geom_extension
  */
 /************************************************************************************************/
 
