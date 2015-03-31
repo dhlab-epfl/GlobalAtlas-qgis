@@ -4,8 +4,6 @@
  * This query returns the entity_id and the property_type_id of a property.
  * It can be useful to get those value before deleting a property, to be able
  * to run postprocessing afterwards.
- * 
- * Features should be postprocessed afterwards.
  *
  *
  * params:

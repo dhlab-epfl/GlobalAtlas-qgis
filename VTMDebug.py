@@ -100,6 +100,13 @@ class VTMDebug(QDialog):
                 self.printOutput( 'IdL draft data inserted' )
                 self.main.commit()
 
+            if self.processUpdateDatesCheckBox.isChecked():
+                result = self.main.runQuery('queries/select_all_properties_type_by_entity')
+                for rec in result:
+                    self.main.runQuery('queries/compute_dates', {'entity_id': rec['entity_id'], 'property_type_id': rec['property_type_id']})
+                self.printOutput( 'Recomputed dates' )
+                self.main.commit()
+
             self.main.commit()
 
 
