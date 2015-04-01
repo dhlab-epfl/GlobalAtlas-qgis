@@ -60,11 +60,10 @@ class VTMDebug(QDialog):
 
                 self.verboseQuery('installation of the geometry extension', 'install/03b_geom_extension')
 
-                self.verboseQuery('installation of the geometry by borders extension','install/03c_geom_by_borders_extension')
-
                 self.verboseQuery('installation of the view for QGIS','install/04_view_for_qgis')
 
                 self.verboseQuery('insertion of the basic types','install/05_types')
+
                 self.main.commit()
 
             if self.dummyDataCheckBox.isChecked():

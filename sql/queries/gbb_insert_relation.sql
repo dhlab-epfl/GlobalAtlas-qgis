@@ -10,6 +10,7 @@
  */
 /************************************************************************************************/
 
-INSERT INTO vtm.geom_by_borders(entity_id, border_id)
+INSERT INTO vtm.properties(entity_id, property_type_id, value)
 SELECT  %(entity_id)s as entity_id,
-		unnest( %(borders_ids)s ) as border_id;
+		2 as property_type_id,
+		unnest( %(borders_ids)s ) as value;

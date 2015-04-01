@@ -9,4 +9,6 @@
  */
 /************************************************************************************************/
 
-SELECT DISTINCT entity_id FROM vtm.geom_by_borders WHERE border_id = ANY(%(modified_entities_ids)s);
+SELECT 	DISTINCT entity_id
+FROM	vtm.properties
+WHERE	property_type_id=2 AND value::integer = ANY(%(modified_entities_ids)s);

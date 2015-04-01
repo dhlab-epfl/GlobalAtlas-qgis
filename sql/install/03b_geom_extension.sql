@@ -24,7 +24,7 @@ $$
     BEGIN
 
 		IF TG_OP='INSERT' THEN
-		  	IF NEW.property_type_id=1 THEN -- if we insert a "geom" property
+		  	IF NEW.property_type_id IN (1,3) THEN -- if we insert a "geom" property
 			  	IF NEW.geovalue IS NOT NULL THEN
 			      	NEW.value = ST_AsText(NEW.geovalue); -- we set the value acording to geovalue, if a geovalue was provided
 			    ELSE
@@ -34,13 +34,13 @@ $$
 		    RETURN NEW;
 
 		ELSIF TG_OP='UPDATE' THEN
-		  	IF NEW.property_type_id=1 THEN -- if we update a "geom" property
+		  	IF NEW.property_type_id IN (1,3) THEN -- if we update a "geom" property
 			  	IF NOT ST_Equals(NEW.geovalue, OLD.geovalue) THEN -- we set the value acording to geovalue, if the geovalue was changed
 			      	NEW.value = ST_AsText(NEW.geovalue);
 			    ELSE
 			    	NEW.geovalue = ST_GeomFromText(NEW.value, 4326); -- we set the geovalue acording to value, if the geovalue was not changed
 			    END IF;
-			ELSIF OLD.property_type_id=1 AND NEW.property_type_id<>1 THEN
+			ELSIF OLD.property_type_id IN (1,3) AND NEW.property_type_id NOT IN (1,3) THEN
 		    	NEW.geovalue = NULL; -- we unset the geovalue if we are no more in a "geom" property
 		    END IF;
 		    RETURN NEW;
