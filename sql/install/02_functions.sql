@@ -94,7 +94,7 @@ $$ LANGUAGE plpgsql;
 /*************************************************/
 /* Functions to recompute dates                  */ -- THIS IS NOT USED CURRENTLY
 /*************************************************/
-
+/*
 -- GENERIC TRIGGER FUNCTION
 
 DROP FUNCTION IF EXISTS vtm.properties_reset_computed_dates();
@@ -244,4 +244,32 @@ $$
         WHERE entity_id=current_entity_id AND (current_property_type_id IS NULL OR property_type_id=current_property_type_id) AND d.id = ANY(sub.ids);
     END;
 $$ LANGUAGE plpgsql;
+*/
+-- TRIGGER TO RECOMPUTE DATES
+-- should be put after the relations table
+/*
+DROP FUNCTION IF EXISTS vtm.relations_reset_computed_dates();
+CREATE FUNCTION vtm.relations_reset_computed_dates() RETURNS trigger AS    
+$$
+    BEGIN
 
+      IF TG_OP='INSERT' OR TG_OP='UPDATE' THEN
+        PERFORM vtm.query_reset_computed_dates(NEW.a_id, NULL);
+      END IF;
+      
+      IF TG_OP='UPDATE' OR TG_OP='DELETE' THEN
+        PERFORM vtm.query_reset_computed_dates(OLD.a_id, NULL);
+      END IF;       
+
+      IF TG_OP='UPDATE' OR TG_OP='INSERT' THEN
+        RETURN NEW;
+      ELSE
+        RETURN OLD;
+      END IF;
+
+    END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER reset_date_for_relations AFTER INSERT OR UPDATE OF "a_id","b_id" OR DELETE ON vtm.related_entities FOR EACH ROW
+    EXECUTE PROCEDURE vtm.relations_reset_computed_dates();
+*/
