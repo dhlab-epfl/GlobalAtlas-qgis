@@ -14,6 +14,9 @@ CREATE TABLE vtm.properties_types
 (
   id serial NOT NULL PRIMARY KEY,
   name text UNIQUE,
+  description text,
+  type text,
+  subtype text,
   creation_timestamp timestamp default now(),
   creation_user text default CURRENT_USER,
   modification_timestamp timestamp default now(),

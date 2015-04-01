@@ -16,9 +16,9 @@ INSERT INTO vtm.entity_types( name, min_zoom, max_zoom, zindex ) VALUES
 	( 'isola', 10, null, 2.0 ),
 	( 'canal', 10, null, 1.0 );
 
-INSERT INTO vtm.properties_types( name ) VALUES
-	( 'geom' ), -- must stay id 1 for geom is hardcoded in the geom extension
-	( 'geom_by_borders' ), -- must stay id 2 for geom_by_borders is hardcoded in the geom_by_borders extension
-	( 'height' ),
-	( 'owner' ),
-	( 'building material' );
+INSERT INTO vtm.properties_types( name, description, type, subtype ) VALUES
+	( 'geom', 				'Geometry in plan',									 	'text', 	'wkt' ), 		-- must stay id 1 for geom is hardcoded in the geom extension
+	( 'geom_by_borders', 	'Entity that constitutes one border of this entity', 	'integer', 	'entity_id' ), 	-- must stay id 2 for geom_by_borders is hardcoded in the geom_by_borders extension
+	( 'height',NULL,NULL,NULL ),
+	( 'owner',NULL,NULL,NULL ),
+	( 'building material',NULL,NULL,NULL );
