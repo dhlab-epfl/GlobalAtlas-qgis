@@ -8,5 +8,3 @@
 - expression must be validated before import
 
 ## Database structure
-- add creation/modification timestamp/author
-- set interpolation to not null

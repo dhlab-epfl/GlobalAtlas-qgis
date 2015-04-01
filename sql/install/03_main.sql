@@ -157,7 +157,7 @@ CREATE TABLE vtm.properties
   property_type_id integer NOT NULL REFERENCES vtm.properties_types ON DELETE CASCADE,
   value text,
   date integer,
-  interpolation vtm.interpolation_type DEFAULT 'default', --TODO : NOT NULL
+  interpolation vtm.interpolation_type NOT NULL DEFAULT 'default',
   computed_date_start integer,
   computed_date_end integer,
   --computed_size real,
@@ -196,6 +196,27 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER properties_trigger_B_autogenerate BEFORE INSERT OR UPDATE OF entity_id ON vtm.properties FOR EACH ROW
     EXECUTE PROCEDURE vtm.autogenerate_entity();
+
+
+-- TRIGGER SET INTERPOLATION TO DEFAULT
+
+DROP FUNCTION IF EXISTS vtm.autoset_interpolation() CASCADE;
+
+CREATE FUNCTION vtm.autoset_interpolation() RETURNS trigger AS    
+$$
+    DECLARE
+        new_entity_id integer;
+    BEGIN
+        IF NEW.interpolation IS NULL THEN
+          NEW.interpolation = 'default';
+        END IF;
+        RETURN NEW;
+    END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER properties_trigger_B_autoset_interpolation BEFORE INSERT OR UPDATE OF interpolation ON vtm.properties FOR EACH ROW
+    EXECUTE PROCEDURE vtm.autoset_interpolation();
 
 
 
