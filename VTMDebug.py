@@ -52,64 +52,52 @@ class VTMDebug(QDialog):
 
             if self.reinstallCheckBox.isChecked():
 
-                self.main.runQuery('install/01_schema')
-                self.printOutput( 'Schema installed' )
+                self.verboseQuery('installation of schema','install/01_schema')
 
-                self.main.runQuery('install/02_functions')
-                self.printOutput( 'Functions installed' )
+                self.verboseQuery('installation of functions','install/02_functions')
 
-                self.main.runQuery('install/03_main')
-                self.printOutput( 'Main structure installed' )
+                self.verboseQuery('installation of the main structure','install/03_main')
 
-                self.main.runQuery('install/03b_geom_extension')
-                self.printOutput( 'Geom extension installed' )
+                self.verboseQuery('installation of the geometry extension', 'install/03b_geom_extension')
 
-                self.main.runQuery('install/03c_geom_by_borders_extension')
-                self.printOutput( 'Geom by borders extension installed' )
+                self.verboseQuery('installation of the geometry by borders extension','install/03c_geom_by_borders_extension')
 
-                self.main.runQuery('install/04_view_for_qgis')
-                self.printOutput( 'QGIS view installed' )
+                self.verboseQuery('installation of the view for QGIS','install/04_view_for_qgis')
 
-                self.main.runQuery('install/05_types')
+                self.verboseQuery('insertion of the basic types','install/05_types')
                 self.main.commit()
-                self.printOutput( 'Basic types created' )
 
             if self.dummyDataCheckBox.isChecked():
-                self.main.runQuery('import/dummy_data')               
+                self.verboseQuery('insertion of dummy data','import/dummy_data')               
                 self.main.commit()
-                self.printOutput( 'Dummy data inserted' )
 
             if self.dummyBordersDataCheckBox.isChecked():
-                self.main.runQuery('import/dummy_data_borders')               
+                self.verboseQuery('insertion of dummy data (borders)','import/dummy_data_borders')               
                 self.main.commit()
-                self.printOutput( 'Dummy borders data inserted' )
 
 
 
             if self.euratlasDataCheckBox.isChecked():
-                self.main.runQuery('import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value(), 'to_date':self.euratlasToDateSpinBox.value()})
-                self.printOutput( 'Euratlas data inserted' )              
+                self.verboseQuery('insertion of Euratlas data','import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value(), 'to_date':self.euratlasToDateSpinBox.value()})            
                 self.main.commit()
 
             if self.euratlasEdgesDataCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
-                    self.printOutput( 'Start insertion of euratlas edges for year {0} (this can take >2 min)'.format(year) )
-                    self.main.runQuery('import/euratlas_edges', {'year':year})
+                    self.verboseQuery('insertion of Euratlas topological data for year {0} (this can take >2 min)'.format(year), 'import/euratlas_edges', {'year':year})
                     self.main.commit()
-                    self.printOutput( 'Euratlas edges data inserted for year {0}'.format(year) )
 
             if self.idlDraftDataCheckBox.isChecked():
-                self.main.runQuery('import/idl_draft')
-                self.printOutput( 'IdL draft data inserted' )
+                self.verboseQuery('insertion of IdL draft data','import/idl_draft')
                 self.main.commit()
 
             if self.processUpdateDatesCheckBox.isChecked():
+                self.printOutput( 'Recomputing dates' )
                 result = self.main.runQuery('queries/select_all_properties_type_by_entity')
                 for rec in result:
                     self.main.runQuery('queries/compute_dates', {'entity_id': rec['entity_id'], 'property_type_id': rec['property_type_id']})
-                self.printOutput( 'Recomputed dates' )
                 self.main.commit()
 
+            self.printOutput( 'Finished' )
             self.main.commit()
 
 
@@ -140,3 +128,9 @@ class VTMDebug(QDialog):
         QSettings().remove("VTM Slider")
 
         self.printOutput( 'Settings removed' )
+
+    def verboseQuery(self,text,query,params={}):
+        self.printOutput( '\n... starting '+text )
+        self.main.runQuery(query, params)
+        self.printOutput( 'Finished '+text )
+                
