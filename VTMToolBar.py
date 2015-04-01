@@ -58,6 +58,8 @@ class VTMToolBar(QDockWidget):
         self.createrelationsButton.pressed.connect(self.doCreaterelations)
         self.removerelationsButton.pressed.connect(self.doRemoverelations)
 
+        self.setBordersButton.pressed.connect(self.doSetBorders)
+
         self.viewEntityButton.pressed.connect(self.doViewentity)
         self.listEventsButton.pressed.connect(self.doListproperties)
         self.viewRelationsButton.pressed.connect(self.doViewrelations)
@@ -324,6 +326,24 @@ class VTMToolBar(QDockWidget):
         layer.removeSelection()
 
         return
+
+    def doSetBorders(self):
+
+        entitiesIds = list(set( f.attribute('entity_id') for f in self.main.eventsPolygonLayer.selectedFeatures() ))
+        borderIds = list(set( f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures() ))
+
+        if len(entitiesIds) == 0:            
+            result = self.main.runQuery('queries/entities_insert_blank')
+            entitiesIds = [result.fetchone()['id']];
+
+        for entityId in entitiesIds:
+            self.main.runQuery('queries/gbb_insert_relation', {'entity_id': entityId, 'borders_ids': borderIds})
+            self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': entityId})
+            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': 1})
+        self.main.commit()
+
+        
+
 
 
 
