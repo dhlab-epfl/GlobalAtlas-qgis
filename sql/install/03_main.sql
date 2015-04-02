@@ -70,33 +70,6 @@ CREATE TRIGGER entities_stamps BEFORE INSERT OR UPDATE ON vtm.entities FOR EACH 
 
 
 /*************************************************/
-/* Table related_entities                        */
-/*************************************************/
-
-DROP TABLE IF EXISTS vtm.related_entities CASCADE;
-CREATE TABLE vtm.related_entities
-(
-  id serial NOT NULL PRIMARY KEY,
-  a_id integer NOT NULL REFERENCES vtm.entities ON DELETE CASCADE,
-  b_id integer NOT NULL REFERENCES vtm.entities ON DELETE CASCADE,
-  creation_timestamp timestamp default now(),
-  creation_user text default CURRENT_USER,
-  modification_timestamp timestamp default now(),
-  modification_user text default CURRENT_USER
-);
-COMMENT ON TABLE vtm.related_entities IS 'Cette table contient les entités liées par une relation de succession.';
-
--- TRIGGER FOR STAMPS
-
-CREATE TRIGGER related_entities_stamps BEFORE INSERT OR UPDATE ON vtm.related_entities FOR EACH ROW
-    EXECUTE PROCEDURE vtm.stamp();
-
-
-
-
-
-
-/*************************************************/
 /* Table sources                                 */
 /*************************************************/
 

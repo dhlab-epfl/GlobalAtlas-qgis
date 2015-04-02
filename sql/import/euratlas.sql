@@ -27,6 +27,7 @@ WHERE year>=%(from_date)s AND year<=%(to_date)s;
 
 /* ALGORITHM 3 : set succession relation for entities that overlap */
 /*
+OBSOLETE !! vtm.related_entities has been replaced by succession_relation type
 INSERT INTO vtm.related_entities(a_id, b_id)
 SELECT 	evA.entity_id as a_id,
 		evB.entity_id as b_id

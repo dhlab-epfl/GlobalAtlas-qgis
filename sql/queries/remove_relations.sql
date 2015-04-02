@@ -11,5 +11,11 @@
  */
 /************************************************************************************************/
 
-DELETE FROM vtm.related_entities
-WHERE a_id = ANY( %(entities_ids)s ) OR b_id = ANY( %(entities_ids)s );
+DELETE FROM vtm.properties
+WHERE 		property_type_id=3
+			AND
+			( 
+				entity_id = ANY( %(entities_ids)s ) 
+				OR
+				value::integer = ANY( %(entities_ids)s ) 
+			);

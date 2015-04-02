@@ -29,6 +29,7 @@ WHERE 	e1.key = 'geom'
 
 /* ALGORITHM 3 : set succession relation for entities that overlap */
 -- can be very long (around 10 minutes for now)
+OBSOLETE !! vtm.related_entities has been replaced by succession_relation type
 INSERT INTO vtm.related_entities(a_id, b_id)
 SELECT 	evA.entity_id as a_id,
 		evB.entity_id as b_id

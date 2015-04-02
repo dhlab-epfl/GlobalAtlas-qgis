@@ -11,7 +11,8 @@ SELECT vtm.insert_properties_helper('Leonardo da Vinci'::text, 'person'::text, N
 
 SELECT vtm.insert_properties_helper('Grand Hôtel'::text, 'building'::text, NULL, 'geom'::text, 1995, 'start', 'MULTIPOLYGON(((12.33625902006198771 45.43834091804381359,12.33649497538885775 45.43827637599540736,12.33641699015370641 45.43804346277201489,12.33664294737350708 45.4380083853960528,12.33671293412300152 45.43823007404564152,12.33705886862764878 45.43815851641217307,12.33710485992017247 45.43832548408244065,12.33680891595087914 45.43836336743465409,12.33687290383613266 45.43861592246612702,12.33669693715168592 45.43861031014438367,12.33662895002360749 45.43841387853138514,12.33631700908299855 45.43847842042251273,12.33625902006198771 45.43834091804381359)))'::text);
 
+-- Create the succession relations
 
+SELECT vtm.insert_properties_helper('Fondaco dei Tedeschi'::text, 'building'::text, NULL, 'succession_relation'::text, NULL, NULL, (currval('vtm.entities_id_seq')-0)::text);
+SELECT vtm.insert_properties_helper('Grand Hôtel'::text, 		  'building'::text, NULL, 'succession_relation'::text, NULL, NULL, (currval('vtm.entities_id_seq')-3)::text);
 
-INSERT INTO vtm.related_entities(a_id,b_id) VALUES (currval('vtm.entities_id_seq')-3,currval('vtm.entities_id_seq')-0);
-INSERT INTO vtm.related_entities(a_id,b_id) VALUES (currval('vtm.entities_id_seq')-0,currval('vtm.entities_id_seq')-3);

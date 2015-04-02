@@ -26,7 +26,11 @@ UPDATE vtm.properties as d
 		WHERE (
             entity_id = %(entity_id)s                                                        -- the entity's properties have been edited
             OR
-            entity_id IN (SELECT b_id FROM vtm.related_entities WHERE a_id=%(entity_id)s)    -- a related entity's properties have been edited
+            entity_id::text IN 	(
+									SELECT 	succ.value
+									FROM 	vtm.properties as succ
+									WHERE 	succ.property_type_id=3 AND succ.entity_id = %(entity_id)s
+								)
           )
           AND
           (property_type_id = %(property_type_id)s)

@@ -11,10 +11,9 @@
  */
 /************************************************************************************************/
 
-INSERT INTO vtm.related_entities(
-	a_id,
-	b_id
-)
-SELECT *
-FROM unnest(%(entities_ids)s) as t
-JOIN  unnest(%(entities_ids)s) as u ON t<>u;
+INSERT INTO 	vtm.properties(entity_id, property_type_id, value)
+SELECT 			t as entity_id,
+				3 as property_type_id,
+				u::text as value
+FROM 			unnest(%(entities_ids)s) as t
+JOIN  			unnest(%(entities_ids)s) as u ON t<>u;
