@@ -12,6 +12,45 @@
 DROP TYPE IF EXISTS vtm.interpolation_type CASCADE;
 CREATE TYPE vtm.interpolation_type AS ENUM ('start','default','end');
 
+/*************************************************/
+/* Function to calculate date from two dates and interpolations */
+/*************************************************/
+
+DROP FUNCTION IF EXISTS vtm.compute_interpolation(dateA integer, inA vtm.interpolation_type, dateB integer, inB vtm.interpolation_type) CASCADE;
+CREATE FUNCTION vtm.compute_interpolation(dateA integer, inA vtm.interpolation_type, dateB integer, inB vtm.interpolation_type) RETURNS integer AS    
+$$
+    BEGIN
+        IF dateA IS NULL AND dateB IS NULL THEN                 /*    ∞----------∞  */
+            RETURN NULL;
+        ELSIF dateA IS NULL THEN
+            IF inB = 'start' THEN                               /*    ∞         [B    */
+                RETURN dateB;
+            ELSE                                                /*    ∞----------B    */
+                RETURN NULL;
+            END IF;
+        ELSIF dateB IS NULL THEN
+            IF inA = 'end' THEN                                 /*    A]         ∞    */
+                RETURN dateA;
+            ELSE                                                /*    A----------∞    */
+                RETURN NULL;
+            END IF;
+        ELSE
+            IF inA = 'end' THEN
+                IF inB = 'start' THEN                           /*    A]   ?!   [B    */  -- this is a contradiction, so we take the center
+                    RETURN round((dateA+dateB)/2.0)::integer;
+                ELSE                                            /*    A][--------B    */
+                    RETURN dateA;
+                END IF;
+              ELSE
+                IF inB = 'start' THEN                           /*    A--------][B    */
+                    RETURN dateB;
+                ELSE                                            /*    A----][----B    */
+                    RETURN round((dateA+dateB)/2.0)::integer;
+                END IF;
+            END IF;
+        END IF;
+    END;
+$$ LANGUAGE plpgsql;
 
 /*************************************************/
 /* Functions to store date and user stamps       */
