@@ -271,7 +271,7 @@ class VTMMain:
         for rec in result:
             eid = rec['entity_id']
             self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
-            self.runQuery('queries/compute_dates', {'entity_id': eid, 'property_type_id': 3})
+            self.runQuery('queries/compute_dates', {'entity_id': eid, 'property_type_id': 1})
         self.commit()
 
         self.entityIdsToPostprocess = []
