@@ -17,9 +17,10 @@ INSERT INTO vtm.entity_types( name, min_zoom, max_zoom, zindex ) VALUES
 	( 'canal', 10, null, 1.0 );
 
 INSERT INTO vtm.properties_types( name, description, type, subtype ) VALUES
-	( 'geom', 				'Geometry in plan',									 	'text', 	'wkt' ), 		-- must stay id 1 for geom is hardcoded in the geom extension
-	( 'geom_by_borders', 	'Entity that constitutes one border of this entity', 	'integer', 	'entity_id' ), 	-- must stay id 2 for geom_by_borders is hardcoded in the geom_by_borders extension
+	( 'geom', 					'Geometry in plan',									 	'text', 	'wkt' ), 		-- must stay id 1 for geom is hardcoded in the geom extension
+	( 'geom_by_borders', 		'Entity that constitutes one border of this entity', 	'integer', 	'entity_id' ), 	-- must stay id 2 for geom_by_borders is hardcoded in the geom_by_borders extension
 	( 'succession_relation', 	'Entity that has succession relation with this entity', 'integer', 	'entity_id' ), 	-- must stay id 3 for succession_relation is hardcoded to compute date boundaries
+	( 'usage',NULL,NULL,NULL ),
 	( 'height',NULL,NULL,NULL ),
 	( 'owner',NULL,NULL,NULL ),
 	( 'building material',NULL,NULL,NULL );
