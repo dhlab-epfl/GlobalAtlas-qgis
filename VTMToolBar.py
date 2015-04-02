@@ -102,6 +102,12 @@ class VTMToolBar(QDockWidget):
         dlg.exec_()
 
     def doLoadData(self):
+        if self.iface.activeLayer() is None:
+            self.iface.messageBar().pushMessage("VTM Slider","You must select vector a layer to load.", QgsMessageBar.WARNING, 2)
+            return
+        if self.iface.activeLayer().type() != QgsMapLayer.VectorLayer:
+            self.iface.messageBar().pushMessage("VTM Slider","The selected layer is not a vector layer.", QgsMessageBar.WARNING, 2)
+            return
         loadDataDialog = VTMLoadData(self.iface, self.main)
         loadDataDialog.exec_()
     
