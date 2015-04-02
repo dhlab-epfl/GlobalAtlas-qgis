@@ -9,13 +9,22 @@
  */
 /************************************************************************************************/
 
-SELECT 	vtm.insert_properties_helper(t.long_name, 'sovereign_state'::text, 'Euratlas', 'geom'::text, t.year::int, 'start', ST_AsText(ST_Transform(geom,4326)))
-FROM	"data_external"."euratlas_sovereign_states" as t
-WHERE year=%(year)s;
+-- remove useless or duplicate data
+/*
+DELETE FROM data_external.euratlas_cities
+WHERE id_0 NOT IN (
+		SELECT DISTINCT ON (id, year, size, name) id_0
+		FROM data_external.euratlas_cities
+		ORDER BY year
+	)*/
 
-SELECT 	vtm.insert_properties_helper(t.long_name, 'sovereign_state'::text, 'Euratlas', 'geom'::text, t.year::int+100, 'start', NULL)
-FROM	"data_external"."euratlas_sovereign_states" as t
-WHERE year=%(year)s;
+SELECT 	vtm.insert_properties_helper('City #'||t.id, 'city'::text, 'Euratlas', 'geom'::text, t.year::int, 'start', ST_AsText(ST_Transform(t.geom,4326))),
+		vtm.insert_properties_helper('City #'||t.id, 'city'::text, 'Euratlas', 'size'::text, t.year::int, 'start', size::text),
+		vtm.insert_properties_helper('City #'||t.id, 'city'::text, 'Euratlas', 'name'::text, t.year::int, 'start', name::text)
+FROM	data_external.euratlas_cities as t
+WHERE 	year=%(year)s;
+
+
 
 
 

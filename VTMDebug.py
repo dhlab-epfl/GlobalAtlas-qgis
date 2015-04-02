@@ -21,6 +21,7 @@ from qgis.core import *
 from qgis.gui import *
 
 import os.path
+import time
 
 
 class VTMDebug(QDialog):
@@ -74,11 +75,15 @@ class VTMDebug(QDialog):
                 self.verboseQuery('insertion of dummy data (borders)','import/dummy_data_borders')               
                 self.main.commit()
 
-
+            if self.euratlasCitiesCheckBox.isChecked():
+                for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
+                    self.verboseQuery('insertion of Euratlas cities for year {0}'.format(year), 'import/euratlas_cities', {'year':year})
+                    self.main.commit()
 
             if self.euratlasDataCheckBox.isChecked():
-                self.verboseQuery('insertion of Euratlas data','import/euratlas',{'from_date':self.euratlasFromDateSpinBox.value(), 'to_date':self.euratlasToDateSpinBox.value()})            
-                self.main.commit()
+                for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
+                    self.verboseQuery('insertion of Euratlas countries for year {0}'.format(year), 'import/euratlas', {'year':year})
+                    self.main.commit()
 
             if self.euratlasEdgesDataCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
@@ -90,13 +95,14 @@ class VTMDebug(QDialog):
                 self.main.commit()
 
             if self.processUpdateDatesCheckBox.isChecked():
-                self.printOutput( 'Recomputing dates' )
-                result = self.main.runQuery('queries/select_all_properties_type_by_entity')
-                for rec in result:
+                result = self.verboseQuery('Recomputing dates', 'queries/select_all_properties_type_by_entity')
+                for i,rec in enumerate(result):
+                    if i%1000 == 0:
+                        self.printOutput( 'doing {0}...'.format( i ) )
                     self.main.runQuery('queries/compute_dates', {'entity_id': rec['entity_id'], 'property_type_id': rec['property_type_id']})
                 self.main.commit()
 
-            self.printOutput( 'Finished' )
+            self.printOutput( '\nFinished' )
             self.main.commit()
 
 
@@ -129,7 +135,8 @@ class VTMDebug(QDialog):
         self.printOutput( 'Settings removed' )
 
     def verboseQuery(self,text,query,params={}):
+        start_time = time.time()
         self.printOutput( '\n... starting '+text )
-        self.main.runQuery(query, params)
-        self.printOutput( 'Finished '+text )
-                
+        result = self.main.runQuery(query, params)
+        self.printOutput( 'Finished {0} (in {1} seconds)'.format(text, str(time.time()-start_time) ) )
+        return result

@@ -100,12 +100,19 @@
       <item row="4" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
+         <widget class="QCheckBox" name="euratlasCitiesCheckBox">
+          <property name="text">
+           <string>cities</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="euratlasDataCheckBox">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string>plain</string>
+           <string>plain states</string>
           </property>
          </widget>
         </item>
@@ -115,7 +122,7 @@
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string>topological</string>
+           <string>topological states</string>
           </property>
           <property name="checked">
            <bool>false</bool>
