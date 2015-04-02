@@ -194,13 +194,3 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER properties_trigger_B_autoset_interpolation BEFORE INSERT OR UPDATE OF interpolation ON vtm.properties FOR EACH ROW
     EXECUTE PROCEDURE vtm.autoset_interpolation();
-
-
-
--- TRIGGER TO RECOMPUTE DATES WHEN PROPERTIES ARE ADDED
-
-/*
-CREATE TRIGGER reset_date_for_properties AFTER INSERT OR UPDATE OF "date","property_type_id","entity_id" OR DELETE ON vtm.properties FOR EACH ROW
-    EXECUTE PROCEDURE vtm.properties_reset_computed_dates();
-*/
-
