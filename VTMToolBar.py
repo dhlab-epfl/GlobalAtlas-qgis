@@ -290,7 +290,7 @@ class VTMToolBar(QDockWidget):
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
 
-        self.main.runQuery('queries/create_relations', {'entities_ids': entitiesIds})
+        self.main.runQuery('queries/succ_insert_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
         # compute_dates.sql
@@ -314,7 +314,7 @@ class VTMToolBar(QDockWidget):
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
 
-        self.main.runQuery('queries/remove_relations', {'entities_ids': entitiesIds})
+        self.main.runQuery('queries/succ_remove_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
         # compute_dates.sql
