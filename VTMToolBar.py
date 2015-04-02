@@ -62,7 +62,6 @@ class VTMToolBar(QDockWidget):
 
         self.viewEntityButton.pressed.connect(self.doViewentity)
         self.listEventsButton.pressed.connect(self.doListproperties)
-        self.viewRelationsButton.pressed.connect(self.doViewrelations)
 
         self.slider.valueChanged.connect( self.spinboxYear.setValue )
         self.spinboxYear.valueChanged.connect( self.slider.setValue )
@@ -227,29 +226,6 @@ class VTMToolBar(QDockWidget):
 
         self.main.entitiesLayer.setSelectedFeatures( entitiesIds )
         self.iface.showAttributeTable(self.main.entitiesLayer)
-
-        return
-
-    def doViewrelations(self):
-        """Selects the relations corresponding to the current selected properties"""
-
-        self.main.relationsLayer.removeSelection()
-
-        layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
-
-        entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
-        
-        filterExpr = '"a_id" IN ({0}) OR "b_id" IN ({0})'.format( ','.join( (str(i) for i in entitiesIds) ) )
-        relationsIds = [f.id() for f in self.main.relationsLayer.getFeatures( QgsFeatureRequest().setFilterExpression( filterExpr ) )]
-
-        if len(relationsIds)==0:
-            self.iface.messageBar().pushMessage("VTM Slider","There is no relation for these entities", QgsMessageBar.INFO, 2)
-            return
-        
-        self.main.relationsLayer.setSelectedFeatures( relationsIds )
-        self.iface.showAttributeTable(self.main.relationsLayer)
         
 
     def doCopytodate(self):
