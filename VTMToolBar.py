@@ -328,18 +328,33 @@ class VTMToolBar(QDockWidget):
 
     def doSetBorders(self):
         #TODO : postporcessing
-        entitiesIds = list(set( f.attribute('entity_id') for f in self.main.eventsPolygonLayer.selectedFeatures() ))
-        borderIds = list(set( f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures() ))
 
+        entitiesIds = list(set([ f.attribute('entity_id') for f in (self.main.eventsPolygonLayer.selectedFeatures()+self.main.eventsPointLayer.selectedFeatures()) ])) # note : if these throw bugs, it's because there is a selection of a feature that disapareed (so selectedFateures is an array of disappared features, that have no attributes)
+        borderIds = list(set( [f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures()] ))
+
+        if len(borderIds) == 0:
+            self.iface.messageBar().pushMessage("VTM Slider","You need to selected at least one linestring to act as a border.", QgsMessageBar.WARNING, 2)
+            return 
+
+        # If no entity was set, we create one
         if len(entitiesIds) == 0:            
             result = self.main.runQuery('queries/basic_insert_blank')
             entitiesIds = [result.fetchone()['id']];
+
+        # postprocessing
+        self.preparePostProcessing( [[entityId,1] for entityId in entitiesIds ] );
 
         for entityId in entitiesIds:
             self.main.runQuery('queries/gbb_insert_relation', {'entity_id': entityId, 'borders_ids': borderIds})
             self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': entityId})
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': 1})
         self.main.commit()
+
+        # postprocessing
+        self.commitPostProcessing();
+
+        self.main.eventsPolygonLayer.removeSelection()
+        self.main.eventsPointLayer.removeSelection()
 
 
     ############################################################################################
