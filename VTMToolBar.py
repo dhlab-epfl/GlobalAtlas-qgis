@@ -118,9 +118,9 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for f in layer.selectedFeatures():
-            self.main.runQuery('queries/compute_dates', {'entity_id': f.attribute('entity_id'), 'property_type_id': f.attribute('property_type_id')})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': f.attribute('entity_id'), 'property_type_id': f.attribute('property_type_id')})
         self.main.commit()
 
 
@@ -133,20 +133,20 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
         
-        # merge_feature.sql        
+        # basic_merge_features.sql        
         propertiesIds = layer.selectedFeaturesIds()
         entitiesIds = ( f.attribute('entity_id') for f in layer.selectedFeatures() )
         smallestEntityId = min(i for i in entitiesIds if i is not None) 
 
-        self.main.runQuery('queries/merge_features', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
+        self.main.runQuery('queries/basic_merge_featuress', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
 
@@ -161,18 +161,18 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
         
-        # unmerge_feature.sql
+        # basic_unmerge_feature.sql
         propertiesIds = layer.selectedFeaturesIds()
 
-        self.main.runQuery('queries/unmerge_features', {'property_ids': propertiesIds})
+        self.main.runQuery('queries/basic_unmerge_feature', {'property_ids': propertiesIds})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -185,18 +185,18 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
 
-        # does_not_exist.sql
+        # basic_does_not_exist.sql
         propertiesIds = layer.selectedFeaturesIds()
 
-        self.main.runQuery('queries/does_not_exist', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.runQuery('queries/basic_does_not_exist', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -241,18 +241,18 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
         
-        # copy_to_date.sql
+        # basic_duplicate_to_date.sql
         propertiesIds = layer.selectedFeaturesIds()
 
-        self.main.runQuery('queries/copy_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.runQuery('queries/basic_duplicate_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -265,7 +265,7 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
         
         # create_relations.sql        
@@ -275,9 +275,9 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/succ_insert_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
         layer.removeSelection()
@@ -289,7 +289,7 @@ class VTMToolBar(QDockWidget):
         if layer is None:
             return
 
-        # for compute_dates.sql
+        # for basic_compute_dates.sql
         postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
         
         # create_relations.sql        
@@ -299,9 +299,9 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/succ_remove_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
-        # compute_dates.sql
+        # basic_compute_dates.sql
         for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
 
 
@@ -315,13 +315,13 @@ class VTMToolBar(QDockWidget):
         borderIds = list(set( f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures() ))
 
         if len(entitiesIds) == 0:            
-            result = self.main.runQuery('queries/entities_insert_blank')
+            result = self.main.runQuery('queries/basic_insert_blank')
             entitiesIds = [result.fetchone()['id']];
 
         for entityId in entitiesIds:
             self.main.runQuery('queries/gbb_insert_relation', {'entity_id': entityId, 'borders_ids': borderIds})
             self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': entityId})
-            self.main.runQuery('queries/compute_dates', {'entity_id': entityId, 'property_type_id': 1})
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': 1})
         self.main.commit()
 
         

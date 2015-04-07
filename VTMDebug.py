@@ -99,7 +99,7 @@ class VTMDebug(QDialog):
                 for i,rec in enumerate(result):
                     if i%1000 == 0:
                         self.printOutput( 'doing {0}...'.format( i ) )
-                    self.main.runQuery('queries/compute_dates', {'entity_id': rec['entity_id'], 'property_type_id': rec['property_type_id']})
+                    self.main.runQuery('queries/basic_compute_dates', {'entity_id': rec['entity_id'], 'property_type_id': rec['property_type_id']})
                 self.main.commit()
 
             self.printOutput( '\nFinished' )

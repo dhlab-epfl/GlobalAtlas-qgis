@@ -1,5 +1,5 @@
 /************************************************************************************************/
-/* COPY TO DATE
+/* DUPLICATE TO DATE
  *
  * This query sets copies a set of properties to a certain date
  * 
