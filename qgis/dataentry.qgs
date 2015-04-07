@@ -221,7 +221,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entity_types20150306220740482</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."entity_types" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entity_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -467,7 +467,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>properties_for_qgis</layername>
+      <layername>properties_for_qgis (polygons)</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -923,7 +923,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>properties_for_qgis</layername>
+      <layername>properties_for_qgis (linestrings)</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -1462,7 +1462,7 @@
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>properties_for_qgis</layername>
+      <layername>properties_for_qgis (points)</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -1846,7 +1846,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=-2147483648 table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
