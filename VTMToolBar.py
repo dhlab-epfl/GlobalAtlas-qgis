@@ -362,6 +362,7 @@ class VTMToolBar(QDockWidget):
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
         self.postProcEntitiesPropertiesIds = []
+        self.iface.mapCanvas().refresh()
 
 
     ############################################################################################
