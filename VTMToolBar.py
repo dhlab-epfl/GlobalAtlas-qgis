@@ -34,9 +34,16 @@ dateRange = [0,2050]
 class VTMToolBar(QDockWidget):
 
     def __init__(self, iface, main):
-
         self.iface = iface
         self.main = main
+
+
+        # postprocessing
+
+        self.postProcEntitiesPropertiesIds = []
+
+
+        # UI
 
         QDockWidget.__init__(self)
         uic.loadUi(os.path.dirname(__file__)+'/ui/vtmtoolbar.ui', self)
@@ -74,24 +81,24 @@ class VTMToolBar(QDockWidget):
         self.minValueSpinBox.valueChanged.connect( self.spinboxYear.setMinimum )
         self.maxValueSpinBox.valueChanged.connect( self.spinboxYear.setMaximum )
 
+
+
     def enablePlugin(self):
         self.activeWidget.setEnabled(True)
+    
     def disablePlugin(self):
         self.activeWidget.setEnabled(False)
 
 
+    ############################################################################################
+    # GENERAL TOOLS   
+    # File / Settings / Etc...                
+    ############################################################################################
 
     def doOpenFile(self):
         path = os.path.join( os.path.dirname(__file__),'qgis','dataentry.qgs')
         self.iface.addProject( path )
         self.main.loadLayers()
-
-    def doDate(self, date):
-
-        for layer in [self.main.eventsPointLayer, self.main.eventsLineLayer, self.main.eventsPolygonLayer]:
-            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.main.sqlFilter) )
-
-        self.iface.mapCanvas().refresh()
 
     def doHelp(self):
         dlg = VTMHelp()
@@ -111,18 +118,34 @@ class VTMToolBar(QDockWidget):
         loadDataDialog = VTMLoadData(self.iface, self.main)
         loadDataDialog.exec_()
     
+
+    ############################################################################################
+    # SLIDER
+    # Move in time                
+    ############################################################################################
+    
+    def doDate(self, date):
+        for layer in [self.main.eventsPointLayer, self.main.eventsLineLayer, self.main.eventsPolygonLayer]:
+            layer.setSubsetString( re.sub('\/\*\*\/[0-9.]*\/\*\*\/','/**/'+str(date)+'/**/',self.main.sqlFilter) )
+
+        self.iface.mapCanvas().refresh()
+
+
+    ############################################################################################
+    # BASIC        
+    # Basic functions                
+    ############################################################################################
+
     def doRefresh(self):
         """Performs the postprocessing of all selected properties' entities"""
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
         # basic_compute_dates.sql
         for f in layer.selectedFeatures():
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': f.attribute('entity_id'), 'property_type_id': f.attribute('property_type_id')})
         self.main.commit()
-
 
     def doMerge(self):
         """Performs the merge of several properties into one entity
@@ -130,11 +153,10 @@ class VTMToolBar(QDockWidget):
         It will assign the same entity_id to all properties, using the smallest entity_id of them all, and then postprocesses the entities."""
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
         
         # basic_merge_features.sql        
         propertiesIds = layer.selectedFeaturesIds()
@@ -144,10 +166,8 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/basic_merge_featuress', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
         self.main.commit()
 
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
+        # postprocessing
+        self.commitPostProcessing();
 
 
         layer.removeSelection()
@@ -158,11 +178,11 @@ class VTMToolBar(QDockWidget):
         It will keep the entity_id of the property with the lower id, and assign entity_id to NULL to all properties, which will result on automatic creation of entities for those"""
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
+
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
         
         # basic_unmerge_feature.sql
         propertiesIds = layer.selectedFeaturesIds()
@@ -170,36 +190,56 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/basic_unmerge_feature', {'property_ids': propertiesIds})
         self.main.commit()
 
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
+        # postprocessing
+        self.commitPostProcessing();
 
         layer.removeSelection()
-
 
     def doNotexist(self):
         """Sets the value to NULL at the current date for the current entites / properties"""       
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
-
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
+        
         # basic_does_not_exist.sql
         propertiesIds = layer.selectedFeaturesIds()
 
         self.main.runQuery('queries/basic_does_not_exist', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
         self.main.commit()
 
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
+        # postprocessing
+        self.commitPostProcessing();
 
         layer.removeSelection()
+
+    def doCopytodate(self):
+        """Creates a copy of the property at the current date"""       
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None: return
+
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
+
+        # basic_duplicate_to_date.sql
+        propertiesIds = layer.selectedFeaturesIds()
+
+        self.main.runQuery('queries/basic_duplicate_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.commit()
+
+        # postprocessing
+        self.commitPostProcessing();
+
+        layer.removeSelection()
+
+
+    ############################################################################################
+    # VIEW
+    # Display functions                
+    ############################################################################################
 
     def doListproperties(self):
         """Selects properties corresponding to current entitiy_ids from the unfiltered properties table and show it"""
@@ -207,8 +247,7 @@ class VTMToolBar(QDockWidget):
         self.main.eventsLayer.removeSelection()
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
         entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
         
@@ -225,8 +264,7 @@ class VTMToolBar(QDockWidget):
         self.main.entitiesLayer.removeSelection()
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
         entitiesIds = list(set( f.attribute('entity_id') for f in layer.selectedFeatures() )) # these are the ids of all entities (needed for postprocessing)
 
@@ -234,40 +272,20 @@ class VTMToolBar(QDockWidget):
         self.iface.showAttributeTable(self.main.entitiesLayer)
         
 
-    def doCopytodate(self):
-        """Creates a copy of the property at the current date"""       
-
-        layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
-
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
-        
-        # basic_duplicate_to_date.sql
-        propertiesIds = layer.selectedFeaturesIds()
-
-        self.main.runQuery('queries/basic_duplicate_to_date', {'property_ids': propertiesIds, 'date':self.spinboxYear.value()})
-        self.main.commit()
-
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
-
-        layer.removeSelection()
-
-
+    ############################################################################################
+    # RELATIONS
+    # Tools to create / edit succession relations                
+    ############################################################################################
+   
     def doCreaterelations(self):
         """Creates relations between all selected entities."""
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
-        
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
+
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
@@ -275,10 +293,8 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/succ_insert_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
+        # postprocessing
+        self.commitPostProcessing();
 
         layer.removeSelection()
 
@@ -286,12 +302,11 @@ class VTMToolBar(QDockWidget):
         """Remove relations between all selected entities."""
 
         layer = self._getLayerIfEventsLayersAndSelection()
-        if layer is None:
-            return
+        if layer is None: return
 
-        # for basic_compute_dates.sql
-        postProcEntitiesPropertiesIds = [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ]
-        
+        # postprocessing
+        preparePostProcessingFromSelection( layer )
+
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
         entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
@@ -299,18 +314,20 @@ class VTMToolBar(QDockWidget):
         self.main.runQuery('queries/succ_remove_successions', {'entities_ids': entitiesIds})
         self.main.commit()
 
-        # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
-            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
-        self.main.commit()
+        # postprocessing
+        self.commitPostProcessing();
 
 
         layer.removeSelection()
 
-        return
+
+    ############################################################################################
+    # BORDERS
+    # Tools to create / edit borders relations                
+    ############################################################################################
 
     def doSetBorders(self):
-
+        #TODO : postporcessing
         entitiesIds = list(set( f.attribute('entity_id') for f in self.main.eventsPolygonLayer.selectedFeatures() ))
         borderIds = list(set( f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures() ))
 
@@ -324,11 +341,33 @@ class VTMToolBar(QDockWidget):
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': 1})
         self.main.commit()
 
-        
+
+    ############################################################################################
+    # POSTPROCESSING
+    # Helpers to trigger postprocessing                
+    ############################################################################################
+
+    def preparePostProcessingFromSelection(self, layer):
+        """Sets the array of [entities,property_type] that will have to be postprocessed from the current selection"""
+        # for basic_compute_dates.sql
+        self.preparePostProcessing( [ [f.attribute('entity_id'),f.attribute('property_type_id')] for f in layer.selectedFeatures() ] )
+    def preparePostProcessing(self, entitiesPropertiesIds):
+        """Sets the array of [entities,property_type] that will have to be postprocessed"""
+        # for basic_compute_dates.sql
+        self.postProcEntitiesPropertiesIds += entitiesPropertiesIds
+
+    def commitPostProcessing(self):
+        # basic_compute_dates.sql
+        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+            self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
+        self.main.commit()
+        self.postProcEntitiesPropertiesIds = []
 
 
-
-
+    ############################################################################################
+    # HELPERS
+    # Helpers to get current layer                
+    ############################################################################################
 
     def _getLayerIfEventsLayersAndSelection(self):
         """Return the active layer if it's one of the events layers, or returns None with a message if it's not"""

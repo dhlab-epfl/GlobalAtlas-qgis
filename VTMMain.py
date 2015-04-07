@@ -26,6 +26,10 @@ import os.path
 
 
 class VTMMain:
+    """Main class
+
+    Handles things such as postgis connection, layer loading, layer edit events"""
+
 
     instance = None
 
@@ -39,7 +43,6 @@ class VTMMain:
     propertiesTypeLayerID = 'properties_types20150317175434094'
 
     def __init__(self, iface):
-
         self.plugin_dir = os.path.dirname(__file__)
         
         # Save reference to the QGIS interface
@@ -54,9 +57,6 @@ class VTMMain:
         QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
         QgsCredentials.instance().put('dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable', username, password)
         
-
-
-
 
     def initGui(self):
         """ Put your code here and remove the pass statement"""
@@ -74,12 +74,7 @@ class VTMMain:
         self.iface.newProjectCreated.disconnect( self.loadLayers )
         #self.disconnectSignalsForPostProcessing() #disconnecting crashes on quit ?!
 
- 
-
-
     def loadLayers(self):
-
-
         ############################################################
         # Get the references to the layers using their IDs
         ############################################################
@@ -114,8 +109,135 @@ class VTMMain:
         QgsMessageLog.logMessage('Connection successful. Plugin will work.','VTM Slider')
 
 
-    def getConnection(self):
 
+    ############################################################################################
+    #
+    # SIGNALS FOR POSTPROCESSING         
+    #                  
+    # These signals connect the slots for postprocessin (see below) on all events layers
+    #                
+    ############################################################################################
+
+    def connectSignalsForPostProcessing(self):
+        self.entityIdsToPostprocess = [] # this will store ids to postprocess after commit, we need it because we can only get the deleted entity ids before commit
+
+
+        # Signals for insert of events
+        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
+            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
+            layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
+            layer.committedGeometriesChanges.connect( self.committedGeometriesChanges )
+            layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
+            layer.editingStopped.connect( self.editingStopped )
+
+    def disconnectSignalsForPostProcessing(self):
+        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
+            try:
+                layer.committedFeaturesAdded.disconnect()
+                layer.committedAttributeValuesChanges.disconnect()
+                layer.committedGeometriesChanges.disconnect()
+                layer.featureDeleted.disconnect()
+                layer.editingStopped.disconnect()
+            except Exception, e:
+                pass
+
+
+    ############################################################################################
+    #
+    # SLOTS FOR POSTPROCESSING         
+    #                  
+    # Those slots are triggered when features were added / modified / deleted
+    # and allow to store the list of entities/properties_types that must be
+    # postprocessed in self.entityIdsToPostprocess
+    #                
+    ############################################################################################
+
+    def committedFeaturesAdded(self, layerID, addedFeatures):
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for feat in addedFeatures:
+            #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+            #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+            eid = feat.attributes()[eidx] # workaround
+            ptid = feat.attributes()[ptidx] # workaround
+            self.entityIdsToPostprocess.append( [eid, ptid] )
+        
+    def committedAttributeValuesChanges(self, layerID, changedAttributesValues):
+        QgsMessageLog.logMessage( 'committedAttributeValuesChanges '+str(changedAttributesValues) , 'VTM Slider'  )
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for fid in changedAttributesValues:
+
+            features = layer.getFeatures( QgsFeatureRequest( fid ) )
+            for f in features: # We're supposed to have only one feature here
+                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+                eid = f.attributes()[eidx] # workaround
+                ptid = f.attributes()[ptidx] # workaround
+                self.entityIdsToPostprocess.append( [eid,ptid] )
+
+    def committedGeometriesChanges(self, layerID, changedGeometriesValues):
+        QgsMessageLog.logMessage( 'committedGeometriesChanges '+str(changedGeometriesValues) , 'VTM Slider'  )
+        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
+        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
+        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
+        for fid in changedGeometriesValues:
+
+            features = layer.getFeatures( QgsFeatureRequest( fid ) )
+            for f in features: # We're supposed to have only one feature here
+                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
+                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
+                eid = f.attributes()[eidx] # workaround
+                ptid = 1 # workaround
+                self.entityIdsToPostprocess.append( [eid,ptid] )
+
+    def featureDeleted(self, layer, pid): 
+        """This is triggered when a feature is deleted in QGIS, in the vector layer buffer
+
+        We need to get this at this moment (before the deletion is commited), because we need to get
+        the entity_id and property_type_id to run the postprocessing after the commit is made."""
+
+        # Features with negative ids have not yet been commited to the database, so there's nothing to do
+        if pid<0:
+            return
+
+        result = self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
+        rec = result.fetchone()
+        self.entityIdsToPostprocess.append( [rec['entity_id'], rec['property_type_id'] ] )
+        
+    def editingStopped(self):
+        # basic_compute_dates.sql
+        for entityId, propTypeId in self.entityIdsToPostprocess:
+            if not entityId: #this could be QPyNullVariant if no entity was specified, in which case we don't need to postprocess the geometry
+                continue
+            if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
+                propTypeId = 0
+            self.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propTypeId})
+        self.commit()
+
+
+        # compute_geometries_from_borders.sql
+        result = self.runQuery('queries/gbb_get_entities_to_postprocess', {'modified_entities_ids': [entityId for entityId, propTypeId in self.entityIdsToPostprocess]})
+        for rec in result:
+            eid = rec['entity_id']
+            self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
+            self.runQuery('queries/basic_compute_dates', {'entity_id': eid, 'property_type_id': 1})
+        self.commit()
+
+        self.entityIdsToPostprocess = []
+
+
+    ############################################################################################
+    #
+    # CONNEXTION TO THE DATABASE         
+    #                  
+    # These functions manage the connection and the queries to the database
+    #                
+    ############################################################################################
+
+    def getConnection(self):
         self.disconnectSignalsForPostProcessing()
 
         ############################################################
@@ -162,125 +284,7 @@ class VTMMain:
 
         return connection
 
-
-
-
-    def connectSignalsForPostProcessing(self):
-
-        self.entityIdsToPostprocess = [] # this will store ids to postprocess after commit, we need it because we can only get the deleted entity ids before commit
-
-
-        # Signals for insert of events
-        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
-            layer.committedFeaturesAdded.connect( self.committedFeaturesAdded )
-            layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
-            layer.committedGeometriesChanges.connect( self.committedGeometriesChanges )
-            layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
-            layer.editingStopped.connect( self.editingStopped )
-
-    def disconnectSignalsForPostProcessing(self):
-        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
-            try:
-                layer.committedFeaturesAdded.disconnect()
-                layer.committedAttributeValuesChanges.disconnect()
-                layer.committedGeometriesChanges.disconnect()
-                layer.featureDeleted.disconnect()
-                layer.editingStopped.disconnect()
-            except Exception, e:
-                pass
-
-
-
-
-
-    def committedFeaturesAdded(self, layerID, addedFeatures):
-        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
-        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
-        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
-        for feat in addedFeatures:
-            #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
-            #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
-            eid = feat.attributes()[eidx] # workaround
-            ptid = feat.attributes()[ptidx] # workaround
-            self.entityIdsToPostprocess.append( [eid, ptid] )
-        
-
-    def committedAttributeValuesChanges(self, layerID, changedAttributesValues):
-        QgsMessageLog.logMessage( 'committedAttributeValuesChanges '+str(changedAttributesValues) , 'VTM Slider'  )
-        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
-        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
-        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
-        for fid in changedAttributesValues:
-
-            features = layer.getFeatures( QgsFeatureRequest( fid ) )
-            for f in features: # We're supposed to have only one feature here
-                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
-                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
-                eid = f.attributes()[eidx] # workaround
-                ptid = f.attributes()[ptidx] # workaround
-                self.entityIdsToPostprocess.append( [eid,ptid] )
-
-    def committedGeometriesChanges(self, layerID, changedGeometriesValues):
-        QgsMessageLog.logMessage( 'committedGeometriesChanges '+str(changedGeometriesValues) , 'VTM Slider'  )
-        layer = QgsMapLayerRegistry.instance().mapLayer(layerID)
-        eidx = layer.fieldNameIndex('entity_id') # workaround (see below)
-        ptidx = layer.fieldNameIndex('property_type_id') # workaround (see below)
-        for fid in changedGeometriesValues:
-
-            features = layer.getFeatures( QgsFeatureRequest( fid ) )
-            for f in features: # We're supposed to have only one feature here
-                #eid = feat.attribute('entity_id') # bug for some reason this doesnt work on non geometric layers
-                #ptid = feat.attribute('property_type_id') # bug for some reason this doesnt work on non geometric layers
-                eid = f.attributes()[eidx] # workaround
-                ptid = 1 # workaround
-                self.entityIdsToPostprocess.append( [eid,ptid] )
-
-
-    def featureDeleted(self, layer, pid): 
-        """This is triggered when a feature is deleted in QGIS, in the vector layer buffer
-
-        We need to get this at this moment (before the deletion is commited), because we need to get
-        the entity_id and property_type_id to run the postprocessing after the commit is made."""
-
-        # Features with negative ids have not yet been commited to the database, so there's nothing to do
-        if pid<0:
-            return
-
-        result = self.runQuery('queries/select_entity_and_property_type', {'pid': pid})
-        rec = result.fetchone()
-        self.entityIdsToPostprocess.append( [rec['entity_id'], rec['property_type_id'] ] )
-        
-
-
-    def editingStopped(self):
-
-        # basic_compute_dates.sql
-        for entityId, propTypeId in self.entityIdsToPostprocess:
-            if not entityId: #this could be QPyNullVariant if no entity was specified, in which case we don't need to postprocess the geometry
-                continue
-            if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
-                propTypeId = 0
-            self.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propTypeId})
-        self.commit()
-
-
-        # compute_geometries_from_borders.sql
-        result = self.runQuery('queries/gbb_get_entities_to_postprocess', {'modified_entities_ids': [entityId for entityId, propTypeId in self.entityIdsToPostprocess]})
-        for rec in result:
-            eid = rec['entity_id']
-            self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
-            self.runQuery('queries/basic_compute_dates', {'entity_id': eid, 'property_type_id': 1})
-        self.commit()
-
-        self.entityIdsToPostprocess = []
-
-
-
-
-
-
     def runQuery(self, filename, parameters={}):
-
         QgsMessageLog.logMessage('Running query {0} with parameters {1}'.format(filename, str(parameters)), 'VTM Slider')
 
         if not hasattr(self.sqlQueries,filename):
@@ -290,6 +294,6 @@ class VTMMain:
         cursor.execute( self.sqlQueries[filename], parameters )
         return cursor
         
-    def commit(self):        
+    def commit(self):
         self.connection.commit()
 
