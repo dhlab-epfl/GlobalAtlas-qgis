@@ -144,6 +144,10 @@ class VTMToolBar(QDockWidget):
 
         # basic_compute_dates.sql
         for f in layer.selectedFeatures():
+            self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': f.attribute('entity_id')})
+        
+        # basic_compute_dates.sql
+        for f in layer.selectedFeatures():
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': f.attribute('entity_id'), 'property_type_id': f.attribute('property_type_id')})
         self.main.commit()
 

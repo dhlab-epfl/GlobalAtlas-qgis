@@ -95,6 +95,15 @@ class VTMDebug(QDialog):
                 self.main.commit()
 
             if self.processUpdateDatesCheckBox.isChecked():
+
+                result = self.verboseQuery('Recomputing geometries by borders', 'queries/select_all_entities')
+                for i,rec in enumerate(result):
+                    if i%1000 == 0:
+                        self.printOutput( 'doing {0}...'.format( i ) )
+                    self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': rec['id']})
+                self.main.commit()
+
+
                 result = self.verboseQuery('Recomputing dates', 'queries/select_all_properties_type_by_entity')
                 for i,rec in enumerate(result):
                     if i%1000 == 0:
