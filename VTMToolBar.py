@@ -156,7 +156,7 @@ class VTMToolBar(QDockWidget):
         if layer is None: return
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
         
         # basic_merge_features.sql        
         propertiesIds = layer.selectedFeaturesIds()
@@ -182,12 +182,12 @@ class VTMToolBar(QDockWidget):
 
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
         
         # basic_unmerge_feature.sql
         propertiesIds = layer.selectedFeaturesIds()
 
-        self.main.runQuery('queries/basic_unmerge_feature', {'property_ids': propertiesIds})
+        self.main.runQuery('queries/basic_unmerge_features', {'property_ids': propertiesIds})
         self.main.commit()
 
         # postprocessing
@@ -202,7 +202,7 @@ class VTMToolBar(QDockWidget):
         if layer is None: return
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
         
         # basic_does_not_exist.sql
         propertiesIds = layer.selectedFeaturesIds()
@@ -222,7 +222,7 @@ class VTMToolBar(QDockWidget):
         if layer is None: return
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
 
         # basic_duplicate_to_date.sql
         propertiesIds = layer.selectedFeaturesIds()
@@ -284,7 +284,7 @@ class VTMToolBar(QDockWidget):
         if layer is None: return
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
 
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
@@ -305,7 +305,7 @@ class VTMToolBar(QDockWidget):
         if layer is None: return
 
         # postprocessing
-        preparePostProcessingFromSelection( layer )
+        self.preparePostProcessingFromSelection( layer )
 
         # create_relations.sql        
         propertiesIds = list(set(layer.selectedFeaturesIds()))
@@ -358,7 +358,7 @@ class VTMToolBar(QDockWidget):
 
     def commitPostProcessing(self):
         # basic_compute_dates.sql
-        for entityId, propertyTypeId in postProcEntitiesPropertiesIds:
+        for entityId, propertyTypeId in self.postProcEntitiesPropertiesIds:
             self.main.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propertyTypeId})
         self.main.commit()
         self.postProcEntitiesPropertiesIds = []
