@@ -17,6 +17,8 @@ from PyQt4.QtXml import *
 from PyQt4.QtWebKit import *
 from PyQt4 import uic
 
+import psycopg2
+
 from qgis.core import *
 from qgis.gui import *
 
@@ -114,10 +116,13 @@ class VTMDebug(QDialog):
             self.printOutput( '\nFinished' )
             self.main.commit()
 
+        except psycopg2.ProgrammingError, e:
+            self.setOutputError()
+            self.printOutput( 'SQL error : {0}'.format(repr(e)) )
 
         except Exception, e:
             self.setOutputError()
-            self.printOutput( '{0}'.format(str(e)) )
+            self.printOutput( 'Python error : {0}'.format(repr(e)) )
 
     def resetOutput(self):
         self.outputTextEdit.clear()
