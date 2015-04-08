@@ -72,6 +72,10 @@ class VTMToolBar(QDockWidget):
         self.viewEntityButton.pressed.connect(self.doViewentity)
         self.listEventsButton.pressed.connect(self.doListproperties)
 
+
+        self.nextSourceButton.pressed.connect( self.goToNextSource )
+        self.prevSourceButton.pressed.connect( self.goToPrevSource )
+
         self.slider.valueChanged.connect( self.spinboxYear.setValue )
         self.spinboxYear.valueChanged.connect( self.slider.setValue )
 
@@ -132,6 +136,48 @@ class VTMToolBar(QDockWidget):
 
         self.iface.mapCanvas().refresh()
 
+    def goToNextSource(self):
+        self._goToSource(False)
+
+    def goToPrevSource(self):
+        self._goToSource(True)
+
+    def _goToSource(self, prev):
+        """Activates the next/prev source in the Source folder and sets the data accordingly"""
+
+        allGroups = self.iface.legendInterface().groups()
+        allRelations = self.iface.legendInterface().groupLayerRelationship()
+        
+        subfolders = [subfolders for folder, subfolders in allRelations if folder=='Sources'][0]
+        subfoldersDates = [int(x) for x in subfolders]
+
+        subfoldersDates.sort()
+
+        foundDate = None
+
+        for i in range(len(subfoldersDates)):
+            if (
+                        (     prev and subfoldersDates[i]<self.spinboxYear.value() and ((i+1)>=len(subfoldersDates) or subfoldersDates[(i+1)]>=self.spinboxYear.value()) )
+                        or 
+                        ( not prev and subfoldersDates[i]>self.spinboxYear.value() and ((i-1)<0                     or subfoldersDates[(i-1)]<=self.spinboxYear.value()) )
+                     ):
+                foundDate = subfoldersDates[i]
+
+
+        if foundDate is not None:
+
+            for folder in subfolders:
+                expand = (folder==str(foundDate))
+                i = allGroups.index(folder)
+                self.iface.legendInterface().setGroupVisible(i,expand)
+                self.iface.legendInterface().setGroupExpanded(i,expand)
+            self.spinboxYear.setValue( foundDate )
+
+
+
+        
+
+        
 
     ############################################################################################
     # BASIC        
