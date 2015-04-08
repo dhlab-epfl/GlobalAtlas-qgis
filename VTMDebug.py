@@ -18,6 +18,7 @@ from PyQt4.QtWebKit import *
 from PyQt4 import uic
 
 import psycopg2
+import psycopg2.extensions
 
 from qgis.core import *
 from qgis.gui import *
@@ -87,9 +88,14 @@ class VTMDebug(QDialog):
                     self.verboseQuery('insertion of Euratlas countries for year {0}'.format(year), 'import/euratlas', {'year':year})
                     self.main.commit()
 
-            if self.euratlasEdgesDataCheckBox.isChecked():
+            if self.euratlasEdgesGenCacheCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
-                    self.verboseQuery('insertion of Euratlas topological data for year {0} (this can take >2 min)'.format(year), 'import/euratlas_edges', {'year':year})
+                    self.verboseQuery('generation of Euratlas topological data for year {0} (this can take >2 min)'.format( psycopg2.extensions.AsIs(year) ), 'import/euratlas_edges_compute_cache', {'year':year})
+                    self.main.commit()
+
+            if self.euratlasEdgesLoadCacheCheckBox.isChecked():
+                for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
+                    self.verboseQuery('insertion of Euratlas topological data for year {0}'.format( psycopg2.extensions.AsIs(year) ), 'import/euratlas_edges_load_from_cache', {'year':year})
                     self.main.commit()
 
             if self.idlDraftDataCheckBox.isChecked():
@@ -120,10 +126,6 @@ class VTMDebug(QDialog):
             self.setOutputError()
             self.printOutput( 'SQL error : {0}'.format(repr(e)) )
 
-        except Exception, e:
-            self.setOutputError()
-            self.printOutput( 'Python error : {0}'.format(repr(e)) )
-
     def resetOutput(self):
         self.outputTextEdit.clear()
         self.outputTextEdit.setStyleSheet('')
@@ -133,6 +135,7 @@ class VTMDebug(QDialog):
 
     def printOutput(self, text):
         self.outputTextEdit.appendPlainText( text )
+        self.outputTextEdit.verticalScrollBar().setValue(self.outputTextEdit.verticalScrollBar().maximum())
         QApplication.processEvents(QEventLoop.ExcludeUserInputEvents)
 
     def doViewSettings(self):
