@@ -598,12 +598,29 @@
        </item>
        <item>
         <widget class="QToolButton" name="setBordersButton">
+         <property name="toolTip">
+          <string>Define the geometry of the entity by linestrings (you must have a selected linestrings as borders, and can have selected points or polygons as entities)</string>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_borders.png</normaloff>../images/icon_borders.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="selectBordersButton">
+         <property name="toolTip">
+          <string>Select borders definine the selected entity</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../images/icon_borders_select.png</normaloff>../images/icon_borders_select.png</iconset>
          </property>
         </widget>
        </item>

@@ -66,6 +66,7 @@ class VTMToolBar(QDockWidget):
         self.removerelationsButton.pressed.connect(self.doRemoverelations)
 
         self.setBordersButton.pressed.connect(self.doSetBorders)
+        self.selectBordersButton.pressed.connect(self.doSelectBorders)
 
         self.viewEntityButton.pressed.connect(self.doViewentity)
         self.listEventsButton.pressed.connect(self.doListproperties)
@@ -330,9 +331,23 @@ class VTMToolBar(QDockWidget):
     # Tools to create / edit borders relations                
     ############################################################################################
 
-    def doSetBorders(self):
-        #TODO : postporcessing
+    def doSelectBorders(self):
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None: return
 
+        entitiesIds = [ f.attribute('entity_id') for f in layer.selectedFeatures() ]
+
+        self.main.eventsPolygonLayer.removeSelection()
+        self.main.eventsLineLayer.removeSelection()
+        self.main.eventsPointLayer.removeSelection()
+
+        result = self.main.runQuery('queries/gbb_select_borders_for_entities', {'entities_ids': entitiesIds })
+
+        self.main.eventsLineLayer.setSelectedFeatures( [i[0] for i in result.fetchall()] )
+
+
+
+    def doSetBorders(self):
         entitiesIds = list(set([ f.attribute('entity_id') for f in (self.main.eventsPolygonLayer.selectedFeatures()+self.main.eventsPointLayer.selectedFeatures()) ])) # note : if these throw bugs, it's because there is a selection of a feature that disapareed (so selectedFateures is an array of disappared features, that have no attributes)
         borderIds = list(set( [f.attribute('entity_id') for f in self.main.eventsLineLayer.selectedFeatures()] ))
 
