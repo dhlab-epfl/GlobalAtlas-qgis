@@ -208,23 +208,34 @@ class VTMMain:
         self.entityIdsToPostprocess.append( [rec['entity_id'], rec['property_type_id'] ] )
         
     def editingStopped(self):
+        """Post processing after insert/edit/updates in on of the eventsLayers"""
+
+        QgsMessageLog.logMessage("Postprocessing "+str(self.entityIdsToPostprocess),"VTM Slider")
+
+        # Some entityIds are QPyNullVariant if the entity was not created yet. In this case, we need no postprocesing anyways.
+        existingEntityIdsToPostprocess = [[entityId, propTypeId] for entityId, propTypeId in self.entityIdsToPostprocess if entityId]
+        
+        # gbb_compute_geometries.sql
+        for entityId, propTypeId in existingEntityIdsToPostprocess:
+            self.runQuery('queries/clone_compute', {'entity_id': entityId}) #TODO : do it for property only
+        self.commit()
+
+        # compute_geometries_from_borders.sql
+        result = self.runQuery('queries/gbb_get_entities_to_postprocess', {'modified_entities_ids': [entityId for entityId, propTypeId in existingEntityIdsToPostprocess]})
+        for rec in result:
+            eid = rec['entity_id']
+            self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
+            existingEntityIdsToPostprocess.append ( [eid, 1] ) # Those dates must be computed too
+        self.commit()
+
         # basic_compute_dates.sql
-        for entityId, propTypeId in self.entityIdsToPostprocess:
-            if not entityId: #this could be QPyNullVariant if no entity was specified, in which case we don't need to postprocess the geometry
-                continue
-            if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (0) proeprty type
-                propTypeId = 0
+        for entityId, propTypeId in existingEntityIdsToPostprocess:
+            if not propTypeId: #this could be QPyNullVariant if no property was specified, in which case we have the geom (1) proeprty type
+                propTypeId = 1
             self.runQuery('queries/basic_compute_dates', {'entity_id': entityId, 'property_type_id': propTypeId})
         self.commit()
 
 
-        # compute_geometries_from_borders.sql
-        result = self.runQuery('queries/gbb_get_entities_to_postprocess', {'modified_entities_ids': [entityId for entityId, propTypeId in self.entityIdsToPostprocess]})
-        for rec in result:
-            eid = rec['entity_id']
-            self.runQuery('queries/gbb_compute_geometries', {'entity_id': eid})
-            self.runQuery('queries/basic_compute_dates', {'entity_id': eid, 'property_type_id': 1})
-        self.commit()
 
         self.entityIdsToPostprocess = []
 
