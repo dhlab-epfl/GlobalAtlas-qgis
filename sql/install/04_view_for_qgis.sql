@@ -15,13 +15,14 @@ DROP VIEW IF EXISTS vtm.properties_for_qgis CASCADE;
 
 CREATE VIEW vtm.properties_for_qgis AS
 SELECT 	ev.id,
+		ev.entity_id,
 		ev.description,
 		ev.property_type_id,
 		ev.value,
 		ev.geovalue,
 		ev.date,
 		ev.interpolation,
-		ev.entity_id,
+		ev.infered_by,
 		ev.source_id,
 		ev.source_description,
 		ev.computed_date_start,
@@ -51,8 +52,8 @@ $$
       		NEW.property_type_id = 1; -- if no property_type_id is provided, we probably want a geo property
       	END IF;
 
-      	INSERT INTO vtm.properties( id, description, property_type_id, value, geovalue, date, interpolation, entity_id, source_id, source_description	)
-      	VALUES ( NEW.id, NEW.description, NEW.property_type_id, NEW.value, NEW.geovalue, NEW.date, NEW.interpolation, NEW.entity_id, NEW.source_id, NEW.source_description);
+      	INSERT INTO vtm.properties( id, entity_id, description, property_type_id, value, geovalue, date, interpolation, infered_by, source_id, source_description	)
+      	VALUES ( NEW.id, NEW.entity_id, NEW.description, NEW.property_type_id, NEW.value, NEW.geovalue, NEW.date, NEW.interpolation, NEW.infered_by, NEW.source_id, NEW.source_description);
 	    RETURN NEW;
 
 
@@ -64,13 +65,14 @@ $$
 
       	UPDATE vtm.properties SET
 	      	id=NEW.id,
+	      	entity_id=NEW.entity_id,
 	      	description=NEW.description,
 	      	property_type_id=NEW.property_type_id,
 	      	value=NEW.value,
 	      	geovalue=NEW.geovalue,
 	      	date=NEW.date,
 	      	interpolation=NEW.interpolation,
-	      	entity_id=NEW.entity_id,
+	      	infered_by=NEW.infered_by,
 	      	source_id=NEW.source_id,
 	      	source_description=NEW.source_description
 	    WHERE id=OLD.id;

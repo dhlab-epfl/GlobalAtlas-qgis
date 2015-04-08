@@ -107,7 +107,7 @@ CREATE TABLE vtm.properties
   value text,
   date integer,
   interpolation vtm.interpolation_type NOT NULL DEFAULT 'default',
-  infered boolean NOT NULL DEFAULT FALSE,                                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
+  infered_by text,                                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
   computed_date_start integer,
   computed_date_end integer,
   --computed_size real,

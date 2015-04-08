@@ -15,19 +15,17 @@
 DELETE FROM vtm.properties as p
 WHERE 	entity_id=%(entity_id)s
 		AND
-		p.property_type_id=1
-		AND
-		p.infered;
+		p.infered_by = 'geom_by_borders';
 
 -- Step 2 : generate all properties at each modification
 
 --wip
 
-INSERT INTO vtm.properties(entity_id, property_type_id, infered, date, geovalue )
+INSERT INTO vtm.properties(entity_id, property_type_id, infered_by, date, geovalue )
 
 SELECT 	%(entity_id)s as entity_id,
 		1 as property_type_id,
-		TRUE as infered,
+		'geom_by_borders' as infered_by,
 		d.date as date,
 		--array_agg(p.id) as test,
 		COALESCE( ST_BuildArea(ST_Collect(ST_SnapToGrid(p.geovalue,0.00001))), ST_Centroid(ST_Collect(p.geovalue)) ) as geom
