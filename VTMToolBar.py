@@ -173,7 +173,7 @@ class VTMToolBar(QDockWidget):
         entitiesIds = ( f.attribute('entity_id') for f in layer.selectedFeatures() )
         smallestEntityId = min(i for i in entitiesIds if i is not None) 
 
-        self.main.runQuery('queries/basic_merge_featuress', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
+        self.main.runQuery('queries/basic_merge_features', {'entity_id': smallestEntityId, 'property_ids': propertiesIds})
         self.main.commit()
 
         # postprocessing
@@ -406,7 +406,9 @@ class VTMToolBar(QDockWidget):
         self.commitPostProcessing();
 
         self.main.eventsPolygonLayer.removeSelection()
+        self.main.eventsLineLayer.removeSelection()
         self.main.eventsPointLayer.removeSelection()
+        
 
 
     ############################################################################################
