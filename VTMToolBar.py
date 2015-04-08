@@ -61,6 +61,7 @@ class VTMToolBar(QDockWidget):
 
         self.notexistButton.pressed.connect(self.doNotexist)
         self.copytodateButton.pressed.connect(self.doCopytodate)
+        self.cloneButton.pressed.connect(self.doClone)
 
         self.createrelationsButton.pressed.connect(self.doCreaterelations)
         self.removerelationsButton.pressed.connect(self.doRemoverelations)
@@ -143,9 +144,13 @@ class VTMToolBar(QDockWidget):
         layer = self._getLayerIfEventsLayersAndSelection()
         if layer is None: return
 
-        # basic_compute_dates.sql
+        # gbb_compute_geometries.sql
         for f in layer.selectedFeatures():
             self.main.runQuery('queries/gbb_compute_geometries', {'entity_id': f.attribute('entity_id')})
+
+        # gbb_compute_geometries.sql
+        for f in layer.selectedFeatures():
+            self.main.runQuery('queries/clone_compute', {'entity_id': f.attribute('entity_id')})
         
         # basic_compute_dates.sql
         for f in layer.selectedFeatures():
@@ -240,6 +245,36 @@ class VTMToolBar(QDockWidget):
 
         layer.removeSelection()
 
+    
+    ############################################################################################
+    # CLONE
+    # Clone functions                
+    ############################################################################################
+    
+    def doClone(self):
+        """Creates a clone of the property at the current date"""       
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None: return
+
+        # postprocessing
+        self.preparePostProcessingFromSelection( layer )
+
+        # basic_duplicate_to_date.sql
+        propertiesIds = layer.selectedFeaturesIds()
+
+        self.main.runQuery('queries/clone_insert', {'properties_ids': propertiesIds, 'date':self.spinboxYear.value()})
+        self.main.commit()
+
+        # gbb_compute_geometries.sql
+        for f in layer.selectedFeatures():
+            self.main.runQuery('queries/clone_compute', {'entity_id': f.attribute('entity_id')})
+        self.main.commit()
+
+        # postprocessing
+        self.commitPostProcessing();
+
+        layer.removeSelection()
 
     ############################################################################################
     # VIEW
@@ -344,8 +379,6 @@ class VTMToolBar(QDockWidget):
         result = self.main.runQuery('queries/gbb_select_borders_for_entities', {'entities_ids': entitiesIds })
 
         self.main.eventsLineLayer.setSelectedFeatures( [i[0] for i in result.fetchall()] )
-
-
 
     def doSetBorders(self):
         entitiesIds = list(set([ f.attribute('entity_id') for f in (self.main.eventsPolygonLayer.selectedFeatures()+self.main.eventsPointLayer.selectedFeatures()) ])) # note : if these throw bugs, it's because there is a selection of a feature that disapareed (so selectedFateures is an array of disappared features, that have no attributes)
