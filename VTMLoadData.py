@@ -50,13 +50,14 @@ class VTMLoadData(QDialog):
         for f in self.main.propertiesTypeLayer.getFeatures():
 	        self.addAttributeTypeComboBox.addItem( f.attribute('name'), f.id() )
 
-        propIdItem = QTableWidgetItem('0')
-        propItem = QTableWidgetItem('geom')
-        valItem = QTableWidgetItem('geomToWKT( transform($geometry,\'{0}\',\'EPSG:4326\') )'.format(crs))
-        self.attributesTableWidget.insertRow(0)
-        self.attributesTableWidget.setItem(0,0,propIdItem)
-        self.attributesTableWidget.setItem(0,1,propItem)
-        self.attributesTableWidget.setItem(0,2,valItem)
+        if self.layer.hasGeometryType():
+            propIdItem = QTableWidgetItem('1')
+            propItem = QTableWidgetItem('geom')
+            valItem = QTableWidgetItem('geomToWKT( transform($geometry,\'{0}\',\'EPSG:4326\') )'.format(crs))
+            self.attributesTableWidget.insertRow(0)
+            self.attributesTableWidget.setItem(0,0,propIdItem)
+            self.attributesTableWidget.setItem(0,1,propItem)
+            self.attributesTableWidget.setItem(0,2,valItem)
 
 
         if self.layer.selectedFeatureCount():

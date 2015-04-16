@@ -24,6 +24,8 @@ def formOpen(dialog,layer,featureid):
 		propertyField.setEnabled(False)
 		valueField.setEnabled(False)
 
+	
+
 
 	# Disconnect the signal that QGIS has wired up for the dialog to the button box.
 	#buttonBox.accepted.disconnect(myDialog.accept)
