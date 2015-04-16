@@ -43,6 +43,8 @@ UPDATE temp_topology.temp_euratlas_sovereign_states SET topogeom = toTopoGeom(ST
 
 -- Insert the edges in the temp table
 
+CREATE SCHEMA IF NOT EXISTS temp;
+
 DROP TABLE IF EXISTS temp.temp_euratlas_sovereign_states_%(year)s;
 CREATE TABLE temp.temp_euratlas_sovereign_states_%(year)s AS
 SELECT 		LEAST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,''))||' - '||GREATEST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,'')) || ' border' as name,

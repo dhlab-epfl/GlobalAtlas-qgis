@@ -9,11 +9,11 @@
  */
 /************************************************************************************************/
 
-SELECT 	vtm.insert_properties_helper(t.long_name, 'sovereign_state'::text, 'Euratlas', 'geom'::text, t.year::int, 'start', ST_AsText(ST_Transform(geom,4326)))
+SELECT 	vtm.insert_properties_helper(t.long_name, 'state'::text, 'Euratlas', 'geom'::text, t.year::int, 'start', ST_AsText(ST_Transform(geom,4326)))
 FROM	"data_external"."euratlas_sovereign_states" as t
 WHERE year=%(year)s;
 
-SELECT 	vtm.insert_properties_helper(t.long_name, 'sovereign_state'::text, 'Euratlas', 'geom'::text, t.year::int+100, 'start', NULL)
+SELECT 	vtm.insert_properties_helper(t.long_name, 'state'::text, 'Euratlas', 'geom'::text, t.year::int+100, 'start', NULL)
 FROM	"data_external"."euratlas_sovereign_states" as t
 WHERE year=%(year)s;
 
