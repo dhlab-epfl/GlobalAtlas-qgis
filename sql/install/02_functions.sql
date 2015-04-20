@@ -80,13 +80,14 @@ $$ LANGUAGE plpgsql;
 /*************************************************/
 
 DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) CASCADE;
-CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) RETURNS VOID AS    
+CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) RETURNS integer AS    
 $$
     DECLARE
       ent_type_id integer;
       ent_id integer;
       prp_type_id integer;
       src_id integer;
+      return_id integer;
     BEGIN
     
       -- CREATE THE ENTITY TYPE IF IT DOESNT EXIST
@@ -122,8 +123,9 @@ $$
 
 
       -- FINALLY INSERT THE PROPERTY
-      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, interpolation, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, interp, val );
+      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, interpolation, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, interp, val ) RETURNING id INTO return_id;
 
+      RETURN return_id;
 
     END;
 $$ LANGUAGE plpgsql;
