@@ -11,25 +11,14 @@
 
 -- Insert into the properties from the temp table
 
-SELECT  	vtm.insert_properties_helper(
-				name,
-				'border'::text,
-				'Euratlas'::text,
-				'geom'::text,
-				%(year)s,
-				'start',
-				value
-			),
-			vtm.insert_properties_helper(
-				name,
-				'border'::text,
-				'Euratlas'::text,
-				'geom'::text,
-				%(year)s+100,
-				'start',
-				NULL
-			)
-FROM 		temp.temp_euratlas_sovereign_states_%(year)s;
+SELECT 	vtm.insert_properties_helper(name, 'border'::text, 'Euratlas', 'clone'::text, %(year)s+100, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper(name, 'border'::text, 'Euratlas', 'geom'::text, %(year)s, 'start'::vtm.interpolation_type, ST_AsText(ST_Collect(value))) as pid,
+			name as name
+	FROM temp.temp_euratlas_sovereign_states_%(year)s
+	GROUP BY name
+	) as sub;
+
 
 
 -- Insert the faces

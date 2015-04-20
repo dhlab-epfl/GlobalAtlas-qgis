@@ -20,17 +20,19 @@ WHERE 	entity_id=%(entity_id)s
 
 --wip
 
-INSERT INTO vtm.properties(entity_id, property_type_id, infered_by, date, value )
+INSERT INTO vtm.properties(entity_id, property_type_id, infered_by, date, value, interpolation )
 SELECT 	cloned_prop.entity_id,
 		cloned_prop.property_type_id,
 		'clone', 
 		clone.date,
-		cloned_prop.value
+		cloned_prop.value,
+		clone.interpolation
 FROM 	vtm.properties as cloned_prop
 
 JOIN 	(
 			SELECT 	clone.date,
-					clone.value
+					clone.value,
+					clone.interpolation
 			FROM 	vtm.properties as clone
 			WHERE 	clone.property_type_id = 4
 					AND

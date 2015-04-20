@@ -2,30 +2,67 @@
 /* DATA                        */
 /*******************************/
 
-SELECT 	vtm.insert_properties_helper('Isola 1360 '||id, 'isola'::text, 'Isabella draft', 'geom'::text, 1360, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."1360_isl" as t;
+/* ISOLA */
 
-SELECT 	vtm.insert_properties_helper('Isola 12th '||id, 'isola'::text, 'Isabella draft', 'geom'::text, 1150, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."xiisec_isl" as t;
+SELECT 	vtm.insert_properties_helper('Isola 1360 '||id, 'isola'::text, 'Isabella draft', 'clone'::text, 1808, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Isola 1360 '||id, 'isola'::text, 'Isabella draft', 'geom'::text, 1360, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."1360_isl" as t
+	) as sub;
 
-SELECT 	vtm.insert_properties_helper('Canal 1360 '||id, 'canal'::text, 'Isabella draft', 'geom'::text, 1360, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."1360_can" as t;
 
-SELECT 	vtm.insert_properties_helper('Canal 12th'||id, 'canal'::text, 'Isabella draft', 'geom'::text, 1150, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."xiisec_can" as t;
+SELECT 	vtm.insert_properties_helper('Isola 12th '||id, 'isola'::text, 'Isabella draft', 'clone'::text, 1360, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Isola 12th '||id, 'isola'::text, 'Isabella draft', 'geom'::text, 1150, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."xiisec_isl" as t
+	) as sub;
 
-SELECT 	vtm.insert_properties_helper('Building 1808 '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1808, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."1808_un_vol" as t;
 
-SELECT 	vtm.insert_properties_helper('Building 1360 '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1360, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."1360_un_vol" as t;
+SELECT 	vtm.insert_properties_helper('Canal 1360 '||id, 'canal'::text, 'Isabella draft', 'clone'::text, 1808, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Canal 1360 '||id, 'canal'::text, 'Isabella draft', 'geom'::text, 1360, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."1360_can" as t
+	) as sub;
 
-SELECT 	vtm.insert_properties_helper('Building 13th '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1250, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."13th_un_vol" as t;
 
-SELECT 	vtm.insert_properties_helper('Building 12th '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1150, NULL, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3)))
-FROM	"data_draft_idl"."xiisec_un_vol" as t;
+SELECT 	vtm.insert_properties_helper('Canal 12th '||id, 'canal'::text, 'Isabella draft', 'clone'::text, 1360, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Canal 12th '||id, 'canal'::text, 'Isabella draft', 'geom'::text, 1150, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."xiisec_can" as t
+	) as sub;
 
+
+	SELECT 	vtm.insert_properties_helper('Building 1808 '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1808, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."1808_un_vol" as t;
+
+
+SELECT 	vtm.insert_properties_helper('Building 1360 '||id, 'building'::text, 'Isabella draft', 'clone'::text, 1808, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Building 1360 '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1360, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."1360_un_vol" as t
+	) as sub;
+
+
+SELECT 	vtm.insert_properties_helper('Building 13th '||id, 'building'::text, 'Isabella draft', 'clone'::text, 1360, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Building 13th '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1250, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."13th_un_vol" as t
+	) as sub;
+
+
+SELECT 	vtm.insert_properties_helper('Building 12th '||id, 'building'::text, 'Isabella draft', 'clone'::text, 1250, 'end'::vtm.interpolation_type, pid::text)
+FROM   (
+	SELECT 	vtm.insert_properties_helper('Building 12th '||id, 'building'::text, 'Isabella draft', 'geom'::text, 1150, 'start'::vtm.interpolation_type, ST_AsText(ST_CollectionExtract(ST_MakeValid(ST_Transform(geom,4326)),3))) as pid,
+			id as id
+	FROM	"data_draft_idl"."xiisec_un_vol" as t
+	) as sub;
 
 
 
