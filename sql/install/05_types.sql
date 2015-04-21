@@ -20,6 +20,7 @@ INSERT INTO vtm.properties_types( name, description, type, subtype ) VALUES
 	( 'geom', 					'Geometry in plan',									 	'text', 	'wkt' ), 		-- must stay id 1 for geom is hardcoded in the geom extension
 	( 'geom_by_borders', 		'Entity that constitutes one border of this entity', 	'integer', 	'entity_id' ), 	-- must stay id 2 for geom_by_borders is hardcoded in the geom_by_borders extension
 	( 'succession_relation', 	'Entity that has succession relation with this entity', 'integer', 	'entity_id' ), 	-- must stay id 3 for succession_relation is hardcoded to compute date boundaries
+	( 'clone', 					'Property to clone at a different date', 				'integer', 	'property_id' ), 	-- must stay id 4 for clone is hardcoded to compute clones
 	( 'usage',NULL,NULL,NULL ),
 	( 'height',NULL,NULL,NULL ),
 	( 'owner',NULL,NULL,NULL ),

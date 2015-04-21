@@ -42,6 +42,16 @@ class VTMMain:
     entitiesTypeLayerID = 'entity_types20150306220740482'
     propertiesTypeLayerID = 'properties_types20150317175434094'
 
+    eventsPointLayer = None
+    eventsLineLayer = None
+    eventsPolygonLayer = None
+    eventsLayer = None
+    entitiesLayer = None
+    propertiesTypeLayer = None
+    entitiesTypeLayer = None
+
+    uri = 'dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'
+
     def __init__(self, iface):
         self.plugin_dir = os.path.dirname(__file__)
         
@@ -55,7 +65,7 @@ class VTMMain:
         username = QSettings().value("VTM Slider/username", "")
         password = QSettings().value("VTM Slider/password", "")
         QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
-        QgsCredentials.instance().put('dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable', username, password)
+        QgsCredentials.instance().put(self.uri, username, password)
         
 
     def initGui(self):
@@ -75,6 +85,20 @@ class VTMMain:
         #self.disconnectSignalsForPostProcessing() #disconnecting crashes on quit ?!
 
     def loadLayers(self):
+
+
+        ############################################################
+        # Get and check the SQL connection
+        ############################################################
+
+        self.connection = self.getConnection()
+        if self.connection is None:           
+            QgsMessageLog.logMessage('Unable to establish connection. Plugin will not work. Make sure you opened the provided QGIS project and entered the correct credentials.','VTM Slider')
+            self.dockwidget.disablePlugin()
+            return
+
+        QgsMessageLog.logMessage('Connection successful.','VTM Slider')
+
         ############################################################
         # Get the references to the layers using their IDs
         ############################################################
@@ -96,17 +120,13 @@ class VTMMain:
 
 
         ############################################################
-        # Get and check the SQL connection
+        # If everything worked, connect the signals to make the post processing queries
         ############################################################
+        self.connectSignalsForPostProcessing()
 
-        self.connection = self.getConnection()
-        if self.connection is None:           
-            QgsMessageLog.logMessage('Unable to establish connection. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
-            self.dockwidget.disablePlugin()
-            return
 
         self.dockwidget.enablePlugin()
-        QgsMessageLog.logMessage('Connection successful. Plugin will work.','VTM Slider')
+        QgsMessageLog.logMessage('Plugin will work.','VTM Slider')
 
 
 
@@ -257,12 +277,12 @@ class VTMMain:
 
         connection = None
         
-        uri = QgsDataSourceURI( self.eventsLayer.dataProvider().dataSourceUri() )
-        connectionInfo = uri.connectionInfo()
+        dsUri = QgsDataSourceURI( self.uri )
+        connectionInfo = dsUri.connectionInfo()
         
-        host = uri.host()
-        port = int(uri.port())
-        database = uri.database()
+        host = dsUri.host()
+        port = int(dsUri.port())
+        database = dsUri.database()
         username = None
         password = None
 
@@ -282,16 +302,6 @@ class VTMMain:
         except Exception as e:
             QgsMessageLog.logMessage('Could not connect with provided credentials. Plugin will not work. Make sure you opened the provided QGIS project and entered the correction postgis connection settings. Error was {0}'.format( str(e) ),'VTM Slider')
             return None            
-        
-
-
-        QgsMessageLog.logMessage('Loaded all needed layers. Plugin will work.','VTM Slider')
-
-
-        ############################################################
-        # If everything worked, connect the signals to make the post processing queries
-        ############################################################
-        self.connectSignalsForPostProcessing()
 
         return connection
 

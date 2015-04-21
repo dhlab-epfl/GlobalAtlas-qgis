@@ -27,7 +27,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="sources20150212181047520" name="sources">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Reference">
+    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Reference">
       <customproperties/>
       <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="un_vol20150414103146020" name="un_vol">
         <customproperties/>
@@ -65,10 +65,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1549028.74994351388886571</xmin>
-      <ymin>4276277.70379004254937172</ymin>
-      <xmax>2994047.26495816232636571</xmax>
-      <ymax>5754071.14055762067437172</ymax>
+      <xmin>1336950.66635143687017262</xmin>
+      <ymin>4533834.87450155150145292</ymin>
+      <xmax>2714361.252645343542099</xmax>
+      <ymax>5731723.35929269623011351</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -85,22 +85,27 @@
       </spatialrefsys>
     </destinationsrs>
     <layer_coordinate_transform_info>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="Napoleonian_fg_1220150414114440933"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161144908"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00322920150408141826798"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414160742505"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150414103146020"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414114439040"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="Napoleonian_fg_1220150414114439087"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161144908"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00327220150408141831048"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161141027"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="UN_VOL_merged20150408142130435"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162155008"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162226380"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="TR_EME20150414161010256"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="Napoleonian_fg_1220150414114440933"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414160742505"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="fg_1220150408141833671"/>
-      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00322920150408141826798"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="UN_VOL_merged20150408142130435"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161117734"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162052612"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162826050"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="fg_1220150408141833671"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414114439040"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161141027"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420161126054"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00327220150408141831048"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <visibility-presets>
@@ -118,6 +123,16 @@
       <layer style="" id="properties20150212181047441"/>
       <layer style="" id="sources20150212181047520"/>
       <layer style="" id="entities20150212181047504"/>
+    </visibility-preset>
+    <visibility-preset name="Georeference">
+      <layer style="" id="properties_types20150317175434094"/>
+      <layer style="" id="un_vol20150414103146020"/>
+      <layer style="" id="entity_types20150306220740482"/>
+      <layer style="" id="properties20150212181047441"/>
+      <layer style="" id="00327220150408141831048"/>
+      <layer style="" id="sources20150212181047520"/>
+      <layer style="" id="entities20150212181047504"/>
+      <layer style="" id="00322920150408141826798"/>
     </visibility-preset>
     <visibility-preset name="xiisec">
       <layer style="" id="properties20150212181047441"/>
@@ -184,7 +199,7 @@
         <legendlayerfile isInOverview="0" layerid="sources20150212181047520" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendgroup open="true" checked="Qt::Unchecked" name="Reference">
+    <legendgroup open="false" checked="Qt::Unchecked" name="Reference">
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="un_vol" showFeatureCount="0">
         <filegroup open="true" hidden="false">
           <legendlayerfile isInOverview="0" layerid="un_vol20150414103146020" visible="0"/>
@@ -312,7 +327,7 @@
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
       <id>Napoleonian_fg_1220150414114440933</id>
       <datasource>./sources/fg.12.jpg</datasource>
       <title></title>
@@ -346,7 +361,7 @@
         <map-layer-style name=""/>
       </map-layer-style-manager>
       <pipe>
-        <rasterrenderer opacity="1" alphaBand="-1" blueBand="3" greenBand="2" type="multibandcolor" redBand="1">
+        <rasterrenderer opacity="1" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="1">
           <rasterTransparency/>
         </rasterrenderer>
         <brightnesscontrast brightness="0" contrast="0"/>
@@ -1211,7 +1226,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1536/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1536/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1716,7 +1731,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1536/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1536/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2265,7 +2280,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1536/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1536/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3275,26 +3290,46 @@
       <LayerSnappingList type="QStringList">
         <value>TR_EME20150414161010256</value>
         <value>UN_VOL_merged20150408142130435</value>
+        <value>properties_for_qgis20150307001918975</value>
+        <value>properties_for_qgis20150307041406392</value>
+        <value>properties_for_qgis20150317102814809</value>
+        <value>un_vol20150414103146020</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>disabled</value>
         <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>enabled</value>
       </LayerSnappingEnabledList>
       <SnappingMode type="QString">advanced</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingToleranceUnitList type="QStringList">
         <value>2</value>
         <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
+        <value>1</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex</value>
       </LayerSnapToList>
       <DefaultSnapType type="QString">to vertex and segment</DefaultSnapType>
       <DefaultSnapTolerance type="double">10</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
         <value>0.000000</value>
         <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>10.000000</value>
       </LayerSnappingToleranceList>
     </Digitizing>
     <Identify>
@@ -3318,8 +3353,8 @@
       <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
       <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
       <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
-      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-AND&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+AND&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
 ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>
     </VTMSlider>
     <SpatialRefSys>

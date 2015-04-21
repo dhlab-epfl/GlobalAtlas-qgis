@@ -34,7 +34,7 @@ UPDATE vtm.properties as d
           )
           AND
           (property_type_id = %(property_type_id)s)
-		GROUP BY date, property_type_id
-		ORDER BY date ASC
+		GROUP BY date, interpolation, property_type_id
+		ORDER BY date, interpolation ASC
 	) as sub
 	WHERE 	d.id = ANY(sub.ids);

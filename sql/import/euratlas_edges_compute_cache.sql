@@ -47,8 +47,8 @@ CREATE SCHEMA IF NOT EXISTS temp;
 
 DROP TABLE IF EXISTS temp.temp_euratlas_sovereign_states_%(year)s;
 CREATE TABLE temp.temp_euratlas_sovereign_states_%(year)s AS
-SELECT 		LEAST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,''))||' - '||GREATEST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,'')) || ' border' as name,
-			ST_AsText(ST_Transform(t.geom,4326)) as value
+SELECT 		LEAST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,''))||'|'||GREATEST(COALESCE( r_face.short_name,''),COALESCE( l_face.short_name,'')) || ' border' as name,
+			ST_Transform(t.geom,4326) as value
 
 FROM		temp_topology.edge_data as t
 
