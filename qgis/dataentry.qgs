@@ -372,7 +372,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>TR_EME20150414161010256</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."TR_EME" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."TR_EME" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -902,7 +902,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entities20150212181047504</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -986,7 +986,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entity_types20150306220740482</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entity_types" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entity_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1082,7 +1082,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties20150212181047441</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1226,7 +1226,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1731,7 +1731,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2280,7 +2280,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2716,7 +2716,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2812,7 +2812,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>sources20150212181047520</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2890,7 +2890,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>un_vol20150414103146020</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."un_vol" (geom) sql=</datasource>
+      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."un_vol" (geom) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>

@@ -50,7 +50,7 @@ class VTMMain:
     propertiesTypeLayer = None
     entitiesTypeLayer = None
 
-    uri = 'dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'
+    uri = 'dbname=\'vtm\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'
 
     def __init__(self, iface):
         self.plugin_dir = os.path.dirname(__file__)
