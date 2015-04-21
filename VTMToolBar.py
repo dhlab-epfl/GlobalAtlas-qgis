@@ -29,6 +29,8 @@ from qgis.core import *
 import os.path
 import re
 
+from VTMTool import *
+
 dateRange = [0,2050]
 
 class VTMToolBar(QDockWidget):
@@ -56,7 +58,7 @@ class VTMToolBar(QDockWidget):
 
         self.refreshButton.pressed.connect(self.doRefresh)  
 
-        self.mergeButton.pressed.connect(self.doMerge)
+        self.mergeButton.pressed.connect(lambda: VTMTool.activate(VTMMergeTool, self.iface, self.main, self.mergeButton) )
         self.explodeButton.pressed.connect(self.doExplode)
 
         self.notexistButton.pressed.connect(self.doNotexist)
@@ -210,6 +212,8 @@ class VTMToolBar(QDockWidget):
 
         layer = self._getLayerIfEventsLayersAndSelection()
         if layer is None: return
+
+
 
         # postprocessing
         self.preparePostProcessingFromSelection( layer )

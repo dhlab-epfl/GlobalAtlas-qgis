@@ -45,6 +45,9 @@
       <property name="checkable">
        <bool>false</bool>
       </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item>
@@ -58,6 +61,9 @@
       <property name="icon">
        <iconset>
         <normaloff>../images/icon_start.png</normaloff>../images/icon_start.png</iconset>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -75,6 +81,9 @@
       </property>
       <property name="checkable">
        <bool>false</bool>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -147,6 +156,9 @@
           <iconset>
            <normaloff>../images/icon_source_prev.png</normaloff>../images/icon_source_prev.png</iconset>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -157,6 +169,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_source_next.png</normaloff>../images/icon_source_next.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -338,6 +353,9 @@
           <iconset>
            <normaloff>../images/icon_import.png</normaloff>../images/icon_import.png</iconset>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -390,6 +408,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_refresh.png</normaloff>../images/icon_refresh.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -447,6 +468,9 @@
          <property name="checkable">
           <bool>false</bool>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -457,6 +481,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_clone_create.png</normaloff>../images/icon_clone_create.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -474,6 +501,9 @@
          </property>
          <property name="checkable">
           <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -522,7 +552,7 @@
        <item>
         <widget class="QToolButton" name="mergeButton">
          <property name="toolTip">
-          <string>Those two shapes are the same entity</string>
+          <string>Set common entity for different properties. If you use this tool with multiple selection, all the selected properties will be transfered to the same entity. If you run this with one selected feature, </string>
          </property>
          <property name="text">
           <string>Those two shapes are the same entity</string>
@@ -533,6 +563,12 @@
          </property>
          <property name="checkable">
           <bool>false</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -547,6 +583,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_unmerge.png</normaloff>../images/icon_unmerge.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -604,6 +643,9 @@
           <iconset>
            <normaloff>../images/icon_link.png</normaloff>../images/icon_link.png</iconset>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -617,6 +659,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_unlink.png</normaloff>../images/icon_unlink.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -674,6 +719,9 @@
           <iconset>
            <normaloff>../images/icon_borders.png</normaloff>../images/icon_borders.png</iconset>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -687,6 +735,9 @@
          <property name="icon">
           <iconset>
            <normaloff>../images/icon_borders_select.png</normaloff>../images/icon_borders_select.png</iconset>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -738,6 +789,9 @@
          <property name="checkable">
           <bool>false</bool>
          </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -754,6 +808,9 @@
          </property>
          <property name="checkable">
           <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
