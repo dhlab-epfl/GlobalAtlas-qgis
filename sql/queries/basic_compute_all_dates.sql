@@ -11,4 +11,7 @@
  */
 /************************************************************************************************/
 
-SELECT vtm.compute_date_for_property_of_entity(%(entity_id)s,%(property_type_id)s);
+SELECT vtm.compute_date_for_property_of_entity(sub.entity_id,sub.property_type_id)
+FROM (
+	SELECT DISTINCT entity_id, property_type_id FROM vtm.properties
+) as sub;

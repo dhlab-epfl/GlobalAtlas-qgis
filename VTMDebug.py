@@ -78,6 +78,10 @@ class VTMDebug(QDialog):
                 self.verboseQuery('insertion of dummy data (borders)','import/dummy_data_borders')               
                 self.main.commit()
 
+            if self.shsDataCheckBox.isChecked():
+                self.verboseQuery('insertion of shs data','import/shs')               
+                self.main.commit()
+
             if self.euratlasCitiesCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
                     self.verboseQuery('insertion of Euratlas cities for year {0}'.format(year), 'import/euratlas_cities', {'year':year})
