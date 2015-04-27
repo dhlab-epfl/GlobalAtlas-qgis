@@ -65,7 +65,7 @@ class VTMToolBar(QDockWidget):
         self.refreshButton.pressed.connect(self.doRefresh)  
 
         self.mergeButton.pressed.connect(lambda: VTMTool.activate(VTMMergeTool, self.iface, self.main, self.mergeButton) )
-        self.explodeButton.pressed.connect(self.doExplode)
+        self.explodeButton.pressed.connect(lambda: VTMTool.activate(VTMExplodeTool, self.iface, self.main, self.explodeButton) )
 
         self.notexistButton.pressed.connect(self.doNotexist)
         self.copytodateButton.pressed.connect(self.doCopytodate)

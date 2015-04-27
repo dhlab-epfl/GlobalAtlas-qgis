@@ -154,4 +154,29 @@ class VTMMergeTool(VTMTool):
         self.baseEntityId = None
 
 
+class VTMExplodeTool(VTMTool):
+
+    def doTrigger(self):
+        """Performs the differentiation of several properties into different entities
+
+        It will keep the entity_id of the property with the lower id, and assign entity_id to NULL to all properties, which will result on automatic creation of entities for those"""
+
+        layer = self._getLayerIfEventsLayersAndSelection()
+        if layer is None: return
+
+        # postprocessing
+        self.preparePostProcessingFromSelection( layer )
+        
+        # basic_unmerge_feature.sql
+        propertiesIds = layer.selectedFeaturesIds()
+
+        self.main.runQuery('queries/basic_unmerge_features', {'property_ids': propertiesIds})
+        self.main.commit()
+
+        # postprocessing
+        self.commitPostProcessing();
+
+        layer.removeSelection()
+
+
 
