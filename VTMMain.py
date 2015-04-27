@@ -50,7 +50,7 @@ class VTMMain:
     propertiesTypeLayer = None
     entitiesTypeLayer = None
 
-    uri = 'dbname=\'vtm_dev\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'
+    uri = None
 
     def __init__(self, iface):
         self.plugin_dir = os.path.dirname(__file__)
@@ -62,10 +62,7 @@ class VTMMain:
         self.connection = None
         self.sqlQueries = {}
 
-        username = QSettings().value("VTM Slider/username", "")
-        password = QSettings().value("VTM Slider/password", "")
-        QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
-        QgsCredentials.instance().put(self.uri, username, password)
+        self.setDatabase( QSettings().value("VTM Slider/database", "vtm_dev") )
         
 
     def initGui(self):
@@ -82,10 +79,22 @@ class VTMMain:
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
         self.iface.newProjectCreated.disconnect( self.loadLayers )
-        #self.disconnectSignalsForPostProcessing() #disconnecting crashes on quit ?!
+
+    def setDatabase(self, db):
+        database = db
+        username = QSettings().value("VTM Slider/username", "")
+        password = QSettings().value("VTM Slider/password", "")
+        QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
+        self.uri = 'dbname=\'{db}\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'.format(db=database)
+        QgsCredentials.instance().put(self.uri, username, password)
+        QgsMessageLog.logMessage('setting credentials: '+self.uri+' '+username+'//'+password, 'VTM Slider')
+
+        QSettings().setValue("VTM Slider/database", database)
+
+
+    
 
     def loadLayers(self):
-
 
         ############################################################
         # Get and check the SQL connection
@@ -129,7 +138,6 @@ class VTMMain:
         QgsMessageLog.logMessage('Plugin will work.','VTM Slider')
 
 
-
     ############################################################################################
     #
     # SIGNALS FOR POSTPROCESSING         
@@ -149,17 +157,6 @@ class VTMMain:
             layer.committedGeometriesChanges.connect( self.committedGeometriesChanges )
             layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
             layer.editingStopped.connect( self.editingStopped )
-
-    def disconnectSignalsForPostProcessing(self):
-        for layer in [self.eventsPointLayer, self.eventsLineLayer, self.eventsPolygonLayer, self.eventsLayer]:
-            try:
-                layer.committedFeaturesAdded.disconnect()
-                layer.committedAttributeValuesChanges.disconnect()
-                layer.committedGeometriesChanges.disconnect()
-                layer.featureDeleted.disconnect()
-                layer.editingStopped.disconnect()
-            except Exception, e:
-                pass
 
 
     ############################################################################################
@@ -269,7 +266,6 @@ class VTMMain:
     ############################################################################################
 
     def getConnection(self):
-        self.disconnectSignalsForPostProcessing()
 
         ############################################################
         # Get the postgres connection using the eventsLayer uri and credentials
@@ -317,4 +313,6 @@ class VTMMain:
         
     def commit(self):
         self.connection.commit()
+
+
 

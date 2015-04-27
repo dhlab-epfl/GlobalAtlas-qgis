@@ -65,10 +65,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1336950.66635143687017262</xmin>
-      <ymin>4533834.87450155150145292</ymin>
-      <xmax>2714361.252645343542099</xmax>
-      <ymax>5731723.35929269623011351</ymax>
+      <xmin>295271.31822143448516726</xmin>
+      <ymin>1601790.86309309210628271</ymin>
+      <xmax>5804913.66339706256985664</xmax>
+      <ymax>6393344.80225767102092505</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -1226,7 +1226,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1570/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1570/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1731,7 +1731,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1570/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1570/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2280,7 +2280,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1570/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1570/**/)</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -3343,20 +3343,6 @@
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
-    <VTMSlider>
-      <entitiesLayerComboBox type="QString">1360_isl20150216164008691</entitiesLayerComboBox>
-      <entitiesLayer type="QString">entities20150212181047504</entitiesLayer>
-      <timelayers type="QStringList">
-        <value>properties_for_qgis20150307041406392</value>
-        <value>properties_for_qgis20150307001918975</value>
-      </timelayers>
-      <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
-      <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
-      <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
-      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-AND&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>
-    </VTMSlider>
     <SpatialRefSys>
       <ProjectCRSProj4String type="QString">+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</ProjectCRSProj4String>
       <ProjectCrs type="QString">EPSG:3004</ProjectCrs>

@@ -156,7 +156,7 @@ class VTMDebug(QDialog):
     def doViewSettings(self):
         self.resetOutput()
 
-        for s in ['VTM Slider/username','VTM Slider/password']:
+        for s in ['VTM Slider/database','VTM Slider/username','VTM Slider/password']:
             self.printOutput( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
 
     def doDeleteSettings(self):
