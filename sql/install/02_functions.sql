@@ -53,6 +53,47 @@ $$
 $$ LANGUAGE plpgsql;
 
 /*************************************************/
+/* Function to recompute a date for a property of an entity */
+/*************************************************/
+
+DROP FUNCTION IF EXISTS vtm.compute_date_for_property_of_entity(the_entity_id integer, the_property_id integer) CASCADE;
+CREATE FUNCTION vtm.compute_date_for_property_of_entity(the_entity_id integer, the_property_id integer) RETURNS VOID AS    
+$$
+    BEGIN
+        UPDATE vtm.properties as d
+        SET   computed_date_start = vtm.compute_interpolation(sub.prev_date,sub.prev_interpolation,d.date,d.interpolation),
+              computed_date_end = vtm.compute_interpolation(d.date,d.interpolation,sub.next_date,sub.next_interpolation)
+        FROM (
+          SELECT  array_agg(id) as ids,
+                date,
+                lag(date, 1, NULL) OVER (ORDER BY date) as prev_date,
+                lead(date, 1, NULL) OVER (ORDER BY date) as next_date,                  
+                MIN(interpolation) as interpolation,
+                lag(MIN(interpolation), 1, NULL) OVER (ORDER BY date) as prev_interpolation,
+                lead(MIN(interpolation), 1, NULL) OVER (ORDER BY date) as next_interpolation
+          FROM vtm.properties
+          WHERE (
+                  entity_id = the_entity_id                                                        -- the entity's properties have been edited
+                  OR
+                  entity_id::text IN  (
+                        SELECT  succ.value
+                        FROM  vtm.properties as succ
+                        WHERE   succ.property_type_id=3 AND succ.entity_id = the_entity_id
+                      )
+                )
+                AND
+                (property_type_id = the_property_id)
+          GROUP BY date, interpolation, property_type_id
+          ORDER BY date, interpolation ASC
+        ) as sub
+        WHERE   d.id = ANY(sub.ids);
+    END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+/*************************************************/
 /* Functions to store date and user stamps       */
 /*************************************************/
 

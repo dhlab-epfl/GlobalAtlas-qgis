@@ -29,6 +29,14 @@ from qgis.core import *
 import os.path
 import re
 
+from tempfile import mkstemp
+from shutil import move
+from os import remove, close
+import re
+
+
+from VTMTool import *
+
 dateRange = [0,2050]
 
 class VTMToolBar(QDockWidget):
@@ -56,8 +64,8 @@ class VTMToolBar(QDockWidget):
 
         self.refreshButton.pressed.connect(self.doRefresh)  
 
-        self.mergeButton.pressed.connect(self.doMerge)
-        self.explodeButton.pressed.connect(self.doExplode)
+        self.mergeButton.pressed.connect(lambda: VTMTool.activate(VTMMergeTool, self.iface, self.main, self.mergeButton) )
+        self.explodeButton.pressed.connect(lambda: VTMTool.activate(VTMExplodeTool, self.iface, self.main, self.explodeButton) )
 
         self.notexistButton.pressed.connect(self.doNotexist)
         self.copytodateButton.pressed.connect(self.doCopytodate)
@@ -102,9 +110,33 @@ class VTMToolBar(QDockWidget):
     ############################################################################################
 
     def doOpenFile(self):
-        path = os.path.join( os.path.dirname(__file__),'qgis','dataentry.qgs')
-        self.iface.addProject( path )
-        self.main.loadLayers()
+        chooseDB = QDialog()
+        uic.loadUi(os.path.dirname(__file__)+'/ui/select_database.ui', chooseDB)
+
+        chooseDB.comboBox.setCurrentIndex( chooseDB.comboBox.findText( QSettings().value("VTM Slider/database", "vtm_dev") ) )        
+ 
+        if chooseDB.exec_() == QDialog.Accepted:
+
+            database = chooseDB.comboBox.currentText()
+            self.main.setDatabase( database )
+
+            path = os.path.join( os.path.dirname(__file__),'qgis','dataentry.qgs')
+
+            fh, abs_path = mkstemp()
+            with open(abs_path,'w') as new_file:
+                with open(path) as old_file:
+                    for line in old_file:
+                        #changedLine = line.decode('utf-8').replace(pattern, subst).encode('utf-8')
+                        changedLine = re.sub( r'dbname=\'([a-zA-Z_0-9]*)\'', 'dbname=\''+database+'\'', line.decode('utf-8') )
+                        new_file.write( changedLine.encode('utf-8') )
+            close(fh)
+            #Remove original file
+            remove(path)
+            #Move new file
+            move(abs_path, path)
+
+            self.iface.addProject( path )
+            self.main.loadLayers()
 
     def doHelp(self):
         dlg = VTMHelp()
@@ -210,6 +242,8 @@ class VTMToolBar(QDockWidget):
 
         layer = self._getLayerIfEventsLayersAndSelection()
         if layer is None: return
+
+
 
         # postprocessing
         self.preparePostProcessingFromSelection( layer )

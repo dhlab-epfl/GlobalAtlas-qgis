@@ -78,6 +78,10 @@ class VTMDebug(QDialog):
                 self.verboseQuery('insertion of dummy data (borders)','import/dummy_data_borders')               
                 self.main.commit()
 
+            if self.shsDataCheckBox.isChecked():
+                self.verboseQuery('insertion of shs data','import/shs')               
+                self.main.commit()
+
             if self.euratlasCitiesCheckBox.isChecked():
                 for year in range(self.euratlasFromDateSpinBox.value(),self.euratlasToDateSpinBox.value()+1,100):
                     self.verboseQuery('insertion of Euratlas cities for year {0}'.format(year), 'import/euratlas_cities', {'year':year})
@@ -152,7 +156,7 @@ class VTMDebug(QDialog):
     def doViewSettings(self):
         self.resetOutput()
 
-        for s in ['VTM Slider/username','VTM Slider/password']:
+        for s in ['VTM Slider/database','VTM Slider/username','VTM Slider/password']:
             self.printOutput( '{0}:\t{1}'.format(s,str(QSettings().value(s))) ) 
 
     def doDeleteSettings(self):
