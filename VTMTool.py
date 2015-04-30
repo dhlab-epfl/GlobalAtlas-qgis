@@ -164,19 +164,24 @@ class VTMExplodeTool(VTMTool):
         layer = self._getLayerIfEventsLayersAndSelection()
         if layer is None: return
 
-        # postprocessing
+        # postprocessing of selected properties
         self.preparePostProcessingFromSelection( layer )
         
         # basic_unmerge_feature.sql
         propertiesIds = layer.selectedFeaturesIds()
 
-        self.main.runQuery('queries/basic_unmerge_features', {'property_ids': propertiesIds})
+        resulting_entity_ids = self.main.runQuery('queries/basic_unmerge_features', {'property_ids': propertiesIds})
         self.main.commit()
+        
+        # postprocessing of affected entities
+        for rec in resulting_entity_ids:
+            self.preparePostProcessing( [[rec['entity_id'], rec['property_type_id']]] )
 
         # postprocessing
         self.commitPostProcessing();
 
         layer.removeSelection()
+
 
 
 

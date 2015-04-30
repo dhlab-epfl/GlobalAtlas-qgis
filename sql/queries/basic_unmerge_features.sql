@@ -13,4 +13,5 @@
 
 UPDATE vtm.properties as d
       SET   entity_id = NULL
-      WHERE id = ANY( %(property_ids)s );
+      WHERE id = ANY( %(property_ids)s )
+RETURNING entity_id, property_type_id;
