@@ -25,6 +25,11 @@ import os.path
 
 class VTMLoadData(QDialog):
 
+    PROPERTY_COLUMN = 0
+    DATE_COLUMN = 1
+    INTERP_COLUMN = 2
+    VALUE_COLUMN = 3
+
     def __init__(self, iface, main):
 
         self.iface = iface
@@ -44,6 +49,8 @@ class VTMLoadData(QDialog):
 
         self.layerNameLabel.setText( self.layer.name() )
 
+        self.entityNameLineEdit.setText( '\'{layername} #\' || $id'.format(layername=self.layer.name()) )
+
         for f in self.main.entitiesTypeLayer.getFeatures():
 	        self.entityTypeComboBox.addItem( f.attribute('name'), f.id() )
 
@@ -51,13 +58,16 @@ class VTMLoadData(QDialog):
 	        self.addAttributeTypeComboBox.addItem( f.attribute('name'), f.id() )
 
         if self.layer.hasGeometryType():
-            propIdItem = QTableWidgetItem('1')
             propItem = QTableWidgetItem('geom')
+            dateItem = QTableWidgetItem( '2015' )
+            interpItem = QTableWidgetItem( '\'default\'' )
             valItem = QTableWidgetItem('geomToWKT( transform($geometry,\'{0}\',\'EPSG:4326\') )'.format(crs))
+
             self.attributesTableWidget.insertRow(0)
-            self.attributesTableWidget.setItem(0,0,propIdItem)
-            self.attributesTableWidget.setItem(0,1,propItem)
-            self.attributesTableWidget.setItem(0,2,valItem)
+            self.attributesTableWidget.setItem(0,self.PROPERTY_COLUMN,propItem)
+            self.attributesTableWidget.setItem(0,self.DATE_COLUMN,dateItem)
+            self.attributesTableWidget.setItem(0,self.INTERP_COLUMN,interpItem)
+            self.attributesTableWidget.setItem(0,self.VALUE_COLUMN,valItem)
 
 
         if self.layer.selectedFeatureCount():
@@ -66,6 +76,8 @@ class VTMLoadData(QDialog):
 
 
         # Connect the signals
+
+        self.attributesTableWidget.currentCellChanged.connect(self.currentCellChanged)
 
         self.entityExpressionButton.pressed.connect(self.buildEntityExpression)
         self.attributeExpressionButton.pressed.connect(self.buildAttributeExpression)
@@ -84,21 +96,32 @@ class VTMLoadData(QDialog):
             self.entityNameLineEdit.setText( dialog.expressionText() )
 
     def buildAttributeExpression(self):
-        dialog = QgsExpressionBuilderDialog(self.layer, self.addAttributeValueLineEdit.text())
+        dialog = QgsExpressionBuilderDialog(self.layer, self.attributesTableWidget.currentItem().text())
         if dialog.exec_():
-            self.addAttributeValueLineEdit.setText( dialog.expressionText() )
+            self.attributesTableWidget.currentItem().setText( dialog.expressionText() )
 
     def addProperty(self):
-        propIdItem = QTableWidgetItem( str(self.addAttributeTypeComboBox.itemData( self.addAttributeTypeComboBox.currentIndex() ) ) )
         propItem = QTableWidgetItem( self.addAttributeTypeComboBox.currentText() )
-        valItem = QTableWidgetItem( self.addAttributeValueLineEdit.text() )
+        dateItem = QTableWidgetItem( '2015' )
+        interpItem = QTableWidgetItem( '\'default\'' )
+        valItem = QTableWidgetItem( 'value' )
+
         self.attributesTableWidget.insertRow(self.attributesTableWidget.rowCount())
-        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,0,propIdItem)
-        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,1,propItem)
-        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,2,valItem)
+
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.PROPERTY_COLUMN,propItem)
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.DATE_COLUMN,dateItem)
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.INTERP_COLUMN,interpItem)
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.VALUE_COLUMN,valItem)
 
     def removeProperty(self):
         self.attributesTableWidget.removeRow( self.addAttributeTypeComboBox.currentIndex() )
+
+    def currentCellChanged(self, currentRow, currentColumn, previousRow, previousColumn):
+        if currentColumn==self.DATE_COLUMN or currentColumn==self.INTERP_COLUMN  or currentColumn==self.VALUE_COLUMN:
+            self.attributeExpressionButton.setEnabled(True)
+        else:
+            self.attributeExpressionButton.setEnabled(False)
+
 
     def updateFeatureCountLabel(self):
         count = 0
@@ -149,15 +172,24 @@ class VTMLoadData(QDialog):
 
             for row in range(0, self.attributesTableWidget.rowCount()):
 
-                expVal = QgsExpression( self.attributesTableWidget.item(row, 2).text() )
-                expVal.prepare( entityFields )
-                val = expVal.evaluate( f )
-                date = self.dateSpinBox.value()
+                valueExpVal = QgsExpression( self.attributesTableWidget.item(row, self.VALUE_COLUMN).text() )
+                valueExpVal.prepare( entityFields )
+                val = valueExpVal.evaluate( f )
 
-                prop_type_id = self.attributesTableWidget.item(row, 0).text()
+                dateExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_COLUMN).text() )
+                dateExpVal.prepare( entityFields )
+                date = dateExpVal.evaluate( f )
 
-                sql = 'INSERT INTO vtm.properties(entity_id, property_type_id, value, date) VALUES( %(ent_id)s, %(prop_type_id)s , %(val)s , %(date)s ) RETURNING id;'
-                cursor.execute(sql, {'ent_id': ent_id , 'prop_type_id': prop_type_id,'val': val,'date': date })
+                interpExpVal = QgsExpression( self.attributesTableWidget.item(row, self.INTERP_COLUMN).text() )
+                interpExpVal.prepare( entityFields )
+                interp = interpExpVal.evaluate( f )
+
+                prop = self.attributesTableWidget.item(row, self.PROPERTY_COLUMN).text()
+                result = self.main.runQuery('queries/basic_create_or_get_property_type', {'property_name': prop})
+                prop_type_id = result.fetchone()['id']
+
+                sql = 'INSERT INTO vtm.properties(entity_id, property_type_id, value, date, interpolation) VALUES( %(ent_id)s, %(prop_type_id)s , %(val)s , %(date)s, %(interp)s ) RETURNING id;'
+                cursor.execute(sql, {'ent_id': ent_id , 'prop_type_id': prop_type_id,'val': val,'date': date,'interp': interp })
 
                 QgsMessageLog.logMessage( 'attribute create created : '+str(cursor.fetchone()), 'VTM Slider')
 
