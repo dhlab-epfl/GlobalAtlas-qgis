@@ -22,6 +22,7 @@ CREATE TABLE vtm.properties_types
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX properties_types_name_idx ON vtm.properties_types(name);
 
 CREATE TRIGGER properties_types_stamps BEFORE INSERT OR UPDATE ON vtm.properties_types FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
@@ -43,6 +44,7 @@ CREATE TABLE vtm.entity_types
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX entity_types_name_idx ON vtm.entity_types(name);
 
 CREATE TRIGGER entity_types_stamps BEFORE INSERT OR UPDATE ON vtm.entity_types FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
@@ -62,6 +64,8 @@ CREATE TABLE vtm.entities
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX entities_name_idx ON vtm.entities(name);
+
 COMMENT ON TABLE vtm.entities IS 'Cette table contient les entités historiques.';
 
 CREATE TRIGGER entities_stamps BEFORE INSERT OR UPDATE ON vtm.entities FOR EACH ROW
@@ -118,7 +122,9 @@ CREATE TABLE vtm.properties
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
-DROP FUNCTION IF EXISTS vtm.properties_stamps() CASCADE;
+CREATE INDEX properties_entity_id_idx ON vtm.properties(entity_id);
+CREATE INDEX properties_property_type_id_idx ON vtm.properties(property_type_id);
+
 
 -- TRIGGER FOR STAMPS
 
