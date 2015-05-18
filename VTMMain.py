@@ -41,6 +41,7 @@ class VTMMain:
     entitiesLayerID = 'entities20150212181047504'
     entitiesTypeLayerID = 'entity_types20150306220740482'
     propertiesTypeLayerID = 'properties_types20150317175434094'
+    sourcesLayerID = 'sources20150212181047520'
 
     eventsPointLayer = None
     eventsLineLayer = None
@@ -49,6 +50,7 @@ class VTMMain:
     entitiesLayer = None
     propertiesTypeLayer = None
     entitiesTypeLayer = None
+    sourcesLayer = None
 
     uri = None
 
@@ -119,6 +121,7 @@ class VTMMain:
         self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
         self.propertiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.propertiesTypeLayerID)
         self.entitiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesTypeLayerID)
+        self.sourcesLayer = QgsMapLayerRegistry.instance().mapLayer(self.sourcesLayerID)
 
         if self.eventsPointLayer is None or self.eventsLineLayer is None or self.eventsPolygonLayer is None or self.eventsLayer is None or self.entitiesLayer is None or self.propertiesTypeLayer is None or self.entitiesTypeLayer is None:
             QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')

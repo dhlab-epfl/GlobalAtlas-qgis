@@ -51,8 +51,13 @@ class VTMLoadData(QDialog):
 
         self.entityNameLineEdit.setText( '\'{layername} #\' || $id'.format(layername=self.layer.name()) )
 
+        self.sourceLineEdit.setText( self.layer.name() )
+
         for f in self.main.entitiesTypeLayer.getFeatures():
-	        self.entityTypeComboBox.addItem( f.attribute('name'), f.id() )
+            self.entityTypeComboBox.addItem( f.attribute('name'), f.id() )
+
+        for f in self.main.sourcesLayer.getFeatures():
+            self.sourceComboBox.addItem( f.attribute('name'), f.id() )
 
         for f in self.main.propertiesTypeLayer.getFeatures():
 	        self.addAttributeTypeComboBox.addItem( f.attribute('name'), f.id() )
@@ -90,6 +95,7 @@ class VTMLoadData(QDialog):
         self.selectionOnlyCheckBox.stateChanged.connect( self.updateFeatureCountLabel )
 
 
+
     def buildEntityExpression(self):
         dialog = QgsExpressionBuilderDialog(self.layer, self.entityNameLineEdit.text())
         if dialog.exec_():
@@ -122,21 +128,22 @@ class VTMLoadData(QDialog):
         else:
             self.attributeExpressionButton.setEnabled(False)
 
+    def getCount(self):
+        if self.selectionOnlyCheckBox.isChecked():
+            return self.layer.selectedFeatureCount()
+        else:
+            return self.layer.featureCount()
 
     def updateFeatureCountLabel(self):
-        count = 0
-        if self.selectionOnlyCheckBox.isChecked():
-            count = self.layer.selectedFeatureCount()
-        else:
-            count = self.layer.featureCount()
+        self.featureCountLabel.setText( 'You are going to load {0} features'.format( self.getCount() ) )
 
-        self.featureCountLabel.setText( 'You are going to load {0} features'.format( count ) )
-
-    def validateExpressions(self):
-        pass
 
     def process(self):        
         # Here we do the actual loading
+
+        progress = QProgressDialog("Importing features...", "Abort", 0, self.getCount(), self)
+        progress.setWindowModality(Qt.WindowModal)
+        progress.raise_()
 
         featureIterator = None
         if self.selectionOnlyCheckBox.isChecked():
@@ -149,23 +156,25 @@ class VTMLoadData(QDialog):
 
         entityFields = self.main.entitiesLayer.pendingFields()
 
+        i=0
         for f in featureIterator:
+            i+=1
+            progress.setValue(i)
+            if progress.wasCanceled():
+                break
+
+
             QgsMessageLog.logMessage( 'importing feature {0}'.format( f.id() ),'VTM Slider' )
+
             
-            # 1. Creation of the entity
 
             expName = QgsExpression( self.entityNameLineEdit.text() )
             expName.prepare( entityFields )
-            name = expName.evaluate( f )
+            ent_name = expName.evaluate( f )
 
-            type_id = self.entityTypeComboBox.itemData( self.entityTypeComboBox.currentIndex() )
+            ent_type = self.entityTypeComboBox.itemText( self.entityTypeComboBox.currentIndex() ) if self.entityExistingRadioButton.isChecked() else self.entityTypeLineEdit.text()
 
-            sql = 'INSERT INTO vtm.entities(name, type_id) VALUES( %(name)s, %(type_id)s ) RETURNING id;'
-            cursor.execute(sql, {'name': name , 'type_id': type_id})
-            ent_id = cursor.fetchone()[0]
-
-            QgsMessageLog.logMessage( 'tried to insert : '+str(name)+', '+str(type_id), 'VTM Slider')
-            QgsMessageLog.logMessage( 'id created : '+str(ent_id), 'VTM Slider')
+            source_name = self.sourceComboBox.itemText( self.sourceComboBox.currentIndex() ) if self.sourceExistingRadioButton.isChecked() else self.sourceLineEdit.text()
 
 
             # 2. Creation of the properties
@@ -174,7 +183,7 @@ class VTMLoadData(QDialog):
 
                 valueExpVal = QgsExpression( self.attributesTableWidget.item(row, self.VALUE_COLUMN).text() )
                 valueExpVal.prepare( entityFields )
-                val = valueExpVal.evaluate( f )
+                value = valueExpVal.evaluate( f )
 
                 dateExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_COLUMN).text() )
                 dateExpVal.prepare( entityFields )
@@ -184,12 +193,11 @@ class VTMLoadData(QDialog):
                 interpExpVal.prepare( entityFields )
                 interp = interpExpVal.evaluate( f )
 
-                prop = self.attributesTableWidget.item(row, self.PROPERTY_COLUMN).text()
-                result = self.main.runQuery('queries/basic_create_or_get_property_type', {'property_name': prop})
-                prop_type_id = result.fetchone()['id']
+                prop_name = self.attributesTableWidget.item(row, self.PROPERTY_COLUMN).text()
 
-                sql = 'INSERT INTO vtm.properties(entity_id, property_type_id, value, date, interpolation) VALUES( %(ent_id)s, %(prop_type_id)s , %(val)s , %(date)s, %(interp)s ) RETURNING id;'
-                cursor.execute(sql, {'ent_id': ent_id , 'prop_type_id': prop_type_id,'val': val,'date': date,'interp': interp })
+                sql = 'SELECT vtm.insert_properties_helper(%(ent_name)s, %(ent_type)s, %(source_name)s, %(prop_name)s, %(date)s, %(interp)s, %(value)s);'
+
+                cursor.execute(sql, {'ent_name': ent_name, 'ent_type':ent_type, 'source_name':source_name, 'prop_name': prop_name,'value': value,'date': date,'interp': interp })
 
                 QgsMessageLog.logMessage( 'attribute create created : '+str(cursor.fetchone()), 'VTM Slider')
 
