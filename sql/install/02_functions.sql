@@ -120,8 +120,8 @@ $$ LANGUAGE plpgsql;
 /* Functions to facilitate inserts               */
 /*************************************************/
 
-DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) CASCADE;
-CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text) RETURNS integer AS    
+DROP FUNCTION IF EXISTS vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text, d_stt_if_unknwn int, d_end_if_unknwn int) CASCADE;
+CREATE FUNCTION vtm.insert_properties_helper(entity_name text, entity_type_name text, source_name text, property_name text, dat integer, interp vtm.interpolation_type, val text, d_stt_if_unknwn int, d_end_if_unknwn int) RETURNS integer AS    
 $$
     DECLARE
       ent_type_id integer;
@@ -164,9 +164,38 @@ $$
 
 
       -- FINALLY INSERT THE PROPERTY
-      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, interpolation, value  ) VALUES ( ent_id, prp_type_id, src_id, dat, interp, val ) RETURNING id INTO return_id;
+      INSERT INTO vtm.properties( entity_id, property_type_id, source_id, date, interpolation, value, date_start_if_unknown, date_end_if_unknown  ) VALUES ( ent_id, prp_type_id, src_id, dat, interp, val, d_stt_if_unknwn, d_end_if_unknwn ) RETURNING id INTO return_id;
 
       RETURN return_id;
+
+    END;
+$$ LANGUAGE plpgsql;
+
+
+/*************************************************/
+/* Functions that computes fuzzyness             */
+/*************************************************/
+/*
+Fuzzyness is the precision of a date. It ranges from 1.0
+(unfuzzy information) to 0.0 (fuzzy information).
+It is used when features have no defined start/end dates,
+and is determined using the validity_range_if_unknown and
+invalidity_range_if_unknown properties.
+*/
+
+DROP FUNCTION IF EXISTS vtm.fuzzyness(date int, prop_date int, prop_computed_start int, prop_computed_end int, prop_date_start_if_unknown int, prop_date_end_if_unknown int) CASCADE;
+CREATE FUNCTION vtm.fuzzyness(date int, prop_date int, prop_computed_start int, prop_computed_end int, prop_date_start_if_unknown int, prop_date_end_if_unknown int) RETURNS float AS    
+$$
+    BEGIN
+
+      IF (date<prop_date AND prop_computed_start IS NULL AND prop_date_start_if_unknown IS NOT NULL) THEN
+        RETURN LEAST(1.0,GREATEST(0.0,1.0+1.0/prop_date_start_if_unknown::float*(date::float-prop_date::float)));
+      ELSIF (date>prop_date AND prop_computed_end IS NULL AND prop_date_end_if_unknown IS NOT NULL) THEN
+        RETURN LEAST(1.0,GREATEST(0.0,1.0-1.0/prop_date_end_if_unknown::float*(date::float-prop_date::float)));
+      ELSE
+        RETURN 1.0;
+      END IF;
+
 
     END;
 $$ LANGUAGE plpgsql;

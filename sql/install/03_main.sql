@@ -113,7 +113,9 @@ CREATE TABLE vtm.properties
   interpolation vtm.interpolation_type NOT NULL DEFAULT 'default',
   infered_by text,                                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
   computed_date_start integer,
-  computed_date_end integer,
+  computed_date_end integer,                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
+  date_start_if_unknown integer,
+  date_end_if_unknown integer,
   --computed_size real,
   source_id integer REFERENCES vtm.sources ON DELETE SET NULL,
   source_description text,

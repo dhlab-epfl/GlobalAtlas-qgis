@@ -93,6 +93,9 @@ class VTMMain:
 
         QSettings().setValue("VTM Slider/database", database)
 
+    def currentDate(self):
+        return self.dockwidget.slider.value()
+
 
     
 

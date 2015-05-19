@@ -29,6 +29,8 @@ class VTMLoadData(QDialog):
     DATE_COLUMN = 1
     INTERP_COLUMN = 2
     VALUE_COLUMN = 3
+    DATE_START_IF_UNKNOWN_COLUMN = 4
+    DATE_END_IF_UNKNOWN_COLUMN = 5
 
     def __init__(self, iface, main):
 
@@ -64,15 +66,19 @@ class VTMLoadData(QDialog):
 
         if self.layer.hasGeometryType():
             propItem = QTableWidgetItem('geom')
-            dateItem = QTableWidgetItem( '2015' )
+            dateItem = QTableWidgetItem( str(self.main.currentDate()) )
             interpItem = QTableWidgetItem( '\'default\'' )
             valItem = QTableWidgetItem('geomToWKT( transform($geometry,\'{0}\',\'EPSG:4326\') )'.format(crs))
+            startDateItem = QTableWidgetItem( str(self.main.currentDate()-100) )
+            endDateItem = QTableWidgetItem( str(self.main.currentDate()+100) )
 
             self.attributesTableWidget.insertRow(0)
             self.attributesTableWidget.setItem(0,self.PROPERTY_COLUMN,propItem)
             self.attributesTableWidget.setItem(0,self.DATE_COLUMN,dateItem)
             self.attributesTableWidget.setItem(0,self.INTERP_COLUMN,interpItem)
             self.attributesTableWidget.setItem(0,self.VALUE_COLUMN,valItem)
+            self.attributesTableWidget.setItem(0,self.DATE_START_IF_UNKNOWN_COLUMN,startDateItem)
+            self.attributesTableWidget.setItem(0,self.DATE_END_IF_UNKNOWN_COLUMN,endDateItem)
 
 
         if self.layer.selectedFeatureCount():
@@ -108,9 +114,11 @@ class VTMLoadData(QDialog):
 
     def addProperty(self):
         propItem = QTableWidgetItem( self.addAttributeTypeComboBox.currentText() )
-        dateItem = QTableWidgetItem( '2015' )
+        dateItem = QTableWidgetItem( str(self.main.currentDate()) )
         interpItem = QTableWidgetItem( '\'default\'' )
         valItem = QTableWidgetItem( 'value' )
+        startDateItem = QTableWidgetItem( str(self.main.currentDate()-100) )
+        endDateItem = QTableWidgetItem( str(self.main.currentDate()+100) )
 
         self.attributesTableWidget.insertRow(self.attributesTableWidget.rowCount())
 
@@ -118,12 +126,14 @@ class VTMLoadData(QDialog):
         self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.DATE_COLUMN,dateItem)
         self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.INTERP_COLUMN,interpItem)
         self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.VALUE_COLUMN,valItem)
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.DATE_START_IF_UNKNOWN_COLUMN,startDateItem)
+        self.attributesTableWidget.setItem(self.attributesTableWidget.rowCount()-1,self.DATE_END_IF_UNKNOWN_COLUMN,endDateItem)
 
     def removeProperty(self):
         self.attributesTableWidget.removeRow( self.addAttributeTypeComboBox.currentIndex() )
 
     def currentCellChanged(self, currentRow, currentColumn, previousRow, previousColumn):
-        if currentColumn==self.DATE_COLUMN or currentColumn==self.INTERP_COLUMN  or currentColumn==self.VALUE_COLUMN:
+        if currentColumn in [self.DATE_COLUMN, self.INTERP_COLUMN, self.VALUE_COLUMN, self.DATE_START_IF_UNKNOWN_COLUMN, self.DATE_END_IF_UNKNOWN_COLUMN]:
             self.attributeExpressionButton.setEnabled(True)
         else:
             self.attributeExpressionButton.setEnabled(False)
@@ -193,11 +203,19 @@ class VTMLoadData(QDialog):
                 interpExpVal.prepare( entityFields )
                 interp = interpExpVal.evaluate( f )
 
+                startExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_START_IF_UNKNOWN_COLUMN).text() )
+                startExpVal.prepare( entityFields )
+                start = startExpVal.evaluate( f )
+
+                endExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_END_IF_UNKNOWN_COLUMN).text() )
+                endExpVal.prepare( entityFields )
+                end = endExpVal.evaluate( f )
+
                 prop_name = self.attributesTableWidget.item(row, self.PROPERTY_COLUMN).text()
 
-                sql = 'SELECT vtm.insert_properties_helper(%(ent_name)s, %(ent_type)s, %(source_name)s, %(prop_name)s, %(date)s, %(interp)s, %(value)s);'
+                sql = 'SELECT vtm.insert_properties_helper(%(ent_name)s, %(ent_type)s, %(source_name)s, %(prop_name)s, %(date)s, %(interp)s, %(value)s, %(start)s, %(end)s);'
 
-                cursor.execute(sql, {'ent_name': ent_name, 'ent_type':ent_type, 'source_name':source_name, 'prop_name': prop_name,'value': value,'date': date,'interp': interp })
+                cursor.execute(sql, {'ent_name': ent_name, 'ent_type':ent_type, 'source_name':source_name, 'prop_name': prop_name,'value': value,'date': date,'interp': interp,'start': start,'end': end })
 
                 QgsMessageLog.logMessage( 'attribute create created : '+str(cursor.fetchone()), 'VTM Slider')
 
