@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS vtm.sources CASCADE;
 CREATE TABLE vtm.sources
 (
   id serial NOT NULL PRIMARY KEY,
-  name text UNIQUE,
+  name text UNIQUE NOT NULL,
   creation_timestamp timestamp default now(),
   creation_user text default CURRENT_USER,
   modification_timestamp timestamp default now(),
