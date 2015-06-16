@@ -3,13 +3,13 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="properties_for_qgis20150317102814809" name="properties_for_qgis (points)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties_for_qgis20150317102814809" name="properties_for_qgis (points)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="properties_for_qgis20150307041406392" name="properties_for_qgis (linestrings)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties_for_qgis20150307041406392" name="properties_for_qgis (linestrings)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="properties_for_qgis20150307001918975" name="properties_for_qgis (polygons)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties_for_qgis20150307001918975" name="properties_for_qgis (polygons)">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="properties20150212181047441" name="properties (unfiltered)">
@@ -27,7 +27,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="sources20150212181047520" name="sources">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="Sources 2">
+    <layer-tree-group expanded="0" checked="Qt::PartiallyChecked" name="Sources 2">
       <customproperties/>
       <layer-tree-group expanded="0" checked="Qt::Unchecked" name="2013">
         <customproperties/>
@@ -51,7 +51,7 @@
         </layer-tree-layer>
       </layer-tree-group>
     </layer-tree-group>
-    <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Sources">
+    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Sources">
       <customproperties/>
       <layer-tree-group expanded="0" checked="Qt::Unchecked" name="2015">
         <customproperties/>
@@ -193,18 +193,18 @@
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="properties_for_qgis (points)" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties_for_qgis (points)" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150317102814809" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="properties_for_qgis (linestrings)" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties_for_qgis (linestrings)" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150307041406392" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="properties_for_qgis (polygons)" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="properties_for_qgis (polygons)" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="properties_for_qgis20150307001918975" visible="1"/>
       </filegroup>
     </legendlayer>
@@ -233,7 +233,7 @@
         <legendlayerfile isInOverview="0" layerid="sources20150212181047520" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendgroup open="true" checked="Qt::PartiallyChecked" name="Sources 2">
+    <legendgroup open="false" checked="Qt::PartiallyChecked" name="Sources 2">
       <legendgroup open="false" checked="Qt::Unchecked" name="2013">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="ITB (2013)" showFeatureCount="0">
           <filegroup open="true" hidden="false">
@@ -261,7 +261,7 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
-    <legendgroup open="true" checked="Qt::Unchecked" name="Sources">
+    <legendgroup open="false" checked="Qt::Unchecked" name="Sources">
       <legendgroup open="false" checked="Qt::Unchecked" name="2015">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="CAD_BATIMENT_HORSOL" showFeatureCount="0">
           <filegroup open="true" hidden="false">
@@ -3219,6 +3219,7 @@
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
