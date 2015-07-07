@@ -1,8 +1,10 @@
 # TimeMachineGlobal Plugin
 
-This plugin is intended to edit the database of the Time Machine Global database.
+This is a QGIS plugin to display and edit the Global Atlas database.
 
 It ships a QGIS project which must be used to use the plugin.
+
+See the screencast for a small preview.
 
 <!-- MarkdownTOC depth=3 -->
 
