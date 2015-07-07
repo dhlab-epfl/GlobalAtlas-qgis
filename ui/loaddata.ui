@@ -6,78 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>529</width>
-    <height>366</height>
+    <width>809</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Layer</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="layerNameLabel">
-     <property name="text">
-      <string>?</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>Selection</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QCheckBox" name="selectionOnlyCheckBox">
-     <property name="text">
-      <string>import selected only</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Entity type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QComboBox" name="entityTypeComboBox"/>
-   </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Entity name</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>Attributes</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
+   <item row="3" column="1">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QTableWidget" name="attributesTableWidget">
        <property name="columnCount">
-        <number>3</number>
+        <number>6</number>
        </property>
-       <column>
-        <property name="text">
-         <string>pid</string>
-        </property>
-       </column>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>100</number>
+       </attribute>
        <column>
         <property name="text">
          <string>property</string>
@@ -85,7 +38,27 @@
        </column>
        <column>
         <property name="text">
-         <string>value</string>
+         <string>date (ɛ)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>interpolation  (ɛ)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>value  (ɛ)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>date_start_if_unknown (ɛ)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>date_end_if_unknown (ɛ)</string>
         </property>
        </column>
       </widget>
@@ -93,21 +66,27 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QComboBox" name="addAttributeTypeComboBox"/>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="addAttributeValueLineEdit">
-         <property name="text">
-          <string>'a value'</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="attributeExpressionButton">
          <property name="text">
           <string>Expr.</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QComboBox" name="addAttributeTypeComboBox"/>
        </item>
        <item>
         <widget class="QToolButton" name="addAttributeButton">
@@ -128,6 +107,13 @@
     </layout>
    </item>
    <item row="10" column="0" colspan="2">
+    <widget class="QLabel" name="featureCountLabel">
+     <property name="text">
+      <string>You are going to load 0 features</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -137,47 +123,242 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <item row="2" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Metadata</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_3">
+      <item row="0" column="1">
+       <layout class="QFormLayout" name="formLayout_5">
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="sourceLineEdit">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>New source name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QRadioButton" name="sourceNewRadioButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>New</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QRadioButton" name="sourceExistingRadioButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Existing</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="sourceComboBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Source</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Entity</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Entity name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="entityNameLineEdit">
+          <property name="text">
+           <string>'My new entity #'  ||  $id </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="entityExpressionButton">
+          <property name="text">
+           <string>Expr.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="1">
+       <layout class="QFormLayout" name="formLayout_4">
+        <item row="0" column="0">
+         <widget class="QRadioButton" name="entityExistingRadioButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Existing</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="entityTypeComboBox"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QRadioButton" name="entityNewRadioButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>New</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="entityTypeLineEdit">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>New entity type name</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>65</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Entity type</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLineEdit" name="entityNameLineEdit">
+      <widget class="QLabel" name="layerNameLabel">
+       <property name="styleSheet">
+        <string notr="true">font: bold;</string>
+       </property>
        <property name="text">
-        <string>'My new entity #'  ||  $id </string>
+        <string>?</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="entityExpressionButton">
+      <widget class="QCheckBox" name="selectionOnlyCheckBox">
        <property name="text">
-        <string>Expr.</string>
+        <string>import selected only</string>
        </property>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="8" column="0" colspan="2">
-    <widget class="QLabel" name="featureCountLabel">
-     <property name="text">
-      <string>You are going to load 0 features</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Attributes date</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QSpinBox" name="dateSpinBox">
-     <property name="maximum">
-      <number>2100</number>
-     </property>
-     <property name="value">
-      <number>2015</number>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
@@ -212,6 +393,70 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>entityExistingRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>entityTypeComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>100</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>entityNewRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>entityTypeLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sourceNewRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sourceLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sourceExistingRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sourceComboBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>205</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>206</y>
     </hint>
    </hints>
   </connection>

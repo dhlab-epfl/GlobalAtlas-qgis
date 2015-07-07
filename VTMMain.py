@@ -33,7 +33,7 @@ class VTMMain:
 
     instance = None
 
-    sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/2015/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)'
+    sqlFilter = '("computed_date_start" IS NULL OR "computed_date_start"<=/**/1551/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1551/**/) AND vtm.fuzzyness(/**/1551/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0'
     eventsPointLayerID = 'properties_for_qgis20150317102814809'
     eventsLineLayerID = 'properties_for_qgis20150307041406392'
     eventsPolygonLayerID = 'properties_for_qgis20150307001918975'
@@ -41,6 +41,7 @@ class VTMMain:
     entitiesLayerID = 'entities20150212181047504'
     entitiesTypeLayerID = 'entity_types20150306220740482'
     propertiesTypeLayerID = 'properties_types20150317175434094'
+    sourcesLayerID = 'sources20150212181047520'
 
     eventsPointLayer = None
     eventsLineLayer = None
@@ -49,6 +50,7 @@ class VTMMain:
     entitiesLayer = None
     propertiesTypeLayer = None
     entitiesTypeLayer = None
+    sourcesLayer = None
 
     uri = None
 
@@ -78,7 +80,9 @@ class VTMMain:
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
-        self.iface.newProjectCreated.disconnect( self.loadLayers )
+        self.iface.newProjectCreated.disconnect( self.loadLayers )        
+        QgsExpression.unregisterFunction("vtm_date")       
+        QgsExpression.unregisterFunction("fuzzyness")
 
     def setDatabase(self, db):
         database = db
@@ -90,6 +94,9 @@ class VTMMain:
         QgsMessageLog.logMessage('setting credentials: '+self.uri+' '+username+'//'+password, 'VTM Slider')
 
         QSettings().setValue("VTM Slider/database", database)
+
+    def currentDate(self):
+        return self.dockwidget.slider.value()
 
 
     
@@ -119,6 +126,7 @@ class VTMMain:
         self.entitiesLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesLayerID)
         self.propertiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.propertiesTypeLayerID)
         self.entitiesTypeLayer = QgsMapLayerRegistry.instance().mapLayer(self.entitiesTypeLayerID)
+        self.sourcesLayer = QgsMapLayerRegistry.instance().mapLayer(self.sourcesLayerID)
 
         if self.eventsPointLayer is None or self.eventsLineLayer is None or self.eventsPolygonLayer is None or self.eventsLayer is None or self.entitiesLayer is None or self.propertiesTypeLayer is None or self.entitiesTypeLayer is None:
             QgsMessageLog.logMessage('Unable to load some needed VTM layers. Plugin will not work. Make sure you opened the provided QGIS project.','VTM Slider')
@@ -156,6 +164,7 @@ class VTMMain:
             layer.committedAttributeValuesChanges.connect( self.committedAttributeValuesChanges )
             layer.committedGeometriesChanges.connect( self.committedGeometriesChanges )
             layer.featureDeleted.connect( lambda pid: self.featureDeleted(layer, pid) )
+            layer.featureAdded.connect( lambda pid: self.featureAdded(layer, pid) )
             layer.editingStopped.connect( self.editingStopped )
 
 
@@ -209,6 +218,9 @@ class VTMMain:
                 eid = f.attributes()[eidx] # workaround
                 ptid = 1 # workaround
                 self.entityIdsToPostprocess.append( [eid,ptid] )
+
+    def featureAdded(self, layer, pid):
+        QgsMessageLog.logMessage("featureAdded")
 
     def featureDeleted(self, layer, pid): 
         """This is triggered when a feature is deleted in QGIS, in the vector layer buffer
@@ -315,4 +327,27 @@ class VTMMain:
         self.connection.commit()
 
 
+    @qgsfunction(0, "VTM")
+    def vtm_date(values, feature, parent):
+        """called by QGIS to determine the current animation time"""
+        return VTMMain.instance.dockwidget.slider.value()
 
+    @qgsfunction(5, "VTM")
+    def fuzzyness(values, feature, parent):
+        """called by QGIS to determine the current animation time"""
+
+        date = VTMMain.instance.dockwidget.slider.value()
+
+        prop_date = values[0]
+        prop_computed_date_start = values[1]
+        prop_computed_date_end = values[2]
+        prop_date_start_if_unknown = values[3]
+        prop_date_end_if_unknown = values[4]
+
+
+        if prop_date!=-1 and date<prop_date and prop_computed_date_start == -1 and prop_date_start_if_unknown != -1:
+            return min(1.0,max(0.0,1.0-float(prop_date-date)/float(prop_date-prop_date_start_if_unknown)))
+        elif prop_date!=-1 and date>prop_date and prop_computed_date_end == -1 and prop_date_end_if_unknown != -1:
+            return min(1.0,max(0.0,1.0-float(prop_date-date)/float(prop_date-prop_date_end_if_unknown)))
+        else:
+            return 1.0

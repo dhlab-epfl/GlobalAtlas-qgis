@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.9.0-Master">
+<qgis projectname="" version="2.11.0-Master">
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
@@ -27,18 +27,9 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="sources20150212181047520" name="sources">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Reference">
-      <customproperties/>
-      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="un_vol20150414103146020" name="un_vol">
-        <customproperties/>
-      </layer-tree-layer>
-      <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="TR_EME20150414161010256" name="TR_EME">
-        <customproperties/>
-      </layer-tree-layer>
-    </layer-tree-group>
     <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Sources">
       <customproperties/>
-      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="2013">
+      <layer-tree-group expanded="1" checked="Qt::Unchecked" name="2013">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="UN_VOL_merged20150408142130435" name="ITB (2013)">
           <customproperties/>
@@ -53,9 +44,36 @@
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group expanded="1" checked="Qt::Unchecked" name="1808">
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="1808">
         <customproperties/>
         <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="Napoleonian_fg_1220150414114440933" name="Napoleonian fg 12">
+          <customproperties/>
+        </layer-tree-layer>
+      </layer-tree-group>
+    </layer-tree-group>
+    <layer-tree-group expanded="0" checked="Qt::Unchecked" name="Sources 2">
+      <customproperties/>
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="2015">
+        <customproperties/>
+        <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="SHP_CAD_BATIMENT_HORSOL20150511102138089" name="CAD_BATIMENT_HORSOL">
+          <customproperties/>
+        </layer-tree-layer>
+      </layer-tree-group>
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="1911">
+        <customproperties/>
+        <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="SHP_DPS_GRANGE_BATIMENT20150511102138151" name="DPS_GRANGE_BATIMENT">
+          <customproperties/>
+        </layer-tree-layer>
+      </layer-tree-group>
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="1840">
+        <customproperties/>
+        <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="SHP_DPS_CEARD_BATIMENT20150511102138136" name="DPS_CEARD_BATIMENT">
+          <customproperties/>
+        </layer-tree-layer>
+      </layer-tree-group>
+      <layer-tree-group expanded="0" checked="Qt::Unchecked" name="1728">
+        <customproperties/>
+        <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="SHP_DPS_BILLON_BATIMENT20150511102138105" name="DPS_BILLON_BATIMENT">
           <customproperties/>
         </layer-tree-layer>
       </layer-tree-group>
@@ -65,10 +83,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>1336950.66635143687017262</xmin>
-      <ymin>4533834.87450155150145292</ymin>
-      <xmax>2714361.252645343542099</xmax>
-      <ymax>5731723.35929269623011351</ymax>
+      <xmin>2311620.05858682934194803</xmin>
+      <ymin>5035038.84356531035155058</ymin>
+      <xmax>2311862.61198382172733545</xmax>
+      <ymax>5035200.69295158516615629</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -86,26 +104,42 @@
     </destinationsrs>
     <layer_coordinate_transform_info>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161144908"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150616154454443"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="CAD_BATIMENT_HORSOL20150511102055687"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_CEARD_BATIMENT20150511102138136"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_CEARD_BATIMENT20150511102042082"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00322920150408141826798"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_CAD_BATIMENT_HORSOL20150511102138089"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_CEARD_BATIMENT20150511100326021"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_CAD_BATIMENT_HORSOL20150511100326068"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_CAD_BATIMENT_HORSOL20150511102042111"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414160742505"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="un_vol20150414103146020"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="Napoleonian_fg_1220150414114439087"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307041406392"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162155008"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162226380"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="euratlas_cities20150616110612792"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_BILLON_BATIMENT20150511102042051"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="TR_EME20150414161010256"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="Napoleonian_fg_1220150414114440933"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150307001918975"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="UN_VOL_merged20150408142130435"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161117734"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_GRANGE_BATIMENT20150511102042097"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162052612"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="properties_for_qgis20150317102814809"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420162826050"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="fg_1220150408141833671"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414114439040"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150414161141027"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_GRANGE_BATIMENT20150511100326037"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_BILLON_BATIMENT20150511102138105"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="places20150616110502504"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="SWF___pairs20150420161126054"/>
       <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:3004" srcDatumTransform="-1" destDatumTransform="-1" layerid="00327220150408141831048"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_GRANGE_BATIMENT20150511102138151"/>
+      <layer_coordinate_transform destAuthId="EPSG:3004" srcAuthId="EPSG:2056" srcDatumTransform="-1" destDatumTransform="-1" layerid="SHP_DPS_BILLON_BATIMENT20150511100326084"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <visibility-presets>
@@ -126,7 +160,6 @@
     </visibility-preset>
     <visibility-preset name="Georeference">
       <layer style="" id="properties_types20150317175434094"/>
-      <layer style="" id="un_vol20150414103146020"/>
       <layer style="" id="entity_types20150306220740482"/>
       <layer style="" id="properties20150212181047441"/>
       <layer style="" id="00327220150408141831048"/>
@@ -150,12 +183,14 @@
       <item>entity_types20150306220740482</item>
       <item>properties_types20150317175434094</item>
       <item>sources20150212181047520</item>
-      <item>00322920150408141826798</item>
-      <item>00327220150408141831048</item>
       <item>UN_VOL_merged20150408142130435</item>
-      <item>un_vol20150414103146020</item>
+      <item>00327220150408141831048</item>
+      <item>00322920150408141826798</item>
       <item>Napoleonian_fg_1220150414114440933</item>
-      <item>TR_EME20150414161010256</item>
+      <item>SHP_CAD_BATIMENT_HORSOL20150511102138089</item>
+      <item>SHP_DPS_BILLON_BATIMENT20150511102138105</item>
+      <item>SHP_DPS_CEARD_BATIMENT20150511102138136</item>
+      <item>SHP_DPS_GRANGE_BATIMENT20150511102138151</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -199,20 +234,8 @@
         <legendlayerfile isInOverview="0" layerid="sources20150212181047520" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendgroup open="false" checked="Qt::Unchecked" name="Reference">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="un_vol" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="un_vol20150414103146020" visible="0"/>
-        </filegroup>
-      </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="TR_EME" showFeatureCount="0">
-        <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="TR_EME20150414161010256" visible="0"/>
-        </filegroup>
-      </legendlayer>
-    </legendgroup>
     <legendgroup open="true" checked="Qt::Unchecked" name="Sources">
-      <legendgroup open="false" checked="Qt::Unchecked" name="2013">
+      <legendgroup open="true" checked="Qt::Unchecked" name="2013">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="ITB (2013)" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="UN_VOL_merged20150408142130435" visible="0"/>
@@ -231,7 +254,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup open="true" checked="Qt::Unchecked" name="1808">
+      <legendgroup open="false" checked="Qt::Unchecked" name="1808">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Napoleonian fg 12" showFeatureCount="0">
           <filegroup open="true" hidden="false">
             <legendlayerfile isInOverview="0" layerid="Napoleonian_fg_1220150414114440933" visible="0"/>
@@ -239,8 +262,38 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
+    <legendgroup open="false" checked="Qt::Unchecked" name="Sources 2">
+      <legendgroup open="false" checked="Qt::Unchecked" name="2015">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="CAD_BATIMENT_HORSOL" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="SHP_CAD_BATIMENT_HORSOL20150511102138089" visible="0"/>
+          </filegroup>
+        </legendlayer>
+      </legendgroup>
+      <legendgroup open="false" checked="Qt::Unchecked" name="1911">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="DPS_GRANGE_BATIMENT" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="SHP_DPS_GRANGE_BATIMENT20150511102138151" visible="0"/>
+          </filegroup>
+        </legendlayer>
+      </legendgroup>
+      <legendgroup open="false" checked="Qt::Unchecked" name="1840">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="DPS_CEARD_BATIMENT" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="SHP_DPS_CEARD_BATIMENT20150511102138136" visible="0"/>
+          </filegroup>
+        </legendlayer>
+      </legendgroup>
+      <legendgroup open="false" checked="Qt::Unchecked" name="1728">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="DPS_BILLON_BATIMENT" showFeatureCount="0">
+          <filegroup open="true" hidden="false">
+            <legendlayerfile isInOverview="0" layerid="SHP_DPS_BILLON_BATIMENT20150511102138105" visible="0"/>
+          </filegroup>
+        </legendlayer>
+      </legendgroup>
+    </legendgroup>
   </legend>
-  <projectlayers layercount="14">
+  <projectlayers layercount="16">
     <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
       <id>00322920150408141826798</id>
       <datasource>./sources/003229.jpg</datasource>
@@ -370,63 +423,105 @@
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>TR_EME20150414161010256</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."TR_EME" (geom) sql=</datasource>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>SHP_CAD_BATIMENT_HORSOL20150511102138089</id>
+      <datasource>./sources/Geneve/SHP_CAD_BATIMENT_HORSOL</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>TR_EME</layername>
+      <layername>CAD_BATIMENT_HORSOL</layername>
       <srs>
         <spatialrefsys>
-          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
-          <srsid>969</srsid>
-          <srid>3004</srid>
-          <authid>EPSG:3004</authid>
-          <description>Monte Mario / Italy zone 2</description>
-          <projectionacronym>tmerc</projectionacronym>
-          <ellipsoidacronym>intl</ellipsoidacronym>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
           <geographicflag>false</geographicflag>
         </spatialrefsys>
       </srs>
-      <provider encoding="System">postgres</provider>
-      <previewExpression>COALESCE( "id_0", '&lt;NULL>' )</previewExpression>
+      <provider encoding="System">ogr</provider>
+      <previewExpression></previewExpression>
       <vectorjoins/>
       <expressionfields/>
       <map-layer-style-manager current="">
         <map-layer-style name=""/>
       </map-layer-style-manager>
       <edittypes>
-        <edittype widgetv2type="TextEdit" name="id_0">
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_plan">
+        <edittype widgetv2type="TextEdit" name="NO_COMM">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_alt">
+        <edittype widgetv2type="TextEdit" name="NO_BATIMEN">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="data_val">
+        <edittype widgetv2type="TextEdit" name="IDENT">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fonte">
+        <edittype widgetv2type="TextEdit" name="EGID">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="id">
+        <edittype widgetv2type="TextEdit" name="REFERENCE_">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="data_cre">
+        <edittype widgetv2type="TextEdit" name="MUTNUM">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="data_mod">
+        <edittype widgetv2type="TextEdit" name="BATDDP">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="tipo_mod">
+        <edittype widgetv2type="TextEdit" name="DATEDT">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="origine">
+        <edittype widgetv2type="TextEdit" name="DESTINATIO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NOMENCLATU">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NOMEN_CLAS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PROVENANCE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_DOSSIER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_AUTOR">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="EPOQUE_CON">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ANNEE_CONS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ANNEE_TRAN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NIVEAUX_HO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NIVEAUX_SS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="HAUTEUR">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -435,14 +530,14 @@
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="182,182,182,128"/>
+              <prop k="color" v="150,152,40,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,128"/>
+              <prop k="outline_color" v="0,0,0,255"/>
               <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.5"/>
+              <prop k="outline_width" v="0.26"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="style" v="solid"/>
               <effect enabled="0" type="effectStack">
@@ -457,7 +552,765 @@
           </symbol>
         </symbols>
         <rotation/>
-        <sizescale scalemethod="area"/>
+        <sizescale scalemethod="diameter"/>
+        <effect enabled="0" type="effectStack">
+          <effect type="drawSource">
+            <prop k="blend_mode" v="0"/>
+            <prop k="draw_mode" v="2"/>
+            <prop k="enabled" v="1"/>
+            <prop k="transparency" v="0"/>
+          </effect>
+        </effect>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>IDENT</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <editform>.</editform>
+      <editforminit/>
+      <featformsuppress>0</featformsuppress>
+      <annotationform>.</annotationform>
+      <editorlayout>generatedlayout</editorlayout>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMM">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_BATIMEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="IDENT">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="EGID">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="REFERENCE_">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="MUTNUM">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="BATDDP">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATEDT">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DESTINATIO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NOMENCLATU">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NOMEN_CLAS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PROVENANCE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_DOSSIER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_AUTOR">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="EPOQUE_CON">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ANNEE_CONS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ANNEE_TRAN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NIVEAUX_HO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NIVEAUX_SS">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="HAUTEUR">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>SHP_DPS_BILLON_BATIMENT20150511102138105</id>
+      <datasource>./sources/Geneve/SHP_DPS_BILLON_BATIMENT|layerid=0|subset="TYPE_STRUC" = 'Bâtiment'</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>DPS_BILLON_BATIMENT</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 symbollevels="0" type="singleSymbol">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0"/>
+              <prop k="color" v="178,233,171,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+        <effect enabled="0" type="effectStack">
+          <effect type="drawSource">
+            <prop k="blend_mode" v="0"/>
+            <prop k="draw_mode" v="2"/>
+            <prop k="enabled" v="1"/>
+            <prop k="transparency" v="0"/>
+          </effect>
+        </effect>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>ID_OBJET</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <editform>.</editform>
+      <editforminit/>
+      <featformsuppress>0</featformsuppress>
+      <annotationform>.</annotationform>
+      <editorlayout>generatedlayout</editorlayout>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>SHP_DPS_CEARD_BATIMENT20150511102138136</id>
+      <datasource>./sources/Geneve/SHP_DPS_CEARD_BATIMENT|layerid=0|subset="TYPE_STRUC" = 'Bâtiment'</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>DPS_CEARD_BATIMENT</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 symbollevels="0" type="singleSymbol">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0"/>
+              <prop k="color" v="163,55,240,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+        <effect enabled="0" type="effectStack">
+          <effect type="drawSource">
+            <prop k="blend_mode" v="0"/>
+            <prop k="draw_mode" v="2"/>
+            <prop k="enabled" v="1"/>
+            <prop k="transparency" v="0"/>
+          </effect>
+        </effect>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>ID_OBJET</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <editform>.</editform>
+      <editforminit/>
+      <featformsuppress>0</featformsuppress>
+      <annotationform>.</annotationform>
+      <editorlayout>generatedlayout</editorlayout>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>SHP_DPS_GRANGE_BATIMENT20150511102138151</id>
+      <datasource>./sources/Geneve/SHP_DPS_GRANGE_BATIMENT|layerid=0|subset="TYPE_STRUC" = 'Bâtiment'</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>DPS_GRANGE_BATIMENT</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>47</srsid>
+          <srid>2056</srid>
+          <authid>EPSG:2056</authid>
+          <description>CH1903+ / LV95</description>
+          <projectionacronym>somerc</projectionacronym>
+          <ellipsoidacronym>bessel</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 symbollevels="0" type="singleSymbol">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0"/>
+              <prop k="color" v="30,150,70,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+        <effect enabled="0" type="effectStack">
+          <effect type="drawSource">
+            <prop k="blend_mode" v="0"/>
+            <prop k="draw_mode" v="2"/>
+            <prop k="enabled" v="1"/>
+            <prop k="transparency" v="0"/>
+          </effect>
+        </effect>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>ID_OBJET</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <editform>.</editform>
+      <editforminit/>
+      <featformsuppress>0</featformsuppress>
+      <annotationform>.</annotationform>
+      <editorlayout>generatedlayout</editorlayout>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="ID_OBJET">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ID_REFEREN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="NO_COMMUNE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SURFACE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLAN_REFER">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATE_EXTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SERVICE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="CODES_PROJ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TYPE_STRUC">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_AREA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SHAPE_LEN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+    </maplayer>
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>UN_VOL_merged20150408142130435</id>
+      <datasource>./sources/UN_VOL_merged.shp</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>ITB (2013)</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
+          <srsid>969</srsid>
+          <srid>3004</srid>
+          <authid>EPSG:3004</authid>
+          <description>Monte Mario / Italy zone 2</description>
+          <projectionacronym>tmerc</projectionacronym>
+          <ellipsoidacronym>intl</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <previewExpression>COALESCE( "Id", '&lt;NULL>' )</previewExpression>
+      <vectorjoins/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="Id">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ACC_PLAN">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ACC_ALT">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATA_REG">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATA_VAL">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="FONTE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="SEGNALAZ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="UV_QGRONDA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="UV_QCOLMO">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="UV_H">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="UV_TIPPORZ">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="UV_HINTRA">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATA_CRE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="DATA_MOD">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="TIPO_MOD">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ORIGINE">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="eliminato">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="elevation">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Layer">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Color">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 symbollevels="0" type="singleSymbol">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0"/>
+              <prop k="color" v="0,0,0,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.4"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="b_diagonal"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
         <effect enabled="0" type="effectStack">
           <effect type="drawSource">
             <prop k="blend_mode" v="0"/>
@@ -477,7 +1330,7 @@
         <property key="labeling/bufferColorB" value="255"/>
         <property key="labeling/bufferColorG" value="255"/>
         <property key="labeling/bufferColorR" value="255"/>
-        <property key="labeling/bufferDraw" value="false"/>
+        <property key="labeling/bufferDraw" value="true"/>
         <property key="labeling/bufferJoinStyle" value="64"/>
         <property key="labeling/bufferNoFill" value="false"/>
         <property key="labeling/bufferSize" value="1"/>
@@ -493,8 +1346,8 @@
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/enabled" value="false"/>
-        <property key="labeling/fieldName" value=""/>
+        <property key="labeling/enabled" value="true"/>
+        <property key="labeling/fieldName" value="Id"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
         <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
@@ -512,7 +1365,7 @@
         <property key="labeling/fontWeight" value="50"/>
         <property key="labeling/fontWordSpacing" value="0"/>
         <property key="labeling/formatNumbers" value="false"/>
-        <property key="labeling/isExpression" value="true"/>
+        <property key="labeling/isExpression" value="false"/>
         <property key="labeling/labelOffsetInMapUnits" value="true"/>
         <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
         <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
@@ -613,200 +1466,6 @@
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>id_0</displayfield>
-      <label>0</label>
-      <labelattributes>
-        <label fieldname="" text="Label"/>
-        <family fieldname="" name="MS Shell Dlg 2"/>
-        <size fieldname="" units="pt" value="12"/>
-        <bold fieldname="" on="0"/>
-        <italic fieldname="" on="0"/>
-        <underline fieldname="" on="0"/>
-        <strikeout fieldname="" on="0"/>
-        <color fieldname="" red="0" blue="0" green="0"/>
-        <x fieldname=""/>
-        <y fieldname=""/>
-        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-        <angle fieldname="" value="0" auto="0"/>
-        <alignment fieldname="" value="center"/>
-        <buffercolor fieldname="" red="255" blue="255" green="255"/>
-        <buffersize fieldname="" units="pt" value="1"/>
-        <bufferenabled fieldname="" on=""/>
-        <multilineenabled fieldname="" on=""/>
-        <selectedonly on=""/>
-      </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions/>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="id_0">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_plan">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_alt">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_val">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fonte">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_cre">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="tipo_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="origine">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-    </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>UN_VOL_merged20150408142130435</id>
-      <datasource>./sources/UN_VOL_merged.shp</datasource>
-      <title></title>
-      <abstract></abstract>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>ITB (2013)</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
-          <srsid>969</srsid>
-          <srid>3004</srid>
-          <authid>EPSG:3004</authid>
-          <description>Monte Mario / Italy zone 2</description>
-          <projectionacronym>tmerc</projectionacronym>
-          <ellipsoidacronym>intl</ellipsoidacronym>
-          <geographicflag>false</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <provider encoding="System">ogr</provider>
-      <previewExpression></previewExpression>
-      <vectorjoins/>
-      <expressionfields/>
-      <map-layer-style-manager current="">
-        <map-layer-style name=""/>
-      </map-layer-style-manager>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="Id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="ACC_PLAN">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="ACC_ALT">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="DATA_REG">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="DATA_VAL">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="FONTE">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="SEGNALAZ">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="UV_QGRONDA">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="UV_QCOLMO">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="UV_H">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="UV_TIPPORZ">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="UV_HINTRA">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="DATA_CRE">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="DATA_MOD">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="TIPO_MOD">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="ORIGINE">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="eliminato">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="elevation">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="Layer">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="Color">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
-        <symbols>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
-            <layer pass="0" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="219,127,6,255"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
-        </symbols>
-        <rotation/>
-        <sizescale scalemethod="area"/>
-        <effect enabled="0" type="effectStack">
-          <effect type="drawSource">
-            <prop k="blend_mode" v="0"/>
-            <prop k="draw_mode" v="2"/>
-            <prop k="enabled" v="1"/>
-            <prop k="transparency" v="0"/>
-          </effect>
-        </effect>
-      </renderer-v2>
-      <customproperties/>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
       <displayfield>Id</displayfield>
       <label>0</label>
       <labelattributes>
@@ -902,7 +1561,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entities20150212181047504</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entities" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -952,10 +1611,10 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</editform>
+      <editform>.</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -986,7 +1645,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entity_types20150306220740482</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entity_types" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."entity_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1082,7 +1741,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties20150212181047441</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1140,6 +1799,12 @@
         <edittype widgetv2type="TextEdit" name="computed_date_end">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -1165,7 +1830,7 @@
       <editform>./EventForm.ui</editform>
       <editforminit>EventForm.formOpen</editforminit>
       <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1201,6 +1866,12 @@
         <edittype widgetv2type="TextEdit" name="computed_date_end">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="ValueRelation" name="source_id">
           <widgetv2config OrderByValue="0" AllowNull="0" FilterExpression="" UseCompleter="0" fieldEditable="1" Key="id" Layer="sources20150212181047520" Value="name" labelOnTop="0" AllowMulti="0"/>
         </edittype>
@@ -1226,7 +1897,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOLYGON table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MultiPolygon table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1301/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1301/**/) AND vtm.fuzzyness(/**/1301/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1246,7 +1917,7 @@
         </spatialrefsys>
       </srs>
       <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE( "description", '&lt;NULL>' )</previewExpression>
       <vectorjoins/>
       <expressionfields/>
       <map-layer-style-manager current="">
@@ -1283,6 +1954,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1304,15 +1981,21 @@
           <category render="true" symbol="0" value="canal" label="canal"/>
           <category render="true" symbol="1" value="isola" label="isola"/>
           <category render="true" symbol="2" value="building" label="building"/>
-          <category render="true" symbol="3" value="state" label="state"/>
-          <category render="true" symbol="4" value="lot" label="lot"/>
-          <category render="true" symbol="5" value="" label=""/>
+          <category render="true" symbol="3" value="" label=""/>
         </categories>
         <symbols>
           <symbol alpha="0.494118" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="165,191,221,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;114,&#xd;&#xa;&#x9;133,&#xd;&#xa;&#x9;132,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;165,&#xd;&#xa;&#x9;191,&#xd;&#xa;&#x9;221,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
@@ -1336,6 +2019,14 @@
             <layer pass="1" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="165,166,135,128"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;175,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;165,&#xd;&#xa;&#x9;166,&#xd;&#xa;&#x9;135,&#xd;&#xa;&#x9;127.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
@@ -1359,6 +2050,14 @@
             <layer pass="2" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="166,166,166,128"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;166,&#xd;&#xa;&#x9;166,&#xd;&#xa;&#x9;166,&#xd;&#xa;&#x9;127.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
@@ -1379,55 +2078,17 @@
             </layer>
           </symbol>
           <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
-            <layer pass="4" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="166,99,99,26"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="179,138,138,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
-            <layer pass="5" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="166,99,99,26"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="179,138,138,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
             <layer pass="6" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
               <prop k="color" v="153,135,166,128"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;161,&#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;153,&#xd;&#xa;&#x9;135,&#xd;&#xa;&#x9;166,&#xd;&#xa;&#x9;127.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
@@ -1474,7 +2135,7 @@
           </symbol>
         </source-symbol>
         <rotation/>
-        <sizescale scalemethod="area"/>
+        <sizescale scalemethod="diameter"/>
         <effect enabled="0" type="effectStack">
           <effect type="drawSource">
             <prop k="blend_mode" v="0"/>
@@ -1513,7 +2174,7 @@
         <property key="labeling/distMapUnitMaxScale" value="0"/>
         <property key="labeling/distMapUnitMinScale" value="0"/>
         <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value=" &quot;entity_name&quot;  || '§(in '  ||   &quot;date&quot;  || ')'"/>
+        <property key="labeling/fieldName" value=" &quot;id&quot;|| ' : ' ||&quot;entity_name&quot;  || ' (in '  ||   &quot;date&quot;  || ')'"/>
         <property key="labeling/fontBold" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
         <property key="labeling/fontFamily" value="Segoe UI"/>
@@ -1632,7 +2293,7 @@
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>[% "entity_name" %]</displayfield>
+      <displayfield>description</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -1654,10 +2315,17 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+          <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>./EventForm.ui</editform>
       <editforminit>EventForm.formOpen</editforminit>
       <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -1673,10 +2341,10 @@
             <attributeEditorField index="0" name="id"/>
             <attributeEditorField index="-1" name="key"/>
             <attributeEditorField index="4" name="value"/>
-            <attributeEditorField index="10" name="computed_date_start"/>
-            <attributeEditorField index="11" name="computed_date_end"/>
-            <attributeEditorField index="12" name="entity_name"/>
-            <attributeEditorField index="13" name="entity_type_name"/>
+            <attributeEditorField index="12" name="computed_date_start"/>
+            <attributeEditorField index="13" name="computed_date_end"/>
+            <attributeEditorField index="14" name="entity_name"/>
+            <attributeEditorField index="15" name="entity_type_name"/>
           </attributeEditorContainer>
         </attributeEditorContainer>
       </attributeEditorForm>
@@ -1712,6 +2380,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1731,7 +2405,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTILINESTRING table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MultiLineString table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1301/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1301/**/) AND vtm.fuzzyness(/**/1301/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -1788,6 +2462,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -1807,14 +2487,17 @@
       <renderer-v2 attr="entity_type_name" symbollevels="1" type="categorizedSymbol">
         <categories>
           <category render="true" symbol="0" value="" label=""/>
-          <category render="true" symbol="1" value="canal" label="canal"/>
-          <category render="true" symbol="2" value="street" label="street"/>
-          <category render="true" symbol="3" value="border" label="border"/>
+          <category render="true" symbol="1" value="street" label="street"/>
+          <category render="true" symbol="2" value="border" label="border"/>
         </categories>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="line" name="0">
             <layer pass="2" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;161,&#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
               <prop k="customdash_map_unit_scale" v="0,0"/>
               <prop k="customdash_unit" v="MM"/>
@@ -1840,6 +2523,10 @@
             </layer>
             <layer pass="3" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;200,&#xd;&#xa;&#x9;186,&#xd;&#xa;&#x9;211,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
               <prop k="customdash_map_unit_scale" v="0,0"/>
               <prop k="customdash_unit" v="MM"/>
@@ -1867,58 +2554,10 @@
           <symbol alpha="1" clip_to_extent="1" type="line" name="1">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="round"/>
-              <prop k="line_color" v="138,159,179,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="1.25"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="0,0"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-            <layer pass="1" class="SimpleLine" locked="0">
-              <prop k="capstyle" v="round"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="round"/>
-              <prop k="line_color" v="186,198,211,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="1"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="0,0"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="2">
-            <layer pass="0" class="SimpleLine" locked="0">
-              <prop k="capstyle" v="round"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;172,&#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
               <prop k="customdash_map_unit_scale" v="0,0"/>
               <prop k="customdash_unit" v="MM"/>
@@ -1944,6 +2583,10 @@
             </layer>
             <layer pass="1" class="SimpleLine" locked="0">
               <prop k="capstyle" v="round"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;211,&#xd;&#xa;&#x9;207,&#xd;&#xa;&#x9;186,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
               <prop k="customdash_map_unit_scale" v="0,0"/>
               <prop k="customdash_unit" v="MM"/>
@@ -1968,9 +2611,13 @@
               </effect>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="line" name="3">
+          <symbol alpha="1" clip_to_extent="1" type="line" name="2">
             <layer pass="0" class="SimpleLine" locked="0">
               <prop k="capstyle" v="square"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;0,&#xd;&#xa;&#x9;0,&#xd;&#xa;&#x9;0,&#xd;&#xa;&#x9;127.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="customdash" v="5;2"/>
               <prop k="customdash_map_unit_scale" v="0,0"/>
               <prop k="customdash_unit" v="MM"/>
@@ -2026,7 +2673,7 @@
           </symbol>
         </source-symbol>
         <rotation/>
-        <sizescale scalemethod="area"/>
+        <sizescale scalemethod="diameter"/>
         <effect enabled="0" type="effectStack">
           <effect type="drawSource">
             <prop k="blend_mode" v="0"/>
@@ -2204,10 +2851,17 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="1"/>
       <editform>./EventForm.ui</editform>
       <editforminit>EventForm.formOpen</editforminit>
       <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>uifilelayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2222,8 +2876,8 @@
             <attributeEditorField index="0" name="id"/>
             <attributeEditorField index="-1" name="key"/>
             <attributeEditorField index="4" name="value"/>
-            <attributeEditorField index="10" name="computed_date_start"/>
-            <attributeEditorField index="11" name="computed_date_end"/>
+            <attributeEditorField index="12" name="computed_date_start"/>
+            <attributeEditorField index="13" name="computed_date_end"/>
             <attributeEditorField index="-1" name="entities_name"/>
             <attributeEditorField index="-1" name="entities_type"/>
           </attributeEditorContainer>
@@ -2261,6 +2915,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2280,7 +2940,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MULTIPOINT table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1808/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1808/**/)</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' srid=4326 type=MultiPoint table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1301/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1301/**/) AND vtm.fuzzyness(/**/1301/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2337,6 +2997,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2358,12 +3024,21 @@
           <category render="true" symbol="0" value="" label=""/>
           <category render="true" symbol="1" value="person" label="person"/>
           <category render="true" symbol="2" value="city" label="city"/>
+          <category render="true" symbol="3" value="place" label="place"/>
         </categories>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="200,186,211,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;161,&#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;200,&#xd;&#xa;&#x9;186,&#xd;&#xa;&#x9;211,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -2374,7 +3049,7 @@
               <prop k="outline_width" v="0.25"/>
               <prop k="outline_width_map_unit_scale" v="0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
+              <prop k="scale_method" v="diameter"/>
               <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -2393,6 +3068,14 @@
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="211,161,161,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;71,&#xd;&#xa;&#x9;71,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;211,&#xd;&#xa;&#x9;161,&#xd;&#xa;&#x9;161,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -2403,7 +3086,7 @@
               <prop k="outline_width" v="0.25"/>
               <prop k="outline_width_map_unit_scale" v="0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
+              <prop k="scale_method" v="diameter"/>
               <prop k="size" v="2"/>
               <prop k="size_map_unit_scale" v="0,0"/>
               <prop k="size_unit" v="MM"/>
@@ -2422,6 +3105,14 @@
             <layer pass="0" class="SimpleMarker" locked="0">
               <prop k="angle" v="0"/>
               <prop k="color" v="186,191,211,255"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;138,&#xd;&#xa;&#x9;147,&#xd;&#xa;&#x9;179,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;186,&#xd;&#xa;&#x9;191,&#xd;&#xa;&#x9;211,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
               <prop k="horizontal_anchor_point" v="1"/>
               <prop k="name" v="circle"/>
               <prop k="offset" v="0,0"/>
@@ -2432,8 +3123,45 @@
               <prop k="outline_width" v="0.25"/>
               <prop k="outline_width_map_unit_scale" v="0,0"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="area"/>
+              <prop k="scale_method" v="diameter"/>
               <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+              <effect enabled="0" type="effectStack">
+                <effect type="drawSource">
+                  <prop k="blend_mode" v="0"/>
+                  <prop k="draw_mode" v="2"/>
+                  <prop k="enabled" v="1"/>
+                  <prop k="transparency" v="0"/>
+                </effect>
+              </effect>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="3">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="246,107,32,166"/>
+              <prop k="color_border_dd_active" v="1"/>
+              <prop k="color_border_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;195,&#xd;&#xa;&#x9;113,&#xd;&#xa;&#x9;24,&#xd;&#xa;&#x9;255.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_border_dd_field" v=""/>
+              <prop k="color_border_dd_useexpr" v="1"/>
+              <prop k="color_dd_active" v="1"/>
+              <prop k="color_dd_expression" v="color_rgba( &#xd;&#xa;&#x9;246,&#xd;&#xa;&#x9;107,&#xd;&#xa;&#x9;32,&#xd;&#xa;&#x9;150.0*fuzzyness(&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_start&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;computed_date_end&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_start_if_unknown&quot;,-1) ,&#xd;&#xa;&#x9;&#x9;COALESCE(&quot;date_end_if_unknown&quot;,-1)&#xd;&#xa;&#x9;)&#xd;&#xa;)"/>
+              <prop k="color_dd_field" v=""/>
+              <prop k="color_dd_useexpr" v="1"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="name" v="regular_star"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="195,113,24,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.25"/>
+              <prop k="outline_width_map_unit_scale" v="0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="4"/>
               <prop k="size_map_unit_scale" v="0,0"/>
               <prop k="size_unit" v="MM"/>
               <prop k="vertical_anchor_point" v="1"/>
@@ -2480,7 +3208,7 @@
           </symbol>
         </source-symbol>
         <rotation/>
-        <sizescale scalemethod="area"/>
+        <sizescale scalemethod="diameter"/>
         <effect enabled="0" type="effectStack">
           <effect type="drawSource">
             <prop k="blend_mode" v="0"/>
@@ -2658,6 +3386,13 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description=",8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" showAll="0"/>
       <editform>./EventForm.ui</editform>
       <editforminit>EventForm.formOpen</editforminit>
       <featformsuppress>0</featformsuppress>
@@ -2697,6 +3432,12 @@
         <edittype widgetv2type="TextEdit" name="source_description">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
+        <edittype widgetv2type="TextEdit" name="date_start_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="date_end_if_unknown">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
         <edittype widgetv2type="TextEdit" name="computed_date_start">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
@@ -2716,7 +3457,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."properties_types" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2812,7 +3553,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>sources20150212181047520</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
+      <datasource>dbname='vtm_dev' host=dhlabpc3.epfl.ch port=5432 sslmode=disable key='id' table="vtm"."sources" sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
@@ -2859,10 +3600,10 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <editform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</editform>
+      <editform>.</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform>C:/Users/odalang/Dropbox/Affaires/EPFL/VTM_Venice-Time-Machine/VTM_Dataentry/VTMSlider-master/qgis</annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -2884,354 +3625,6 @@
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="modification_user">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-    </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>un_vol20150414103146020</id>
-      <datasource>dbname='vtm' host=dhlabpc3.epfl.ch port=5432 user='olivier.dalang' password='gigis' sslmode=disable key='id_0' srid=3004 type=MULTIPOLYGON table="data_external"."un_vol" (geom) sql=</datasource>
-      <title></title>
-      <abstract></abstract>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>un_vol</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</proj4>
-          <srsid>969</srsid>
-          <srid>3004</srid>
-          <authid>EPSG:3004</authid>
-          <description>Monte Mario / Italy zone 2</description>
-          <projectionacronym>tmerc</projectionacronym>
-          <ellipsoidacronym>intl</ellipsoidacronym>
-          <geographicflag>false</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <provider encoding="System">postgres</provider>
-      <previewExpression>COALESCE( "id_0", '&lt;NULL>' )</previewExpression>
-      <vectorjoins/>
-      <expressionfields/>
-      <map-layer-style-manager current="">
-        <map-layer-style name=""/>
-      </map-layer-style-manager>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="id_0">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_plan">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_alt">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_val">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fonte">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_qgronda">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_qcolmo">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_h">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_tipporz">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_hintra">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_cre">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="tipo_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="origine">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="q_campagna">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_hcolmo">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-      </edittypes>
-      <renderer-v2 symbollevels="0" type="singleSymbol">
-        <symbols>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
-            <layer pass="0" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="214,112,78,128"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.26"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
-              <effect enabled="0" type="effectStack">
-                <effect type="drawSource">
-                  <prop k="blend_mode" v="0"/>
-                  <prop k="draw_mode" v="2"/>
-                  <prop k="enabled" v="1"/>
-                  <prop k="transparency" v="0"/>
-                </effect>
-              </effect>
-            </layer>
-          </symbol>
-        </symbols>
-        <rotation/>
-        <sizescale scalemethod="area"/>
-        <effect enabled="0" type="effectStack">
-          <effect type="drawSource">
-            <prop k="blend_mode" v="0"/>
-            <prop k="draw_mode" v="2"/>
-            <prop k="enabled" v="1"/>
-            <prop k="transparency" v="0"/>
-          </effect>
-        </effect>
-      </renderer-v2>
-      <customproperties>
-        <property key="labeling" value="pal"/>
-        <property key="labeling/addDirectionSymbol" value="false"/>
-        <property key="labeling/angleOffset" value="0"/>
-        <property key="labeling/blendMode" value="0"/>
-        <property key="labeling/bufferBlendMode" value="0"/>
-        <property key="labeling/bufferColorA" value="255"/>
-        <property key="labeling/bufferColorB" value="255"/>
-        <property key="labeling/bufferColorG" value="255"/>
-        <property key="labeling/bufferColorR" value="255"/>
-        <property key="labeling/bufferDraw" value="false"/>
-        <property key="labeling/bufferJoinStyle" value="64"/>
-        <property key="labeling/bufferNoFill" value="false"/>
-        <property key="labeling/bufferSize" value="1"/>
-        <property key="labeling/bufferSizeInMapUnits" value="false"/>
-        <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/bufferTransp" value="0"/>
-        <property key="labeling/centroidInside" value="false"/>
-        <property key="labeling/centroidWhole" value="false"/>
-        <property key="labeling/decimals" value="3"/>
-        <property key="labeling/displayAll" value="false"/>
-        <property key="labeling/dist" value="0"/>
-        <property key="labeling/distInMapUnits" value="false"/>
-        <property key="labeling/distMapUnitMaxScale" value="0"/>
-        <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/enabled" value="false"/>
-        <property key="labeling/fieldName" value=""/>
-        <property key="labeling/fontBold" value="false"/>
-        <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
-        <property key="labeling/fontItalic" value="false"/>
-        <property key="labeling/fontLetterSpacing" value="0"/>
-        <property key="labeling/fontLimitPixelSize" value="false"/>
-        <property key="labeling/fontMaxPixelSize" value="10000"/>
-        <property key="labeling/fontMinPixelSize" value="3"/>
-        <property key="labeling/fontSize" value="8.25"/>
-        <property key="labeling/fontSizeInMapUnits" value="false"/>
-        <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/fontStrikeout" value="false"/>
-        <property key="labeling/fontUnderline" value="false"/>
-        <property key="labeling/fontWeight" value="50"/>
-        <property key="labeling/fontWordSpacing" value="0"/>
-        <property key="labeling/formatNumbers" value="false"/>
-        <property key="labeling/isExpression" value="true"/>
-        <property key="labeling/labelOffsetInMapUnits" value="true"/>
-        <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/labelPerPart" value="false"/>
-        <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-        <property key="labeling/limitNumLabels" value="false"/>
-        <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-        <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-        <property key="labeling/maxNumLabels" value="2000"/>
-        <property key="labeling/mergeLines" value="false"/>
-        <property key="labeling/minFeatureSize" value="0"/>
-        <property key="labeling/multilineAlign" value="0"/>
-        <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Normal"/>
-        <property key="labeling/obstacle" value="true"/>
-        <property key="labeling/placeDirectionSymbol" value="0"/>
-        <property key="labeling/placement" value="1"/>
-        <property key="labeling/placementFlags" value="0"/>
-        <property key="labeling/plussign" value="false"/>
-        <property key="labeling/preserveRotation" value="true"/>
-        <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-        <property key="labeling/priority" value="5"/>
-        <property key="labeling/quadOffset" value="4"/>
-        <property key="labeling/repeatDistance" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
-        <property key="labeling/repeatDistanceUnit" value="1"/>
-        <property key="labeling/reverseDirectionSymbol" value="false"/>
-        <property key="labeling/rightDirectionSymbol" value=">"/>
-        <property key="labeling/scaleMax" value="10000000"/>
-        <property key="labeling/scaleMin" value="1"/>
-        <property key="labeling/scaleVisibility" value="false"/>
-        <property key="labeling/shadowBlendMode" value="6"/>
-        <property key="labeling/shadowColorB" value="0"/>
-        <property key="labeling/shadowColorG" value="0"/>
-        <property key="labeling/shadowColorR" value="0"/>
-        <property key="labeling/shadowDraw" value="false"/>
-        <property key="labeling/shadowOffsetAngle" value="135"/>
-        <property key="labeling/shadowOffsetDist" value="1"/>
-        <property key="labeling/shadowOffsetGlobal" value="true"/>
-        <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowOffsetUnits" value="1"/>
-        <property key="labeling/shadowRadius" value="1.5"/>
-        <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-        <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowRadiusUnits" value="1"/>
-        <property key="labeling/shadowScale" value="100"/>
-        <property key="labeling/shadowTransparency" value="30"/>
-        <property key="labeling/shadowUnder" value="0"/>
-        <property key="labeling/shapeBlendMode" value="0"/>
-        <property key="labeling/shapeBorderColorA" value="255"/>
-        <property key="labeling/shapeBorderColorB" value="128"/>
-        <property key="labeling/shapeBorderColorG" value="128"/>
-        <property key="labeling/shapeBorderColorR" value="128"/>
-        <property key="labeling/shapeBorderWidth" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeBorderWidthUnits" value="1"/>
-        <property key="labeling/shapeDraw" value="false"/>
-        <property key="labeling/shapeFillColorA" value="255"/>
-        <property key="labeling/shapeFillColorB" value="255"/>
-        <property key="labeling/shapeFillColorG" value="255"/>
-        <property key="labeling/shapeFillColorR" value="255"/>
-        <property key="labeling/shapeJoinStyle" value="64"/>
-        <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeOffsetUnits" value="1"/>
-        <property key="labeling/shapeOffsetX" value="0"/>
-        <property key="labeling/shapeOffsetY" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeRadiiUnits" value="1"/>
-        <property key="labeling/shapeRadiiX" value="0"/>
-        <property key="labeling/shapeRadiiY" value="0"/>
-        <property key="labeling/shapeRotation" value="0"/>
-        <property key="labeling/shapeRotationType" value="0"/>
-        <property key="labeling/shapeSVGFile" value=""/>
-        <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeSizeType" value="0"/>
-        <property key="labeling/shapeSizeUnits" value="1"/>
-        <property key="labeling/shapeSizeX" value="0"/>
-        <property key="labeling/shapeSizeY" value="0"/>
-        <property key="labeling/shapeTransparency" value="0"/>
-        <property key="labeling/shapeType" value="0"/>
-        <property key="labeling/textColorA" value="255"/>
-        <property key="labeling/textColorB" value="0"/>
-        <property key="labeling/textColorG" value="0"/>
-        <property key="labeling/textColorR" value="0"/>
-        <property key="labeling/textTransp" value="0"/>
-        <property key="labeling/upsidedownLabels" value="0"/>
-        <property key="labeling/wrapChar" value=""/>
-        <property key="labeling/xOffset" value="0"/>
-        <property key="labeling/yOffset" value="0"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>id_0</displayfield>
-      <label>0</label>
-      <labelattributes>
-        <label fieldname="" text="Label"/>
-        <family fieldname="" name="MS Shell Dlg 2"/>
-        <size fieldname="" units="pt" value="12"/>
-        <bold fieldname="" on="0"/>
-        <italic fieldname="" on="0"/>
-        <underline fieldname="" on="0"/>
-        <strikeout fieldname="" on="0"/>
-        <color fieldname="" red="0" blue="0" green="0"/>
-        <x fieldname=""/>
-        <y fieldname=""/>
-        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-        <angle fieldname="" value="0" auto="0"/>
-        <alignment fieldname="" value="center"/>
-        <buffercolor fieldname="" red="255" blue="255" green="255"/>
-        <buffersize fieldname="" units="pt" value="1"/>
-        <bufferenabled fieldname="" on=""/>
-        <multilineenabled fieldname="" on=""/>
-        <selectedonly on=""/>
-      </labelattributes>
-      <editform>.</editform>
-      <editforminit/>
-      <featformsuppress>0</featformsuppress>
-      <annotationform>.</annotationform>
-      <editorlayout>generatedlayout</editorlayout>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions/>
-      <edittypes>
-        <edittype widgetv2type="TextEdit" name="id_0">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="id">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_plan">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="acc_alt">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_val">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="fonte">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_qgronda">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_qcolmo">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_h">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_tipporz">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_hintra">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_cre">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="data_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="tipo_mod">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="origine">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="q_campagna">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="uv_hcolmo">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -3288,12 +3681,14 @@
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">1</DefaultSnapToleranceUnit>
       <LayerSnappingList type="QStringList">
-        <value>TR_EME20150414161010256</value>
+        <value>SHP_CAD_BATIMENT_HORSOL20150511102138089</value>
+        <value>SHP_DPS_BILLON_BATIMENT20150511102138105</value>
+        <value>SHP_DPS_CEARD_BATIMENT20150511102138136</value>
+        <value>SHP_DPS_GRANGE_BATIMENT20150511102138151</value>
         <value>UN_VOL_merged20150408142130435</value>
         <value>properties_for_qgis20150307001918975</value>
         <value>properties_for_qgis20150307041406392</value>
         <value>properties_for_qgis20150317102814809</value>
-        <value>un_vol20150414103146020</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>disabled</value>
@@ -3301,7 +3696,9 @@
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
-        <value>enabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
       </LayerSnappingEnabledList>
       <SnappingMode type="QString">advanced</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
@@ -3311,7 +3708,9 @@
         <value>2</value>
         <value>2</value>
         <value>2</value>
-        <value>1</value>
+        <value>2</value>
+        <value>2</value>
+        <value>2</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
         <value>to_vertex_and_segment</value>
@@ -3319,7 +3718,9 @@
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
-        <value>to_vertex</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
       </LayerSnapToList>
       <DefaultSnapType type="QString">to vertex and segment</DefaultSnapType>
       <DefaultSnapTolerance type="double">10</DefaultSnapTolerance>
@@ -3329,7 +3730,9 @@
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
-        <value>10.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
+        <value>0.000000</value>
       </LayerSnappingToleranceList>
     </Digitizing>
     <Identify>
@@ -3343,20 +3746,6 @@
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
-    <VTMSlider>
-      <entitiesLayerComboBox type="QString">1360_isl20150216164008691</entitiesLayerComboBox>
-      <entitiesLayer type="QString">entities20150212181047504</entitiesLayer>
-      <timelayers type="QStringList">
-        <value>properties_for_qgis20150307041406392</value>
-        <value>properties_for_qgis20150307001918975</value>
-      </timelayers>
-      <relationsLayer type="QString">related_entities20150303160720006</relationsLayer>
-      <propertiesLayer type="QString">properties20150212181047441</propertiesLayer>
-      <propertiesLayerComboBox type="QString">sources20150212181047520</propertiesLayerComboBox>
-      <filterString type="QString">("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/2015/**/)&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-AND&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-("computed_date_end" IS NULL OR "computed_date_end">/**/2015/**/)</filterString>
-    </VTMSlider>
     <SpatialRefSys>
       <ProjectCRSProj4String type="QString">+proj=tmerc +lat_0=0 +lon_0=15 +k=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs</ProjectCRSProj4String>
       <ProjectCrs type="QString">EPSG:3004</ProjectCrs>

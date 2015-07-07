@@ -11,13 +11,9 @@
 
 -- Insert into the properties from the temp table
 
-SELECT 	vtm.insert_properties_helper(name||' in %(year)s', 'border'::text, 'Euratlas', 'clone'::text, %(year)s+100, 'end'::vtm.interpolation_type, pid::text)
-FROM   (
-	SELECT 	vtm.insert_properties_helper(name||' in %(year)s', 'border'::text, 'Euratlas', 'geom'::text, %(year)s, 'start'::vtm.interpolation_type, ST_AsText(ST_Collect(value))) as pid,
-			name as name
-	FROM temp.temp_euratlas_sovereign_states_%(year)s
-	GROUP BY name
-	) as sub;
+SELECT 	vtm.insert_properties_helper(name, 'border', 'Euratlas', 'geom', %(year)s, 'default', ST_AsText(ST_Collect(value)), %(year)s-100, %(year)s+100)
+FROM temp.temp_euratlas_sovereign_states_%(year)s
+GROUP BY name;
 
 
 

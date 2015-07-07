@@ -22,6 +22,7 @@ CREATE TABLE vtm.properties_types
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX properties_types_name_idx ON vtm.properties_types(name);
 
 CREATE TRIGGER properties_types_stamps BEFORE INSERT OR UPDATE ON vtm.properties_types FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
@@ -43,6 +44,7 @@ CREATE TABLE vtm.entity_types
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX entity_types_name_idx ON vtm.entity_types(name);
 
 CREATE TRIGGER entity_types_stamps BEFORE INSERT OR UPDATE ON vtm.entity_types FOR EACH ROW
     EXECUTE PROCEDURE vtm.stamp();
@@ -62,6 +64,8 @@ CREATE TABLE vtm.entities
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
+CREATE INDEX entities_name_idx ON vtm.entities(name);
+
 COMMENT ON TABLE vtm.entities IS 'Cette table contient les entités historiques.';
 
 CREATE TRIGGER entities_stamps BEFORE INSERT OR UPDATE ON vtm.entities FOR EACH ROW
@@ -77,7 +81,7 @@ DROP TABLE IF EXISTS vtm.sources CASCADE;
 CREATE TABLE vtm.sources
 (
   id serial NOT NULL PRIMARY KEY,
-  name text UNIQUE,
+  name text UNIQUE NOT NULL,
   creation_timestamp timestamp default now(),
   creation_user text default CURRENT_USER,
   modification_timestamp timestamp default now(),
@@ -109,7 +113,9 @@ CREATE TABLE vtm.properties
   interpolation vtm.interpolation_type NOT NULL DEFAULT 'default',
   infered_by text,                                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
   computed_date_start integer,
-  computed_date_end integer,
+  computed_date_end integer,                               -- infered properties are properties determined by algorithms, that can be recomputed... the user should not modify them since they can be overwritten at any time
+  date_start_if_unknown integer,
+  date_end_if_unknown integer,
   --computed_size real,
   source_id integer REFERENCES vtm.sources ON DELETE SET NULL,
   source_description text,
@@ -118,7 +124,9 @@ CREATE TABLE vtm.properties
   modification_timestamp timestamp default now(),
   modification_user text default CURRENT_USER
 );
-DROP FUNCTION IF EXISTS vtm.properties_stamps() CASCADE;
+CREATE INDEX properties_entity_id_idx ON vtm.properties(entity_id);
+CREATE INDEX properties_property_type_id_idx ON vtm.properties(property_type_id);
+
 
 -- TRIGGER FOR STAMPS
 

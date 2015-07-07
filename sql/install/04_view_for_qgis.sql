@@ -25,6 +25,8 @@ SELECT 	ev.id,
 		ev.infered_by,
 		ev.source_id,
 		ev.source_description,
+  		ev.date_start_if_unknown,
+  		ev.date_end_if_unknown,
 		ev.computed_date_start,
 		ev.computed_date_end,
 		ent.name as entity_name,
@@ -74,7 +76,9 @@ $$
 	      	interpolation=NEW.interpolation,
 	      	infered_by=NEW.infered_by,
 	      	source_id=NEW.source_id,
-	      	source_description=NEW.source_description
+	      	source_description=NEW.source_description,
+  			date_start_if_unknown=NEW.date_start_if_unknown,
+  			date_end_if_unknown=NEW.date_end_if_unknown
 	    WHERE id=OLD.id;
 		RETURN NEW;
 

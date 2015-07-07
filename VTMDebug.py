@@ -70,6 +70,10 @@ class VTMDebug(QDialog):
 
                 self.main.commit()
 
+            if self.placesDataCheckBox.isChecked():
+                self.verboseQuery('insertion of places','import/places')               
+                self.main.commit()
+
             if self.dummyDataCheckBox.isChecked():
                 self.verboseQuery('insertion of dummy data','import/dummy_data')               
                 self.main.commit()
