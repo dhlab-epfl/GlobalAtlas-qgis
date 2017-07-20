@@ -9,7 +9,7 @@
 
 
 [general]
-name=GlobalAtlas-qgis-master
+name=GlobalAtlas-qgis
 qgisMinimumVersion=2.18
 description=Global Atlas
 version=0.0.13
