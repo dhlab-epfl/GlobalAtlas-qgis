@@ -4,7 +4,7 @@ This is a QGIS plugin to display and edit the Global Atlas database.
 
 It ships a QGIS project which must be used to use the plugin.
 
-See the screencast for a small preview.
+[See the screencast for a small preview](https://youtu.be/U57-ktb1xxk).
 
 <!-- MarkdownTOC depth=3 -->
 
@@ -33,7 +33,7 @@ See the screencast for a small preview.
 
 ## Getting started
 
-Click on the "open" button to load the QGIS project.
+Click on the "open" button ![Open icon](images/icon_start.png) to load the QGIS project.
 
 You're now seeing the TimeMachineGlobal map. You can browse through time using the slider of the main dock window.
 
