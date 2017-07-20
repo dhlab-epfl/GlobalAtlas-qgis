@@ -64,8 +64,6 @@ class VTMMain:
         self.connection = None
         self.sqlQueries = {}
 
-        self.setDatabase( QSettings().value("VTM Slider/database", "vtm_dev") )
-        
 
     def initGui(self):
         """ Put your code here and remove the pass statement"""
@@ -74,9 +72,9 @@ class VTMMain:
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
 
-        self.iface.newProjectCreated.connect( self.loadLayers )
+        # self.iface.newProjectCreated.connect( self.loadLayers )
 
-        self.loadLayers()
+        # self.loadLayers()
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
@@ -85,6 +83,7 @@ class VTMMain:
         QgsExpression.unregisterFunction("fuzzyness")
 
     def setDatabase(self, db):
+        QgsMessageLog.logMessage('Setting database to {}'.format(db), 'VTM Slider')
         if db=='heroku':
             host = 'ec2-54-247-189-141.eu-west-1.compute.amazonaws.com'
             database = 'd2a0g8in9o0998'
@@ -288,7 +287,8 @@ class VTMMain:
         ############################################################
         # Get the postgres connection using the eventsLayer uri and credentials
         ############################################################
-
+        QgsMessageLog.logMessage('GetConnection.','VTM Slider')
+        
         connection = None
         
         connectionInfo = self.dsUri.connectionInfo()

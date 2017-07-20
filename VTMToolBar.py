@@ -130,7 +130,7 @@ class VTMToolBar(QDockWidget):
                 with open(path) as old_file:
                     for line in old_file:
                         #changedLine = line.decode('utf-8').replace(pattern, subst).encode('utf-8')
-                        changedLine = re.sub( r'dbname=([a-zA-Z_0-9]*) host=([a-zA-Z_0-9\.]*)', 'dbname={} host={}'.format(database,host), line.decode('utf-8') )
+                        changedLine = re.sub( r'dbname=([a-zA-Z_0-9]*) host=([a-zA-Z_0-9\.\-]*)', 'dbname={} host={}'.format(database,host), line.decode('utf-8') )
                         new_file.write( changedLine.encode('utf-8') )
             close(fh)
             #Remove original file

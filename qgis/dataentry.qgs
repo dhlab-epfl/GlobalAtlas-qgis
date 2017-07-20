@@ -5,28 +5,28 @@
   <evaluateDefaultValues active="0"/>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150317102814809" source="dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiPoint table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (points)">
+    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150317102814809" source="dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiPoint table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (points)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150307041406392" source="dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiLineString table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (linestrings)">
+    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150307041406392" source="dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiLineString table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (linestrings)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150307001918975" source="dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiPolygon table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (polygons)">
+    <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="properties_for_qgis20150307001918975" source="dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiPolygon table=&quot;vtm&quot;.&quot;properties_for_qgis&quot; (geovalue) sql=(&quot;computed_date_start&quot; IS NULL OR &quot;computed_date_start&quot;&lt;=/**/1200/**/) AND (&quot;computed_date_end&quot; IS NULL OR &quot;computed_date_end&quot;>/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0" name="properties_for_qgis (polygons)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="properties20150212181047441" source="dbname='globalatlas' host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;properties&quot; sql=" name="properties (unfiltered)">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="properties20150212181047441" source="dbname=globalatlas host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;properties&quot; sql=" name="properties (unfiltered)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="entities20150212181047504" source="dbname='globalatlas' host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;entities&quot; sql=" name="entities">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="entities20150212181047504" source="dbname=globalatlas host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;entities&quot; sql=" name="entities">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="entity_types20150306220740482" source="dbname='globalatlas' host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;entity_types&quot; sql=" name="entity_types">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="entity_types20150306220740482" source="dbname=globalatlas host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;entity_types&quot; sql=" name="entity_types">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="properties_types20150317175434094" source="dbname='globalatlas' host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;properties_types&quot; sql=" name="properties_types">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="properties_types20150317175434094" source="dbname=globalatlas host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;properties_types&quot; sql=" name="properties_types">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="sources20150212181047520" source="dbname='globalatlas' host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;sources&quot; sql=" name="sources">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="sources20150212181047520" source="dbname=globalatlas host=localhost port=5432 key='id' table=&quot;vtm&quot;.&quot;sources&quot; sql=" name="sources">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-group expanded="1" checked="Qt::Unchecked" name="Sources">
@@ -223,7 +223,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entities20150212181047504</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' table="vtm"."entities" sql=</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' table="vtm"."entities" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -312,7 +312,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>entity_types20150306220740482</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' table="vtm"."entity_types" sql=</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' table="vtm"."entity_types" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -411,7 +411,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties20150212181047441</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' table="vtm"."properties" sql=</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' table="vtm"."properties" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -566,7 +566,7 @@
         <ymax>45.4493348800000021</ymax>
       </extent>
       <id>properties_for_qgis20150307001918975</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiPolygon table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiPolygon table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1092,7 +1092,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150307041406392</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiLineString table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiLineString table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1645,7 +1645,7 @@
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>properties_for_qgis20150317102814809</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' srid=4326 type=MultiPoint table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' srid=4326 type=MultiPoint table="vtm"."properties_for_qgis" (geovalue) sql=("computed_date_start" IS NULL OR "computed_date_start"&lt;=/**/1200/**/) AND ("computed_date_end" IS NULL OR "computed_date_end">/**/1200/**/) AND vtm.fuzzyness(/**/1200/**/, date, computed_date_start, computed_date_end, date_start_if_unknown, date_end_if_unknown)>0</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2185,7 +2185,7 @@
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>properties_types20150317175434094</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' table="vtm"."properties_types" sql=</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' table="vtm"."properties_types" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2284,7 +2284,7 @@
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" readOnly="0" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
       <id>sources20150212181047520</id>
-      <datasource>dbname='globalatlas' host=localhost port=5432 key='id' table="vtm"."sources" sql=</datasource>
+      <datasource>dbname=globalatlas host=localhost port=5432 key='id' table="vtm"."sources" sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
