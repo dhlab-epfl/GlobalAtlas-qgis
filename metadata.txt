@@ -9,10 +9,10 @@
 
 
 [general]
-name=GlobalAtlas
+name=GlobalAtlas-qgis-master
 qgisMinimumVersion=2.18
 description=Global Atlas
-version=0.0.12
+version=0.0.13
 author=Olivier Dalang
 email=olivier.dalang@gmail.com
 
