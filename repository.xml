@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<plugins>
+	<pyqgis_plugin name="GlobalAtlas-qgis-master" version="0.0.13">
+        <description>GlobalAtlas</description>
+        <about>GlobalAtlas</about>
+        <version>0.0.13</version>
+        <author_name>Olivier Dalang</author_name>
+        <qgis_minimum_version>2.18.0</qgis_minimum_version>
+        <qgis_maximum_version>2.99.0</qgis_maximum_version>
+        <experimental>False</experimental>
+        <download_url>https://github.com/dhlab-epfl/GlobalAtlas-qgis/archive/</download_url>
+        <file_name>master.zip</file_name>
+    </pyqgis_plugin>
+</plugins>
