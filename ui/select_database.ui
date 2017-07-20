@@ -25,17 +25,12 @@
     <widget class="QComboBox" name="comboBox">
      <item>
       <property name="text">
-       <string>vtm_dev</string>
+       <string>localhost</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>vtm_shs_dev</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>vtm</string>
+       <string>heroku</string>
       </property>
      </item>
     </widget>

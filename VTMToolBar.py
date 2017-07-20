@@ -20,7 +20,6 @@ from PyQt4 import uic
 from qgis.core import *
 from qgis.gui import *
 
-from VTMHelp import VTMHelp
 from VTMLoadData import VTMLoadData
 from VTMDebug import VTMDebug
 
@@ -28,6 +27,7 @@ from qgis.core import *
 
 import os.path
 import re
+import webbrowser
 
 from tempfile import mkstemp
 from shutil import move
@@ -117,8 +117,11 @@ class VTMToolBar(QDockWidget):
  
         if chooseDB.exec_() == QDialog.Accepted:
 
-            database = chooseDB.comboBox.currentText()
-            self.main.setDatabase( database )
+            self.main.setDatabase( chooseDB.comboBox.currentText() )
+            
+            host = self.main.dsUri.host()
+            port = int(self.main.dsUri.port())
+            database = self.main.dsUri.database()
 
             path = os.path.join( os.path.dirname(__file__),'qgis','dataentry.qgs')
 
@@ -127,7 +130,7 @@ class VTMToolBar(QDockWidget):
                 with open(path) as old_file:
                     for line in old_file:
                         #changedLine = line.decode('utf-8').replace(pattern, subst).encode('utf-8')
-                        changedLine = re.sub( r'dbname=\'([a-zA-Z_0-9]*)\'', 'dbname=\''+database+'\'', line.decode('utf-8') )
+                        changedLine = re.sub( r'dbname=([a-zA-Z_0-9]*) host=([a-zA-Z_0-9\.]*)', 'dbname={} host={}'.format(database,host), line.decode('utf-8') )
                         new_file.write( changedLine.encode('utf-8') )
             close(fh)
             #Remove original file
@@ -139,8 +142,7 @@ class VTMToolBar(QDockWidget):
             self.main.loadLayers()
 
     def doHelp(self):
-        dlg = VTMHelp()
-        dlg.exec_()
+        webbrowser.open('https://github.com/dhlab-epfl/GlobalAtlas-qgis/blob/master/README.md')
 
     def doDebug(self):
         dlg = VTMDebug(self.iface, self.main)
