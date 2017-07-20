@@ -142,7 +142,7 @@ class VTMToolBar(QDockWidget):
             self.main.loadLayers()
 
     def doHelp(self):
-        webbrowser.open('https://github.com/dhlab-epfl/GlobalAtlas-qgis/blob/master/README.md')
+        webbrowser.open('https://github.com/dhlab-epfl/GlobalAtlas_QGIS/blob/master/README.md')
 
     def doDebug(self):
         dlg = VTMDebug(self.iface, self.main)

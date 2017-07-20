@@ -9,7 +9,7 @@
 
 
 [general]
-name=GlobalAtlas-qgis-master
+name=GlobalAtlas_QGIS
 qgisMinimumVersion=2.18
 description=Global Atlas
 version=0.0.13
@@ -26,9 +26,9 @@ email=olivier.dalang@gmail.com
 # tags are comma separated with spaces allowed
 tags=time,machine,dhlab,epfl,venice
 
-homepage=https://github.com/dhlab-epfl/GlobalAtlas-qgis
-tracker=https://github.com/dhlab-epfl/GlobalAtlas-qgis/issues
-repository=https://github.com/dhlab-epfl/GlobalAtlas-qgis
+homepage=https://github.com/dhlab-epfl/GlobalAtlas_QGIS
+tracker=https://github.com/dhlab-epfl/GlobalAtlas_QGIS/issues
+repository=https://github.com/dhlab-epfl/GlobalAtlas_QGIS
 icon=images/icon.png
 # experimental flag
 experimental=True

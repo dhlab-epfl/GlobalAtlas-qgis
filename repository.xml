@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <plugins>
-	<pyqgis_plugin name="GlobalAtlas-qgis-master" version="0.0.13">
+	<pyqgis_plugin name="GlobalAtlas_QGIS" version="0.0.13">
         <description>GlobalAtlas</description>
         <about>GlobalAtlas</about>
         <version>0.0.13</version>
@@ -8,7 +8,7 @@
         <qgis_minimum_version>2.18.0</qgis_minimum_version>
         <qgis_maximum_version>2.99.0</qgis_maximum_version>
         <experimental>False</experimental>
-        <download_url>https://github.com/dhlab-epfl/GlobalAtlas-qgis/archive/</download_url>
-        <file_name>master.zip</file_name>
+        <download_url>https://github.com/dhlab-epfl/GlobalAtlas_QGIS/archive/0.0.13.zip</download_url>
+        <file_name>GlobalAtlas_QGIS-0.0.13.zip</file_name>
     </pyqgis_plugin>
 </plugins>
