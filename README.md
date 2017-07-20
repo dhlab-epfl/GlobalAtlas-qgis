@@ -43,15 +43,11 @@ You're now seeing the TimeMachineGlobal map. You can browse through time using t
 
 Every object appearing in TimeMachineGlobal is an *entity*. An *entity* is nothing more than an absolute reference of an object such as a building, a person, a city, etc.
 
-The *entity* has *properties*. A *property* is nothing more than a certain value for a certain aspect of an entity at a given date.
-
-Using the dates of properties, we are able to display an entity at any given date by interpolating (TODO : explain ?) between properties.
-
-Example :
+The *entity* has *properties*. A *property* is nothing more than a certain value for a certain aspect (like it's name, it's shape, it's main construction material...) of an entity at a given date.
 
 Let's say we have an entitiy called Entity_1 representing the City of Istanbul.
 
-We could have the following properties to model the name of the city :
+The following properties represent the name of the city evolving over time :
 
 | entity   | property  | date  | value          |
 | ---------|-----------|-------|----------------|
@@ -59,29 +55,58 @@ We could have the following properties to model the name of the city :
 | Entity_1 | name      | 330   | Constantinople |
 | Entity_1 | name      | 1930  | Istanbul       |
 
-
-We could have the following properties to model the population :
+The following properties model the population :
 
 | entity   | property   | date | value      |
-| ---------|-----------|-------|------------|
+| ---------|------------|------|------------|
 | Entity_1 | population | 1550 | 700'000    |
 | Entity_1 | population | 1950 | 1'000'000  |
 | Entity_1 | population | 2014 | 14'377'019 |
 
-The geometry appearing on the map is working exactly the same way :
+The evolving boundaries of the city can be modeled exactly in the same way :
 
-| entity   | property | date | value             |
-| ---------|----------|------|-------------------|
-| Entity_1 | geom     | 1950 | [POLYGON(...)][1] |
-| Entity_1 | geom     | 2014 | [POLYGON(...)][1] |
+| entity   | property | date | value          |
+| ---------|----------|------|----------------|
+| Entity_1 | geom     | -630 | [POLYGON_A][1] |
+| Entity_1 | geom     | 1800 | [POLYGON_B][1] |
+| Entity_1 | geom     | 2014 | [POLYGON_C][1] |
 
 [1]: http://en.wikipedia.org/wiki/Well-known_text  "Description of WKT format"
 
-## More details
-
-TODO : explain computed_date_start/computed_date_end and interpolation
+Note that each property is completely independant of the others. 
 
 
+### Interpolation
+
+The previous section showed how to define values for different properties of an entity at *specific points in time*. To be able to display a state of the entity at any give date, we need to *interpolate* these values.
+
+Behind the scene, a validity range will be created for each property. By default, as a best guess, a property will be valid from the date at the mid point between the previous property and the current property to the date at the mid point between the current property and the next property.
+
+In the example of the name of Istanbul, this is what we would get :
+
+| date  | value          | valid_from* | valid_to*   |
+|-------|----------------|-------------|-------------|
+| -630  | Byzantium      | infinity    | -150        |
+| 330   | Constantinople | -150        | 1130        |
+| 1930  | Istanbul       | 1130        | infinity    |
+
+In this praticular case, the validity dates are wrong, because the dates of the properties are not just random dates, but they correspond to events where the names changed. To fix this, we can set the interpolation to *start* instead of *default* :
+
+| date  | value          | interpolation | valid_from* | valid_to*   |
+|-------|----------------|---------------|-------------|-------------|
+| -630  | Byzantium      | start         | -630        | 330         |
+| 330   | Constantinople | start         | 330         | 1930        |
+| 1930  | Istanbul       | start         | 1930        | infinity    |
+
+This fixes the validity range. It is also possible to set the interpolation to *end*, which works the opposite way.
+
+Currently, the Global Atlas is not capable of doing continuous interpolation. This means that in the example about Istanbul's population, if we wanted to display the population in year 1617, the Global Atlas would not be able to display a value in between 700'000 and 1'000'000. It would have to display one of the two values, according to the validity range as explained above.
+
+### Sources and adding more and more details
+
+Each property has a link to a source where the value of the property comes from. Adding more values for properties at different point in history refine progressively the entity's representation.
+
+It is also possible that a source defines the absence of a property. For instance, if a map shows that one city does not exist at a certain date, it can define an empty value (NULL) for the geometry of that entity.
 
 ---------
 
@@ -95,9 +120,9 @@ You can slide the slider to choose which date to choose. You can set the min/max
 
 Shows this help.
 
-### ID button
+### Config button ![Load data icon](images/icon_debug.png)
 
-(Will be removed) Show the id of the selected layer in the console. For developement purposes.
+(Will be removed) For developpement purposes. Allow to reset the database.
 
 ### Open button
 

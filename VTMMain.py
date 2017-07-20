@@ -85,15 +85,21 @@ class VTMMain:
         QgsExpression.unregisterFunction("fuzzyness")
 
     def setDatabase(self, db):
-        database = db
+        if db=='heroku':
+            host = 'ec2-54-247-189-141.eu-west-1.compute.amazonaws.com'
+            database = 'd2a0g8in9o0998'
+        else:
+            host = 'localhost'
+            database = 'globalatlas'
         username = QSettings().value("VTM Slider/username", "")
         password = QSettings().value("VTM Slider/password", "")
         QgsMessageLog.logMessage('WARNING : password stored in plain text in the registry for debugging purposes !', 'VTM Slider')
-        self.uri = 'dbname=\'{db}\' host=dhlabpc3.epfl.ch port=5432 sslmode=disable'.format(db=database)
+        self.uri = 'dbname={database} host={host} port=5432 sslmode=prefer'.format(database=database, host=host)
+        self.dsUri = QgsDataSourceURI( self.uri )
         QgsCredentials.instance().put(self.uri, username, password)
         QgsMessageLog.logMessage('setting credentials: '+self.uri+' '+username+'//'+password, 'VTM Slider')
 
-        QSettings().setValue("VTM Slider/database", database)
+        QSettings().setValue("VTM Slider/database", db)
 
     def currentDate(self):
         return self.dockwidget.slider.value()
@@ -285,12 +291,11 @@ class VTMMain:
 
         connection = None
         
-        dsUri = QgsDataSourceURI( self.uri )
-        connectionInfo = dsUri.connectionInfo()
+        connectionInfo = self.dsUri.connectionInfo()
         
-        host = dsUri.host()
-        port = int(dsUri.port())
-        database = dsUri.database()
+        host = self.dsUri.host()
+        port = int(self.dsUri.port())
+        database = self.dsUri.database()
         username = None
         password = None
 
