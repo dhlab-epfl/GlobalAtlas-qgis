@@ -457,6 +457,9 @@
        </item>
        <item>
         <widget class="QToolButton" name="cloneButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="toolTip">
           <string>Create a clone of the property at the current date</string>
          </property>
