@@ -194,22 +194,27 @@ class VTMLoadData(QDialog):
                 valueExpVal = QgsExpression( self.attributesTableWidget.item(row, self.VALUE_COLUMN).text() )
                 valueExpVal.prepare( entityFields )
                 value = valueExpVal.evaluate( f )
+                if isinstance(value,QPyNullVariant): value = None
 
                 dateExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_COLUMN).text() )
                 dateExpVal.prepare( entityFields )
                 date = dateExpVal.evaluate( f )
+                if isinstance(date,QPyNullVariant): date = None
 
                 interpExpVal = QgsExpression( self.attributesTableWidget.item(row, self.INTERP_COLUMN).text() )
                 interpExpVal.prepare( entityFields )
                 interp = interpExpVal.evaluate( f )
+                if isinstance(interp,QPyNullVariant): interp = None
 
                 startExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_START_IF_UNKNOWN_COLUMN).text() )
                 startExpVal.prepare( entityFields )
                 start = startExpVal.evaluate( f )
+                if isinstance(start,QPyNullVariant): start = None
 
                 endExpVal = QgsExpression( self.attributesTableWidget.item(row, self.DATE_END_IF_UNKNOWN_COLUMN).text() )
                 endExpVal.prepare( entityFields )
                 end = endExpVal.evaluate( f )
+                if isinstance(end,QPyNullVariant): end = None
 
                 prop_name = self.attributesTableWidget.item(row, self.PROPERTY_COLUMN).text()
 

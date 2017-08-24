@@ -72,13 +72,13 @@ class VTMMain:
         self.iface.mainWindow().addDockWidget(Qt.TopDockWidgetArea,self.dockwidget)
         self.dockwidget.show()
 
-        # self.iface.newProjectCreated.connect( self.loadLayers )
+        # self.iface.newProjectCreated.connect( self.loadLayers ) # if uncommented, also uncomment in unload
 
         # self.loadLayers()
 
     def unload(self):
         self.iface.mainWindow().removeDockWidget(self.dockwidget)
-        self.iface.newProjectCreated.disconnect( self.loadLayers )        
+        # self.iface.newProjectCreated.disconnect( self.loadLayers ) # if uncommented, also uncomment in initGui       
         QgsExpression.unregisterFunction("vtm_date")       
         QgsExpression.unregisterFunction("fuzzyness")
 

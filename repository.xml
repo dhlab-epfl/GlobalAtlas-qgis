@@ -1,9 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <plugins>
-	<pyqgis_plugin name="GlobalAtlas-qgis-master" version="0.0.14">
+	<pyqgis_plugin name="GlobalAtlas-qgis-master" version="0.0.15">
         <description>GlobalAtlas</description>
         <about>GlobalAtlas</about>
-        <version>0.0.14</version>
+        <version>0.0.15</version>
         <author_name>Olivier Dalang</author_name>
         <qgis_minimum_version>2.18.0</qgis_minimum_version>
         <qgis_maximum_version>2.99.0</qgis_maximum_version>

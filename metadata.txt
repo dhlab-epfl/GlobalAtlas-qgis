@@ -3,7 +3,7 @@ name=GlobalAtlas-qgis
 qgisMinimumVersion=2.18
 description=Global Atlas
 # !! remember to change version number in repository.xml as well !!
-version=0.0.14
+version=0.0.15
 author=Olivier Dalang
 email=olivier.dalang@gmail.com
 
